@@ -4,7 +4,7 @@ descending order.
 
 Again, use the last() name to get the English country name
 
-TODO try me out, takes too long to evaluate online...
+TODO FRAGE: Warum darf ich unten die Klammern nicht weglassen?
 
 For what it can be useful:
 A lower bound on the minimal distance for being conquered?
@@ -37,8 +37,9 @@ let $capital := $c/id(@capital),
       )
     )
 order by $radius descending
-return 
-<country 
-  name="{$c/name[last()]}"
-  radius="{$radius}"
-/>
+return (
+  <country 
+    name="{$c/name[last()]}"
+    radius="{$radius}"/>, 
+  "&#xA;"
+)
