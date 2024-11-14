@@ -2,7 +2,7 @@
 Compute all pairs (country, organization) s.t. the country belongs to the 
 organization, but all its neighbors do not belong to the organization.
 :)
-for $o in /*/organization[@id="org-EU"],
+for $o in /*/organization,
     $c in $o/members[@type="member"]/id(@country)
 where
   every $n in $c/border/id(@country)
