@@ -1,0 +1,46 @@
+-- this is the long version of my solution. This approach took one hour to compute on my system....
+-- I used a local version of the mondial database with PostgreSQL 17
+
+CREATE OR REPLACE FUNCTION distance(lat1 double precision, long1 double precision, lat2 double precision, long2 double precision) RETURNS double precision
+	RETURN (6370 * COS(COS(@lat1 / 180 * 3.14) * COS(@lat2 / 180 * 3.14) * COS((@long1 - @long2) / 180 * 3.14) + SIN(@lat1 / 180 * 3.14) * SIN(@lat2 / 180 * 3.14)));
+
+
+WITH CapitalCoordinates AS (
+    SELECT
+        c.Code AS CountryCode,
+        ct.Latitude AS CapitalLat,
+        ct.Longitude AS CapitalLon
+    FROM Country c
+    JOIN City ct ON c.Capital = ct.Name AND c.Code = ct.Country
+),
+Distances AS (
+    SELECT
+        cc.CountryCode,
+        GREATEST(
+            COALESCE(MAX(distance(cc.CapitalLat, cc.CapitalLon, ci.Latitude, ci.Longitude)), 0),
+            COALESCE(MAX(distance(cc.CapitalLat, cc.CapitalLon, (mtn.Coordinates).Latitude, (mtn.Coordinates).Longitude)), 0),
+            COALESCE(MAX(distance(cc.CapitalLat, cc.CapitalLon, (lk.Coordinates).Latitude, (lk.Coordinates).Longitude)), 0),
+            COALESCE(MAX(distance(cc.CapitalLat, cc.CapitalLon, (isl.Coordinates).Latitude, (isl.Coordinates).Longitude)), 0),
+            COALESCE(MAX(distance(cc.CapitalLat, cc.CapitalLon, (rs.Source).Latitude, (rs.Source).Longitude)), 0),
+            COALESCE(MAX(distance(cc.CapitalLat, cc.CapitalLon, (re.Estuary).Latitude, (re.Estuary).Longitude)), 0)
+        ) AS Radius
+    FROM CapitalCoordinates cc
+    LEFT JOIN City ci ON ci.Country = cc.CountryCode
+    LEFT JOIN geo_Mountain gm ON gm.Country = cc.CountryCode
+    LEFT JOIN Mountain mtn ON gm.Mountain = mtn.Name
+    LEFT JOIN geo_Lake gl ON gl.Country = cc.CountryCode
+    LEFT JOIN Lake lk ON gl.Lake = lk.Name
+    LEFT JOIN geo_Island gi ON gi.Country = cc.CountryCode
+    LEFT JOIN Island isl ON gi.Island = isl.Name
+    LEFT JOIN geo_Source gs ON gs.Country = cc.CountryCode
+    LEFT JOIN River rs ON gs.River = rs.Name
+    LEFT JOIN geo_Estuary ge ON ge.Country = cc.CountryCode
+    LEFT JOIN River re ON ge.River = re.Name
+    GROUP BY cc.CountryCode
+)
+SELECT
+    co.Name AS Country,
+    d.Radius
+FROM Distances d
+JOIN Country co ON co.Code = d.CountryCode
+ORDER BY d.Radius DESC
