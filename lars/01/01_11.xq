@@ -11,12 +11,12 @@ net.sf.saxon.trans.UncheckedXPathException: An empty sequence is not allowed as 
 :)
 
 (: Assuming that the river exists :)
-declare function local:river_len($ctx as node(), $river_name as xs:string) as xs:decimal? {
-  (: first find the river :)
-  let $river := $ctx//*[name/text() = $river_name]
-  return xs:decimal(number(if ($river/length) then number($river/length) else 0)) + sum(
+declare function local:river_len($ctx as node(), $water_name as xs:string) as xs:decimal? {
+  (: first find the river/lake :)
+  let $water := $ctx//*[name/text() = $water_name]
+  return xs:decimal(number(if ($water/length) then number($water/length) else 0)) + sum(
     (: They could branch, I think rivers get bigger over time :)
-    for $from in $ctx//*[to/id(@water) = $river]/name[last()]/text()
+    for $from in $ctx//*[to/id(@water) = $water]/name[last()]/text()
     return local:river_len($ctx, $from)
   )
 };
