@@ -7,4 +7,4 @@ pick up anything accidentally.
 /mondial/country[
   city = /mondial/organization/id(@headq) or 
   province/city = /mondial/organization/id(@headq)
-]/name/text()
+]/name[last()]/text()

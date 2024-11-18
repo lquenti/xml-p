@@ -5,4 +5,4 @@ which are the capital of a member country of this organization.
 
 /*/organization[
   @headq = members[@type="member"]/id(@country)/@capital
-]/id(@headq)/name/text()
+]/id(@headq)/name[last()]/text()

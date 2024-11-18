@@ -27,10 +27,11 @@ let $all_thirteen := (
   let $some_saturday := xs:date("1582-10-17"),
       $seventeenth_century := local:generate_until(xs:date("1582-10-16"), xs:date("1600-01-01")),
       $eighteenth_century := local:generate_until(xs:date("1600-01-01"), xs:date("1700-01-01")),
+      $oopsie := local:generate_until(xs:date("1700-01-01"), xs:date("1800-01-01")),
       $nineteenth_century := local:generate_until(xs:date("1800-01-01"), xs:date("1900-01-01")),
       $twentieth_century := local:generate_until(xs:date("1900-01-01"), xs:date("2000-01-01")),
       $twentyfirst_century := local:generate_until(xs:date("2000-01-01"), current-date()),
-      $all_thirteen := ($seventeenth_century, $eighteenth_century, $nineteenth_century, $twentieth_century, $twentyfirst_century)
+      $all_thirteen := ($seventeenth_century, $eighteenth_century, $oopsie, $nineteenth_century, $twentieth_century, $twentyfirst_century)
   for $t in $all_thirteen
   (: friday = 0, saturday = 1, ..., thursday = 6 :)
   return <result 
@@ -38,6 +39,7 @@ let $all_thirteen := (
     weekday="{days-from-duration($t - $some_saturday) mod 7}"
   />
 )
-for $nums in (0,1,2,3,4,5,6)
+for $nums in (0 to 6)
 let $all_weekday := $all_thirteen[@weekday = $nums]
 return <result nums="{$nums}" count="{count($all_weekday)}" />
+

@@ -10,4 +10,4 @@ Note that `!=` would result in "for all not" not "not for all"
 /*/country[not(
   city = /*/organization/id(@headq) or 
   province/city = /*/organization/id(@headq)
-)]/name/text()
+)]/name[last()]/text()

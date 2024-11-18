@@ -5,7 +5,7 @@ but all its neighbors belong to the organization.
 for $o in /*/organization,
     $c in /*/country
 let
-  $orga_members := $o/members[@type="member"]/id(@country)
+  $orga_members := $o/members/id(@country)
 where
   every $n in $c/border/id(@country)
   satisfies $n=$orga_members and
