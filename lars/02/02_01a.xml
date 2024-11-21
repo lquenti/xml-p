@@ -1,0 +1,3048 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<waters>
+   <sea>
+      <name>Atlantic Ocean</name>
+      <river>
+         <name>Thjorsa</name>
+         <length>230</length>
+      </river>
+      <river>
+         <name>Severn</name>
+         <length>354</length>
+         <river>
+            <name>Avon</name>
+            <length>123</length>
+         </river>
+      </river>
+      <river>
+         <name>Bann</name>
+         <length>129</length>
+         <lake>
+            <name>Lough Neagh</name>
+         </lake>
+      </river>
+      <river>
+         <name>Shannon</name>
+         <length>360</length>
+      </river>
+      <river>
+         <name>Vilaine</name>
+         <length>218</length>
+      </river>
+      <river>
+         <name>Loire</name>
+         <length>1013</length>
+         <river>
+            <name>Maine</name>
+            <length>11</length>
+            <river>
+               <name>Sarthe</name>
+               <length>314</length>
+            </river>
+            <river>
+               <name>Mayenne</name>
+               <length>203</length>
+            </river>
+         </river>
+         <river>
+            <name>Vienne</name>
+            <length>363</length>
+         </river>
+         <river>
+            <name>Cher</name>
+            <length>365</length>
+         </river>
+         <river>
+            <name>Allier</name>
+            <length>421</length>
+         </river>
+      </river>
+      <river>
+         <name>Garonne</name>
+         <length>647</length>
+      </river>
+      <river>
+         <name>Minho</name>
+         <length>308</length>
+      </river>
+      <river>
+         <name>Douro</name>
+         <length>897</length>
+      </river>
+      <river>
+         <name>Mondego</name>
+         <length>234</length>
+      </river>
+      <river>
+         <name>Tajo</name>
+         <length>1007</length>
+         <river>
+            <name>Jarama</name>
+            <length>190</length>
+         </river>
+      </river>
+      <river>
+         <name>Sado</name>
+         <length>180</length>
+      </river>
+      <river>
+         <name>Guadiana</name>
+         <length>742</length>
+      </river>
+      <river>
+         <name>Guadalquivir</name>
+         <length>657</length>
+         <river>
+            <name>Genil</name>
+            <length>358</length>
+         </river>
+      </river>
+      <river>
+         <name>Saint Lawrence River</name>
+         <length>1197</length>
+         <river>
+            <name>Ottawa River</name>
+            <length>1271</length>
+         </river>
+         <river>
+            <name>Manicouagan River</name>
+            <length>200</length>
+            <lake>
+               <name>Lake Manicouagan</name>
+            </lake>
+         </river>
+         <river>
+            <name>Riviere Richelieu</name>
+            <length>124</length>
+            <lake>
+               <name>Lake Champlain</name>
+            </lake>
+         </river>
+         <lake>
+            <name>Lake Ontario</name>
+            <river>
+               <name>Niagara River</name>
+               <length>58</length>
+               <lake>
+                  <name>Lake Erie</name>
+                  <river>
+                     <name>Detroit River</name>
+                     <length>200</length>
+                     <lake>
+                        <name>Lake Huron</name>
+                        <river>
+                           <name>Saint Marys River</name>
+                           <length>120</length>
+                           <lake>
+                              <name>Lake Superior</name>
+                              <river>
+                                 <name>Nipigon River</name>
+                                 <length>48</length>
+                                 <lake>
+                                    <name>Lake Nipigon</name>
+                                 </lake>
+                              </river>
+                           </lake>
+                        </river>
+                        <river>
+                           <name>Manitou River</name>
+                           <length>15</length>
+                           <lake>
+                              <name>Lake Manitou</name>
+                           </lake>
+                        </river>
+                        <river>
+                           <name>Mindemoya River</name>
+                           <length>8</length>
+                           <lake>
+                              <name>Lake Mindemoya</name>
+                           </lake>
+                        </river>
+                        <river>
+                           <name>Straits of Mackinac</name>
+                           <length>0.1</length>
+                           <lake>
+                              <name>Lake Michigan</name>
+                           </lake>
+                        </river>
+                     </lake>
+                  </river>
+               </lake>
+            </river>
+         </lake>
+      </river>
+      <river>
+         <name>Merrimack River</name>
+         <length>177</length>
+         <lake>
+            <name>Lake Winnipesaukee</name>
+         </lake>
+      </river>
+      <river>
+         <name>Connecticut River</name>
+         <length>655</length>
+      </river>
+      <river>
+         <name>Hudson River</name>
+         <length>493</length>
+      </river>
+      <river>
+         <name>Delaware River</name>
+         <length>735</length>
+      </river>
+      <river>
+         <name>Susquehanna River</name>
+         <length>715</length>
+      </river>
+      <river>
+         <name>Potomac River</name>
+         <length>652</length>
+      </river>
+      <river>
+         <name>Savannah River</name>
+         <length>560</length>
+      </river>
+      <river>
+         <name>Orinoco</name>
+         <length>2010</length>
+         <river>
+            <name>Arauca</name>
+            <length>1050</length>
+         </river>
+         <river>
+            <name>Apure</name>
+            <length>1038</length>
+         </river>
+         <river>
+            <name>Rio Meta</name>
+            <length>1200</length>
+         </river>
+         <river>
+            <name>Rio Guaviare</name>
+            <length>1497</length>
+         </river>
+      </river>
+      <river>
+         <name>Essequibo</name>
+         <length>1010</length>
+      </river>
+      <river>
+         <name>Suriname</name>
+         <length>480</length>
+      </river>
+      <river>
+         <name>Oyapock</name>
+         <length>370</length>
+      </river>
+      <river>
+         <name>Amazonas</name>
+         <length>3778</length>
+         <river>
+            <name>Rio Negro</name>
+            <length>2866</length>
+         </river>
+         <river>
+            <name>Japura</name>
+            <length>2816</length>
+         </river>
+         <river>
+            <name>Rio Putumayo</name>
+            <length>1813</length>
+         </river>
+         <river>
+            <name>Maranon</name>
+            <length>1905</length>
+            <river>
+               <name>Huallaga</name>
+               <length>1138</length>
+            </river>
+         </river>
+         <river>
+            <name>Ucayali</name>
+            <length>1600</length>
+            <river>
+               <name>Urubamba</name>
+               <length>750</length>
+            </river>
+            <river>
+               <name>Tambo</name>
+               <length>160</length>
+               <river>
+                  <name>Perene</name>
+                  <length>165</length>
+               </river>
+               <river>
+                  <name>Ene</name>
+                  <length>180</length>
+               </river>
+               <river>
+                  <name>Mantaro</name>
+                  <length>724</length>
+                  <lake>
+                     <name>Lake Junin</name>
+                  </lake>
+               </river>
+               <river>
+                  <name>Apurimac</name>
+                  <length>730</length>
+               </river>
+            </river>
+         </river>
+         <river>
+            <name>Jurua</name>
+            <length>3283</length>
+         </river>
+         <river>
+            <name>Purus</name>
+            <length>3210</length>
+            <river>
+               <name>Acre</name>
+               <length>1000</length>
+            </river>
+         </river>
+         <river>
+            <name>Rio Madeira</name>
+            <length>1450</length>
+            <river>
+               <name>Beni</name>
+               <length>1600</length>
+               <river>
+                  <name>Rio Madre de Dios</name>
+                  <length>1210</length>
+               </river>
+            </river>
+            <river>
+               <name>Rio Chimoré</name>
+               <length>1170</length>
+               <river>
+                  <name>Rio Guapay</name>
+                  <length>1438</length>
+               </river>
+               <river>
+                  <name>Rio Guaporé</name>
+                  <length>1260</length>
+               </river>
+            </river>
+         </river>
+         <river>
+            <name>Tapajós</name>
+            <length>810</length>
+            <river>
+               <name>Juruena</name>
+               <length>1240</length>
+            </river>
+            <river>
+               <name>Rio Teles Pires</name>
+               <length>1431</length>
+            </river>
+         </river>
+         <river>
+            <name>Xingu</name>
+            <length>1980</length>
+         </river>
+      </river>
+      <river>
+         <name>Tocantins</name>
+         <length>2450</length>
+         <river>
+            <name>Araguaia</name>
+            <length>2198</length>
+         </river>
+      </river>
+      <river>
+         <name>Rio Parnaiba</name>
+         <length>1716</length>
+      </river>
+      <river>
+         <name>Rio Sao Francisco</name>
+         <length>2830</length>
+         <lake>
+            <name>Lago de Sobradinho</name>
+         </lake>
+      </river>
+      <river>
+         <name>Rio Paraiba do Sul</name>
+         <length>1137</length>
+      </river>
+      <river>
+         <name>Parana</name>
+         <length>2640</length>
+         <river>
+            <name>Tiete</name>
+            <length>1130</length>
+         </river>
+         <river>
+            <name>Paranapanema</name>
+            <length>929</length>
+         </river>
+         <river>
+            <name>Iguacu</name>
+            <length>1320</length>
+         </river>
+         <river>
+            <name>Paraguay</name>
+            <length>2549</length>
+            <river>
+               <name>Pilcomayo</name>
+               <length>2425</length>
+            </river>
+            <river>
+               <name>Rio Cuiabá</name>
+               <length>980</length>
+            </river>
+         </river>
+         <river>
+            <name>Rio Salado</name>
+            <length>2355</length>
+         </river>
+         <lake>
+            <name>Represa de Ilha Solteira</name>
+            <river>
+               <name>Paranaiba</name>
+               <length>1070</length>
+            </river>
+            <river>
+               <name>Rio Grande</name>
+               <length>1360</length>
+            </river>
+         </lake>
+      </river>
+      <river>
+         <name>Uruguay</name>
+         <length>1790</length>
+      </river>
+      <river>
+         <name>Río Colorado</name>
+         <length>1114</length>
+         <river>
+            <name>Río Salado del Oeste</name>
+            <length>1498</length>
+         </river>
+      </river>
+      <river>
+         <name>Río Negro</name>
+         <length>1030</length>
+         <river>
+            <name>Río Limay</name>
+            <length>380</length>
+            <lake>
+               <name>Nahuel Huapi</name>
+            </lake>
+         </river>
+      </river>
+      <river>
+         <name>Río Chubut</name>
+         <length>820</length>
+      </river>
+      <river>
+         <name>Río Deseado</name>
+         <length>615</length>
+      </river>
+      <river>
+         <name>Río Santa Cruz</name>
+         <length>385</length>
+         <lake>
+            <name>Lago Argentino</name>
+         </lake>
+      </river>
+      <river>
+         <name>Senegal</name>
+         <length>1430</length>
+      </river>
+      <river>
+         <name>Gambia</name>
+         <length>1120</length>
+      </river>
+      <river>
+         <name>Rio Corubal</name>
+         <length>560</length>
+      </river>
+      <river>
+         <name>Rokel</name>
+         <length>356</length>
+      </river>
+      <river>
+         <name>Moa</name>
+         <length>475</length>
+      </river>
+      <river>
+         <name>Saint Paul River</name>
+         <length>485</length>
+      </river>
+      <river>
+         <name>Bandama</name>
+         <length>1050</length>
+         <lake>
+            <name>Lake Kossou</name>
+         </lake>
+      </river>
+      <river>
+         <name>Comoé</name>
+         <length>813</length>
+      </river>
+      <river>
+         <name>Volta</name>
+         <length>2850</length>
+         <lake>
+            <name>Lake Volta</name>
+            <river>
+               <name>Pendjari</name>
+               <length>937</length>
+            </river>
+         </lake>
+      </river>
+      <river>
+         <name>Ouémé</name>
+         <length>510</length>
+      </river>
+      <river>
+         <name>Mono</name>
+         <length>460</length>
+      </river>
+      <river>
+         <name>Niger</name>
+         <length>4184</length>
+         <river>
+            <name>Tinkisso</name>
+            <length>570</length>
+         </river>
+         <river>
+            <name>Bani</name>
+            <length>430</length>
+            <river>
+               <name>Baoulé</name>
+               <length>490</length>
+            </river>
+            <river>
+               <name>Bagoé</name>
+               <length>350</length>
+            </river>
+         </river>
+         <river>
+            <name>Sirba</name>
+            <length>439</length>
+         </river>
+         <river>
+            <name>Mékrou</name>
+            <length>410</length>
+         </river>
+         <river>
+            <name>Sokoto</name>
+            <length>630</length>
+         </river>
+         <river>
+            <name>Kaduna</name>
+            <length>575</length>
+         </river>
+         <river>
+            <name>Benue</name>
+            <length>1400</length>
+            <river>
+               <name>Gongola</name>
+               <length>531</length>
+            </river>
+            <river>
+               <name>Mayo Kebbi</name>
+               <length>495</length>
+            </river>
+         </river>
+         <lake>
+            <name>Lake Kainji</name>
+         </lake>
+      </river>
+      <river>
+         <name>Sanaga</name>
+         <length>918</length>
+         <lake>
+            <name>Barrage de Mbakaou</name>
+         </lake>
+      </river>
+      <river>
+         <name>Ntem</name>
+         <length>460</length>
+      </river>
+      <river>
+         <name>Komo</name>
+         <length>260</length>
+      </river>
+      <river>
+         <name>Ogooué</name>
+         <length>1200</length>
+      </river>
+      <river>
+         <name>Congo</name>
+         <length>4374</length>
+         <river>
+            <name>Sanga</name>
+            <length>785</length>
+            <river>
+               <name>Kadei</name>
+               <length>552</length>
+            </river>
+            <river>
+               <name>Mambere</name>
+               <length>488</length>
+            </river>
+         </river>
+         <river>
+            <name>Ubangi</name>
+            <length>1120</length>
+            <river>
+               <name>Bomu</name>
+               <length>966</length>
+            </river>
+            <river>
+               <name>Uelle</name>
+               <length>1130</length>
+            </river>
+         </river>
+         <river>
+            <name>Kwa</name>
+            <length>2153</length>
+            <river>
+               <name>Fimi</name>
+               <length>200</length>
+               <river>
+                  <name>Lukenie</name>
+                  <length>900</length>
+               </river>
+               <lake>
+                  <name>Lake Mai Ndombe</name>
+               </lake>
+            </river>
+            <river>
+               <name>Cuilo</name>
+               <length>970</length>
+               <river>
+                  <name>Cuango</name>
+                  <length>1100</length>
+               </river>
+            </river>
+            <river>
+               <name>Lulua</name>
+               <length>970</length>
+            </river>
+         </river>
+         <river>
+            <name>Ruki</name>
+            <length>1000</length>
+         </river>
+         <river>
+            <name>Lomami</name>
+            <length>1450</length>
+         </river>
+         <river>
+            <name>Ituri</name>
+            <length>1287</length>
+         </river>
+         <river>
+            <name>Lualaba</name>
+            <length/>
+            <river>
+               <name>Lukuga</name>
+               <length>350</length>
+               <lake>
+                  <name>Lake Tanganjika</name>
+                  <river>
+                     <name>Ruzizi</name>
+                     <length>104</length>
+                     <lake>
+                        <name>Lake Kivu</name>
+                     </lake>
+                  </river>
+                  <river>
+                     <name>Malagarasi</name>
+                     <length>475</length>
+                  </river>
+               </lake>
+            </river>
+            <river>
+               <name>Luvua</name>
+               <length>350</length>
+               <lake>
+                  <name>Lake Mweru</name>
+                  <river>
+                     <name>Luapula</name>
+                     <length>740</length>
+                     <river>
+                        <name>Chambeshi</name>
+                        <length>500</length>
+                     </river>
+                     <lake>
+                        <name>Lake Bangweulu</name>
+                     </lake>
+                  </river>
+               </lake>
+            </river>
+         </river>
+         <lake>
+            <name>Malebo Pool</name>
+         </lake>
+      </river>
+      <river>
+         <name>Cuanza</name>
+         <length>960</length>
+      </river>
+      <river>
+         <name>Cunene</name>
+         <length>1050</length>
+      </river>
+      <river>
+         <name>Oranje</name>
+         <length>2160</length>
+         <river>
+            <name>Vaal</name>
+            <length>1251</length>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>Mediterranean Sea</name>
+      <river>
+         <name>Rhone</name>
+         <length>812</length>
+         <river>
+            <name>Saone</name>
+            <length>473</length>
+            <river>
+               <name>Doubs</name>
+               <length>453</length>
+            </river>
+         </river>
+         <river>
+            <name>Isere</name>
+            <length>286</length>
+         </river>
+         <river>
+            <name>Durance</name>
+            <length>323</length>
+            <lake>
+               <name>Lac de Serre-Ponçon</name>
+            </lake>
+         </river>
+         <lake>
+            <name>Lac Leman</name>
+         </lake>
+      </river>
+      <river>
+         <name>Segura</name>
+         <length>325</length>
+      </river>
+      <river>
+         <name>Júcar</name>
+         <length>500</length>
+      </river>
+      <river>
+         <name>Turia</name>
+         <length>280</length>
+      </river>
+      <river>
+         <name>Ebro</name>
+         <length>925</length>
+         <river>
+            <name>Segre</name>
+            <length>265</length>
+            <river>
+               <name>Valira</name>
+               <length>44</length>
+            </river>
+         </river>
+      </river>
+      <river>
+         <name>Po</name>
+         <length>652</length>
+         <river>
+            <name>Ticino</name>
+            <length>248</length>
+            <river>
+               <name>Moesa</name>
+               <length>46</length>
+            </river>
+            <lake>
+               <name>Lago Maggiore</name>
+               <river>
+                  <name>Tresa</name>
+                  <length>15</length>
+                  <lake>
+                     <name>Lago di Lugano Luganersee</name>
+                  </lake>
+               </river>
+            </lake>
+         </river>
+         <river>
+            <name>Lambro</name>
+            <length>130</length>
+         </river>
+         <river>
+            <name>Dora Baltea</name>
+            <length>160</length>
+         </river>
+         <river>
+            <name>Tanaro</name>
+            <length>276</length>
+         </river>
+         <river>
+            <name>Adda</name>
+            <length>313</length>
+            <lake>
+               <name>Lago di Como</name>
+               <river>
+                  <name>Maira</name>
+                  <length>50</length>
+               </river>
+            </lake>
+         </river>
+         <river>
+            <name>Mincio</name>
+            <length>75</length>
+            <lake>
+               <name>Lago di Garda</name>
+            </lake>
+         </river>
+      </river>
+      <river>
+         <name>Etsch</name>
+         <length>415</length>
+      </river>
+      <river>
+         <name>Tevere</name>
+         <length>405</length>
+      </river>
+      <river>
+         <name>Marta</name>
+         <length>54</length>
+         <lake>
+            <name>Lago di Bolsena</name>
+         </lake>
+      </river>
+      <river>
+         <name>Arrone</name>
+         <length>35</length>
+         <lake>
+            <name>Lago di Bracciano</name>
+         </lake>
+      </river>
+      <river>
+         <name>Arno</name>
+         <length>240</length>
+      </river>
+      <river>
+         <name>Imera Meridionale</name>
+         <length>144</length>
+      </river>
+      <river>
+         <name>Tirso</name>
+         <length>152</length>
+         <lake>
+            <name>Lago Omodeo</name>
+         </lake>
+      </river>
+      <river>
+         <name>Neretva</name>
+         <length>218</length>
+      </river>
+      <river>
+         <name>Buna</name>
+         <length>44</length>
+         <lake>
+            <name>Lake Skutari</name>
+            <river>
+               <name>Moraca</name>
+               <length>99.5</length>
+            </river>
+         </lake>
+      </river>
+      <river>
+         <name>Drin</name>
+         <length>285</length>
+         <river>
+            <name>White Drin</name>
+            <length>136</length>
+         </river>
+         <river>
+            <name>Black Drin</name>
+            <length>149</length>
+            <lake>
+               <name>Lake Ohrid</name>
+            </lake>
+         </river>
+      </river>
+      <river>
+         <name>Aoös</name>
+         <length>272</length>
+      </river>
+      <river>
+         <name>Acheloos</name>
+         <length>217</length>
+      </river>
+      <river>
+         <name>Aliakmonas</name>
+         <length>297</length>
+      </river>
+      <river>
+         <name>Vardar</name>
+         <length>388</length>
+      </river>
+      <river>
+         <name>Strymonas</name>
+         <length>415</length>
+      </river>
+      <river>
+         <name>Evros</name>
+         <length>525</length>
+         <river>
+            <name>Tundzha</name>
+            <length>365</length>
+         </river>
+      </river>
+      <river>
+         <name>Nachal HaKishon</name>
+         <length>70</length>
+      </river>
+      <river>
+         <name>Nachal Sorek</name>
+         <length>65</length>
+      </river>
+      <river>
+         <name>Wadi Gaza</name>
+         <length>111</length>
+      </river>
+      <river>
+         <name>Leontes</name>
+         <length>140</length>
+      </river>
+      <river>
+         <name>Nahr al Asi</name>
+         <length>571</length>
+      </river>
+      <river>
+         <name>Seyhan</name>
+         <length>516</length>
+      </river>
+      <river>
+         <name>Sebou</name>
+         <length>450</length>
+      </river>
+      <river>
+         <name>Moulouya</name>
+         <length>550</length>
+      </river>
+      <river>
+         <name>Chelif</name>
+         <length>700</length>
+      </river>
+      <river>
+         <name>Rhumel</name>
+         <length>200</length>
+      </river>
+      <river>
+         <name>Medjerda</name>
+         <length>460</length>
+      </river>
+      <river>
+         <name>Nile</name>
+         <length>3090</length>
+         <river>
+            <name>Atbara</name>
+            <length>1120</length>
+            <river>
+               <name>Setit</name>
+               <length>608</length>
+            </river>
+         </river>
+         <river>
+            <name>Blue Nile</name>
+            <length>1783</length>
+            <lake>
+               <name>Lake Tana</name>
+            </lake>
+         </river>
+         <river>
+            <name>White Nile</name>
+            <length>950</length>
+            <river>
+               <name>Sobat</name>
+               <length>740</length>
+               <river>
+                  <name>Pibor</name>
+                  <length>320</length>
+               </river>
+               <river>
+                  <name>Baro</name>
+                  <length>306</length>
+               </river>
+            </river>
+            <lake>
+               <name>Lake No</name>
+               <river>
+                  <name>Bahr el-Djebel/Albert Nil</name>
+                  <length>1156</length>
+                  <lake>
+                     <name>Lake Sese Seko/Albertsee</name>
+                     <river>
+                        <name>Semliki</name>
+                        <length>230</length>
+                        <lake>
+                           <name>Rutanzige/Eduardsee</name>
+                        </lake>
+                     </river>
+                     <river>
+                        <name>Victoria Nile</name>
+                        <length>480</length>
+                        <lake>
+                           <name>Lake Kyoga</name>
+                        </lake>
+                        <lake>
+                           <name>Lake Victoria</name>
+                           <river>
+                              <name>Kagera</name>
+                              <length>400</length>
+                              <river>
+                                 <name>Rukurara-Nyabarongo</name>
+                                 <length>350</length>
+                              </river>
+                              <river>
+                                 <name>Ruvuvu</name>
+                                 <length>480</length>
+                                 <river>
+                                    <name>Luvironza</name>
+                                    <length>110</length>
+                                 </river>
+                              </river>
+                           </river>
+                           <river>
+                              <name>Simiyu</name>
+                              <length>180</length>
+                           </river>
+                           <river>
+                              <name>Mara</name>
+                              <length>395</length>
+                           </river>
+                           <river>
+                              <name>Nzoia</name>
+                              <length>334</length>
+                           </river>
+                        </lake>
+                     </river>
+                  </lake>
+               </river>
+               <river>
+                  <name>Bahr el-Ghazal</name>
+                  <length>716</length>
+               </river>
+            </lake>
+         </river>
+         <lake>
+            <name>Lake Nasser</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Black Sea</name>
+      <river>
+         <name>Donau</name>
+         <length>2845</length>
+         <river>
+            <name>Breg</name>
+            <length>45.9</length>
+         </river>
+         <river>
+            <name>Brigach</name>
+            <length>43</length>
+         </river>
+         <river>
+            <name>Iller</name>
+            <length>147</length>
+         </river>
+         <river>
+            <name>Lech</name>
+            <length>264</length>
+         </river>
+         <river>
+            <name>Isar</name>
+            <length>295</length>
+            <river>
+               <name>Ammer</name>
+               <length>168</length>
+               <river>
+                  <name>Würm</name>
+                  <length>35</length>
+                  <lake>
+                     <name>Starnberger See</name>
+                  </lake>
+               </river>
+               <lake>
+                  <name>Ammersee</name>
+               </lake>
+            </river>
+         </river>
+         <river>
+            <name>Inn</name>
+            <length>517</length>
+            <river>
+               <name>Alz</name>
+               <length>150</length>
+               <lake>
+                  <name>Chiemsee</name>
+               </lake>
+            </river>
+            <river>
+               <name>Salzach</name>
+               <length>225</length>
+            </river>
+         </river>
+         <river>
+            <name>Ilz</name>
+            <length>62</length>
+         </river>
+         <river>
+            <name>Regen</name>
+            <length>190</length>
+         </river>
+         <river>
+            <name>Naab</name>
+            <length>197</length>
+         </river>
+         <river>
+            <name>Enns</name>
+            <length>254</length>
+         </river>
+         <river>
+            <name>March</name>
+            <length>358</length>
+            <river>
+               <name>Thaya</name>
+               <length>310</length>
+               <river>
+                  <name>Svratka</name>
+                  <length>174</length>
+                  <river>
+                     <name>Jihlava</name>
+                     <length>184</length>
+                  </river>
+               </river>
+            </river>
+         </river>
+         <river>
+            <name>Raab</name>
+            <length>250</length>
+         </river>
+         <river>
+            <name>Waag</name>
+            <length>403</length>
+            <river>
+               <name>Orava</name>
+               <length>62</length>
+               <lake>
+                  <name>Orava Reservoir</name>
+                  <river>
+                     <name>Czarna Orava</name>
+                     <length>29</length>
+                  </river>
+                  <river>
+                     <name>Biela Orava</name>
+                     <length>35.4</length>
+                  </river>
+               </lake>
+            </river>
+            <river>
+               <name>Nitra</name>
+               <length>166</length>
+            </river>
+         </river>
+         <river>
+            <name>Gran</name>
+            <length>298</length>
+         </river>
+         <river>
+            <name>Drau</name>
+            <length>749</length>
+            <river>
+               <name>Gail</name>
+               <length>122</length>
+            </river>
+            <river>
+               <name>Mur</name>
+               <length>453</length>
+            </river>
+         </river>
+         <river>
+            <name>Theiss</name>
+            <length>1308</length>
+            <river>
+               <name>Somes</name>
+               <length>596</length>
+            </river>
+            <river>
+               <name>Sajó</name>
+               <length>229</length>
+               <river>
+                  <name>Hornad</name>
+                  <length>286</length>
+                  <river>
+                     <name>Torysa</name>
+                     <length>129</length>
+                  </river>
+               </river>
+            </river>
+            <river>
+               <name>Mureș</name>
+               <length>776</length>
+            </river>
+         </river>
+         <river>
+            <name>Argeș</name>
+            <length>350</length>
+            <river>
+               <name>Dâmbovița</name>
+               <length>237</length>
+            </river>
+         </river>
+         <river>
+            <name>Ialomița</name>
+            <length>414</length>
+         </river>
+         <river>
+            <name>Save</name>
+            <length>945</length>
+            <river>
+               <name>Bosna</name>
+               <length>271</length>
+            </river>
+            <river>
+               <name>Drina</name>
+               <length>346</length>
+               <river>
+                  <name>Tara</name>
+                  <length>140</length>
+               </river>
+               <river>
+                  <name>Piva</name>
+                  <length>120</length>
+               </river>
+            </river>
+         </river>
+         <river>
+            <name>Morava</name>
+            <length>185</length>
+            <river>
+               <name>Southern Morava</name>
+               <length>295</length>
+            </river>
+            <river>
+               <name>Western Morava</name>
+               <length>308</length>
+               <river>
+                  <name>Ibar</name>
+                  <length>276</length>
+               </river>
+            </river>
+         </river>
+         <river>
+            <name>Iskar</name>
+            <length>368</length>
+         </river>
+         <river>
+            <name>Ossam</name>
+            <length>314</length>
+         </river>
+         <river>
+            <name>Timiş</name>
+            <length>340</length>
+         </river>
+         <river>
+            <name>Jiu</name>
+            <length>385</length>
+         </river>
+         <river>
+            <name>Olt</name>
+            <length>615</length>
+         </river>
+         <river>
+            <name>Sereth</name>
+            <length>726</length>
+         </river>
+         <river>
+            <name>Pruth</name>
+            <length>953</length>
+         </river>
+      </river>
+      <river>
+         <name>Sakarya</name>
+         <length>824</length>
+      </river>
+      <river>
+         <name>Kızılırmak</name>
+         <length>1355</length>
+      </river>
+      <river>
+         <name>Rioni</name>
+         <length>327</length>
+      </river>
+      <river>
+         <name>Tyra</name>
+         <length>1352</length>
+      </river>
+      <river>
+         <name>SouthernBug</name>
+         <length>857</length>
+         <river>
+            <name>Inhul</name>
+            <length>354</length>
+         </river>
+      </river>
+      <river>
+         <name>Dnepr</name>
+         <length>2201</length>
+         <river>
+            <name>Berezina</name>
+            <length>613</length>
+            <river>
+               <name>Svislach</name>
+               <length>327</length>
+            </river>
+         </river>
+         <river>
+            <name>Sozh</name>
+            <length>648</length>
+         </river>
+         <river>
+            <name>Desna</name>
+            <length>1130</length>
+            <river>
+               <name>Seym</name>
+               <length>748</length>
+            </river>
+         </river>
+         <river>
+            <name>Psel</name>
+            <length>717</length>
+         </river>
+         <river>
+            <name>Vorskla</name>
+            <length>464</length>
+         </river>
+         <river>
+            <name>Inhulets</name>
+            <length>557</length>
+         </river>
+         <lake>
+            <name>Kiev Reservoir</name>
+            <river>
+               <name>Prypjat</name>
+               <length>775</length>
+               <river>
+                  <name>Styr</name>
+                  <length>494</length>
+               </river>
+            </river>
+            <river>
+               <name>Teteriv</name>
+               <length>385</length>
+            </river>
+         </lake>
+         <lake>
+            <name>Kakhovka Reservoir</name>
+         </lake>
+         <lake>
+            <name>Kremenchuk Reservoir</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Marmara Sea</name>
+   </sea>
+   <sea>
+      <name>Sea of Azov</name>
+      <river>
+         <name>Don</name>
+         <length>1870</length>
+         <river>
+            <name>Siwerskyj Donets</name>
+            <length>1053</length>
+            <river>
+               <name>Oskil</name>
+               <length>472</length>
+            </river>
+         </river>
+         <river>
+            <name>Manych</name>
+            <length>420</length>
+         </river>
+      </river>
+      <river>
+         <name>Kuban</name>
+         <length>870</length>
+      </river>
+   </sea>
+   <sea>
+      <name>The Channel</name>
+      <river>
+         <name>Test</name>
+         <length>64</length>
+      </river>
+      <river>
+         <name>Somme</name>
+         <length>245</length>
+      </river>
+      <river>
+         <name>Seine</name>
+         <length>776</length>
+         <river>
+            <name>Marne</name>
+            <length>514</length>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>Irish Sea</name>
+      <river>
+         <name>Clyde</name>
+         <length>176</length>
+         <river>
+            <name>Leven</name>
+            <length>10</length>
+            <lake>
+               <name>Loch Lomond</name>
+            </lake>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>North Sea</name>
+      <river>
+         <name>Thames</name>
+         <length>346</length>
+      </river>
+      <river>
+         <name>Great Ouse</name>
+         <length>64</length>
+      </river>
+      <river>
+         <name>Trent</name>
+         <length>298</length>
+      </river>
+      <river>
+         <name>Ouse</name>
+         <length>208</length>
+         <river>
+            <name>Aire</name>
+            <length>123</length>
+         </river>
+      </river>
+      <river>
+         <name>Ness</name>
+         <length>12</length>
+         <lake>
+            <name>Loch Ness</name>
+         </lake>
+      </river>
+      <river>
+         <name>Elbe</name>
+         <length>1091</length>
+         <river>
+            <name>Havel</name>
+            <length>334</length>
+            <river>
+               <name>Spree</name>
+               <length>400</length>
+            </river>
+         </river>
+         <river>
+            <name>Saale</name>
+            <length>413</length>
+            <river>
+               <name>Weiße Elster</name>
+               <length>257</length>
+            </river>
+         </river>
+         <river>
+            <name>Mulde</name>
+            <length>314</length>
+         </river>
+         <river>
+            <name>Ohre</name>
+            <length>316</length>
+         </river>
+         <river>
+            <name>Moldau</name>
+            <length>440</length>
+            <river>
+               <name>Mies</name>
+               <length>241</length>
+            </river>
+         </river>
+      </river>
+      <river>
+         <name>Weser</name>
+         <length>440</length>
+         <river>
+            <name>Aller</name>
+            <length>211</length>
+            <river>
+               <name>Oker</name>
+               <length>128</length>
+            </river>
+            <river>
+               <name>Leine</name>
+               <length>281</length>
+            </river>
+         </river>
+         <river>
+            <name>Werra</name>
+            <length>292</length>
+         </river>
+         <river>
+            <name>Fulda</name>
+            <length>221</length>
+         </river>
+      </river>
+      <river>
+         <name>Ems</name>
+         <length>371</length>
+         <river>
+            <name>Hase</name>
+            <length>170</length>
+         </river>
+      </river>
+      <river>
+         <name>Rhein</name>
+         <length>1324</length>
+         <river>
+            <name>Lippe</name>
+            <length>220</length>
+         </river>
+         <river>
+            <name>Emscher</name>
+            <length>83</length>
+         </river>
+         <river>
+            <name>Ruhr</name>
+            <length>219</length>
+         </river>
+         <river>
+            <name>Wupper</name>
+            <length>116.5</length>
+         </river>
+         <river>
+            <name>Sieg</name>
+            <length>155</length>
+         </river>
+         <river>
+            <name>Lahn</name>
+            <length>246</length>
+         </river>
+         <river>
+            <name>Main</name>
+            <length>524</length>
+            <river>
+               <name>Regnitz</name>
+               <length>59</length>
+               <river>
+                  <name>Rednitz</name>
+                  <length>124</length>
+               </river>
+               <river>
+                  <name>Pegnitz</name>
+                  <length>113</length>
+               </river>
+            </river>
+            <river>
+               <name>Nidda</name>
+               <length>89.7</length>
+            </river>
+         </river>
+         <river>
+            <name>Mosel</name>
+            <length>544</length>
+            <river>
+               <name>Sauer</name>
+               <length>173</length>
+               <river>
+                  <name>Alzette</name>
+                  <length>73</length>
+               </river>
+            </river>
+            <river>
+               <name>Saar</name>
+               <length>227</length>
+            </river>
+            <river>
+               <name>Meurthe</name>
+               <length>161</length>
+            </river>
+         </river>
+         <river>
+            <name>Neckar</name>
+            <length>367</length>
+            <river>
+               <name>Enz</name>
+               <length>105</length>
+            </river>
+         </river>
+         <river>
+            <name>Ill</name>
+            <length>217</length>
+         </river>
+         <river>
+            <name>Elz</name>
+            <length>121</length>
+         </river>
+         <river>
+            <name>Birs</name>
+            <length>75</length>
+         </river>
+         <river>
+            <name>Aare</name>
+            <length>288</length>
+            <river>
+               <name>Saane</name>
+               <length>126</length>
+            </river>
+            <river>
+               <name>Reuss</name>
+               <length>164</length>
+               <lake>
+                  <name>Vierwaldstättersee</name>
+               </lake>
+            </river>
+            <river>
+               <name>Limmat</name>
+               <length>36.3</length>
+               <lake>
+                  <name>Zürichsee</name>
+               </lake>
+            </river>
+            <lake>
+               <name>Thunersee</name>
+            </lake>
+            <lake>
+               <name>Brienzersee</name>
+            </lake>
+            <lake>
+               <name>Bielersee Lac de Bienne</name>
+               <river>
+                  <name>Zihl</name>
+                  <length>8.5</length>
+                  <lake>
+                     <name>Lac de Neuchâtel Neuenburgersee</name>
+                     <river>
+                        <name>Orbe</name>
+                        <length>72</length>
+                     </river>
+                  </lake>
+               </river>
+            </lake>
+         </river>
+         <river>
+            <name>Thur</name>
+            <length>135</length>
+         </river>
+         <river>
+            <name>Hinterrhein</name>
+            <length>72</length>
+         </river>
+         <river>
+            <name>Maas</name>
+            <length>925</length>
+            <river>
+               <name>Roer</name>
+               <length>164.5</length>
+            </river>
+         </river>
+         <lake>
+            <name>Bodensee</name>
+            <river>
+               <name>Bregenzer Ach</name>
+               <length>67</length>
+            </river>
+         </lake>
+      </river>
+      <river>
+         <name>Escaut</name>
+         <length>360</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Skagerrak</name>
+      <river>
+         <name>Glomma</name>
+         <length>621</length>
+         <river>
+            <name>Lågen</name>
+            <length>204</length>
+            <lake>
+               <name>Mjoesa-See</name>
+            </lake>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>Kattegat</name>
+      <river>
+         <name>Gudenå</name>
+         <length>158</length>
+      </river>
+      <river>
+         <name>Götaälv</name>
+         <length>93</length>
+         <lake>
+            <name>Vänern</name>
+            <river>
+               <name>Klarälv</name>
+               <length>460</length>
+            </river>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Baltic Sea</name>
+      <river>
+         <name>Motala Ström</name>
+         <length>100</length>
+         <lake>
+            <name>Vättern</name>
+         </lake>
+      </river>
+      <river>
+         <name>Dalälv</name>
+         <length>520</length>
+         <river>
+            <name>Västerdalälv</name>
+            <length>320</length>
+         </river>
+         <river>
+            <name>Österdalälv</name>
+            <length>241</length>
+            <lake>
+               <name>Siljan</name>
+            </lake>
+         </river>
+      </river>
+      <river>
+         <name>Umeälv</name>
+         <length>470</length>
+         <lake>
+            <name>Storuman</name>
+         </lake>
+      </river>
+      <river>
+         <name>Torneälv</name>
+         <length>631</length>
+      </river>
+      <river>
+         <name>Kemijoki</name>
+         <length>550</length>
+         <river>
+            <name>Ounasjoki</name>
+            <length>300</length>
+         </river>
+      </river>
+      <river>
+         <name>Oulujoki</name>
+         <length>107</length>
+         <lake>
+            <name>Oulujärvi</name>
+         </lake>
+      </river>
+      <river>
+         <name>Kymijoki</name>
+         <length>203</length>
+         <lake>
+            <name>Päijänne</name>
+         </lake>
+      </river>
+      <river>
+         <name>Kokemäenjoki</name>
+         <length>121</length>
+      </river>
+      <river>
+         <name>Neman</name>
+         <length>937</length>
+         <river>
+            <name>Wilija</name>
+            <length>510</length>
+         </river>
+      </river>
+      <river>
+         <name>Weichsel</name>
+         <length>1047</length>
+         <river>
+            <name>Narew</name>
+            <length>484</length>
+            <river>
+               <name>Western Bug</name>
+               <length>772</length>
+            </river>
+         </river>
+         <river>
+            <name>Dunajec</name>
+            <length>247</length>
+            <river>
+               <name>Poprad</name>
+               <length>174</length>
+            </river>
+         </river>
+         <river>
+            <name>San</name>
+            <length>433</length>
+         </river>
+      </river>
+      <river>
+         <name>Oder</name>
+         <length>866</length>
+         <river>
+            <name>Neiße</name>
+            <length>254</length>
+         </river>
+         <river>
+            <name>Warta</name>
+            <length>808</length>
+         </river>
+      </river>
+      <river>
+         <name>Newa</name>
+         <length>74</length>
+         <lake>
+            <name>Ozero Ladoga</name>
+            <river>
+               <name>Vuoksi</name>
+               <length>162</length>
+               <lake>
+                  <name>Saimaa</name>
+               </lake>
+            </river>
+            <river>
+               <name>Swir</name>
+               <length>224</length>
+               <lake>
+                  <name>Ozero Onega</name>
+               </lake>
+            </river>
+         </lake>
+      </river>
+      <river>
+         <name>Narva</name>
+         <length>78</length>
+         <lake>
+            <name>Ozero Pskovskoje</name>
+         </lake>
+      </river>
+      <river>
+         <name>Western Dwina</name>
+         <length>1020</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Norwegian Sea</name>
+   </sea>
+   <sea>
+      <name>Greenland Sea</name>
+      <river>
+         <name>Jökulsa a Fjöllum</name>
+         <length>206</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Arctic Ocean</name>
+      <river>
+         <name>Ruggles River</name>
+         <length>22</length>
+         <lake>
+            <name>Lake Hazen</name>
+         </lake>
+      </river>
+      <river>
+         <name>Koukdjuak River</name>
+         <length>80</length>
+         <lake>
+            <name>Nettilling Lake</name>
+         </lake>
+      </river>
+      <river>
+         <name>Mackenzie River</name>
+         <length>1903</length>
+         <river>
+            <name>Great Bear River</name>
+            <length>113</length>
+            <lake>
+               <name>Great Bear Lake</name>
+               <river>
+                  <name>Slave River</name>
+                  <length>434</length>
+                  <lake>
+                     <name>Lake Athabasca</name>
+                     <river>
+                        <name>Athabasca River</name>
+                        <length>1231</length>
+                     </river>
+                     <river>
+                        <name>Peace River</name>
+                        <length>1923</length>
+                     </river>
+                  </lake>
+               </river>
+            </lake>
+         </river>
+         <river>
+            <name>Liard River</name>
+            <length>1115</length>
+         </river>
+         <lake>
+            <name>Great Slave Lake</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Barents Sea</name>
+      <river>
+         <name>Paatsjoki</name>
+         <length>145</length>
+         <lake>
+            <name>Inarijärvi</name>
+         </lake>
+      </river>
+      <river>
+         <name>Pechora</name>
+         <length>1809</length>
+      </river>
+   </sea>
+   <sea>
+      <name>White Sea</name>
+      <river>
+         <name>Northern Dwina</name>
+         <length>740</length>
+         <river>
+            <name>Kubena</name>
+            <length>926</length>
+         </river>
+         <river>
+            <name>Vychegda</name>
+            <length>1130</length>
+         </river>
+      </river>
+      <river>
+         <name>Wyg</name>
+         <length>314</length>
+         <lake>
+            <name>Wygozero</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Kara Sea</name>
+      <river>
+         <name>Ob</name>
+         <length>3650</length>
+         <river>
+            <name>Irtysh</name>
+            <length>4248</length>
+            <river>
+               <name>Tobol</name>
+               <length>1591</length>
+               <river>
+                  <name>Tura</name>
+                  <length>1030</length>
+               </river>
+               <river>
+                  <name>Tagil</name>
+                  <length>414</length>
+               </river>
+               <river>
+                  <name>Isset</name>
+                  <length>606</length>
+                  <river>
+                     <name>Miass</name>
+                     <length>658</length>
+                  </river>
+               </river>
+            </river>
+            <river>
+               <name>Ishim</name>
+               <length>2450</length>
+            </river>
+            <lake>
+               <name>Bukhtarma Reservoir Ozero Zajsan</name>
+            </lake>
+         </river>
+         <river>
+            <name>Katun</name>
+            <length>688</length>
+         </river>
+         <river>
+            <name>Chulym</name>
+            <length>2023</length>
+         </river>
+         <river>
+            <name>Tom</name>
+            <length>827</length>
+         </river>
+         <lake>
+            <name>Novosibirsk Reservoir</name>
+         </lake>
+      </river>
+      <river>
+         <name>Yenissey</name>
+         <length>4092</length>
+         <river>
+            <name>Little Yenissey</name>
+            <length>563</length>
+         </river>
+         <river>
+            <name>Nizhnyaya Tunguska</name>
+            <length>2989</length>
+         </river>
+         <river>
+            <name>Chantaika</name>
+            <length>174</length>
+            <lake>
+               <name>Ozero Khantayskoye</name>
+            </lake>
+         </river>
+         <river>
+            <name>Angara</name>
+            <length>2830</length>
+            <lake>
+               <name>Ozero Baikal</name>
+               <river>
+                  <name>Selenge</name>
+                  <length>992</length>
+                  <river>
+                     <name>Egiin Gol</name>
+                     <length>535</length>
+                     <lake>
+                        <name>Chöwsgöl Nuur</name>
+                     </lake>
+                  </river>
+                  <river>
+                     <name>Orchon</name>
+                     <length>1124</length>
+                     <river>
+                        <name>Tuul</name>
+                        <length>819</length>
+                     </river>
+                  </river>
+               </river>
+            </lake>
+         </river>
+      </river>
+      <river>
+         <name>Norilka</name>
+         <length>1000</length>
+         <lake>
+            <name>Ozero Keta</name>
+         </lake>
+      </river>
+      <river>
+         <name>Taimyra</name>
+         <length>840</length>
+         <lake>
+            <name>Ozero Taimyr</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Laptev Sea</name>
+      <river>
+         <name>Chatanga</name>
+         <length>1636</length>
+      </river>
+      <river>
+         <name>Olenyok</name>
+         <length>2292</length>
+      </river>
+      <river>
+         <name>Lena</name>
+         <length>4400</length>
+         <river>
+            <name>Vilyuy</name>
+            <length>2650</length>
+         </river>
+         <river>
+            <name>Aldan</name>
+            <length>2273</length>
+         </river>
+         <river>
+            <name>Vitim</name>
+            <length>1837</length>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>East Sibirian Sea</name>
+      <river>
+         <name>Indigirka</name>
+         <length>1726</length>
+      </river>
+      <river>
+         <name>Kolyma</name>
+         <length>2513</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Chukchi Sea</name>
+   </sea>
+   <sea>
+      <name>Bering Sea</name>
+      <river>
+         <name>Anadyr</name>
+         <length>1150</length>
+      </river>
+      <river>
+         <name>Yukon River</name>
+         <length>3185</length>
+         <lake>
+            <name>Atlin Lake</name>
+         </lake>
+      </river>
+      <river>
+         <name>Kvichak River</name>
+         <length>97</length>
+         <lake>
+            <name>Iliamna Lake</name>
+            <river>
+               <name>Newhalen River</name>
+               <length>40</length>
+               <lake>
+                  <name>Lake Clark</name>
+               </lake>
+            </river>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Hudson Bay</name>
+      <river>
+         <name>Nelson River</name>
+         <length>664</length>
+         <lake>
+            <name>Lake Winnipeg</name>
+            <river>
+               <name>Saskatchewan River</name>
+               <length>547</length>
+               <river>
+                  <name>North Saskatchewan River</name>
+                  <length>1287</length>
+               </river>
+               <river>
+                  <name>South Saskatchewan River</name>
+                  <length>1392</length>
+               </river>
+            </river>
+            <river>
+               <name>Red River of the North</name>
+               <length>877</length>
+            </river>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Labrador Sea</name>
+      <river>
+         <name>Churchill River</name>
+         <length>856</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Baffin Bay</name>
+   </sea>
+   <sea>
+      <name>Gulf of Mexico</name>
+      <river>
+         <name>Caloosahatchee River</name>
+         <length>108</length>
+         <lake>
+            <name>Lake Okeechobee</name>
+         </lake>
+      </river>
+      <river>
+         <name>Mississippi</name>
+         <length>3778</length>
+         <river>
+            <name>Missouri</name>
+            <length>4130</length>
+            <river>
+               <name>Platte River</name>
+               <length>499</length>
+               <river>
+                  <name>North Platte River</name>
+                  <length>1094</length>
+               </river>
+               <river>
+                  <name>South Platte River</name>
+                  <length>711</length>
+               </river>
+            </river>
+            <lake>
+               <name>Fort Peck Lake</name>
+            </lake>
+            <lake>
+               <name>Lake Sakakawea</name>
+            </lake>
+            <lake>
+               <name>Lake Oahe</name>
+            </lake>
+         </river>
+         <river>
+            <name>Arkansas</name>
+            <length>2334</length>
+         </river>
+         <river>
+            <name>Ohio River</name>
+            <length>1579</length>
+            <river>
+               <name>Allegheny River</name>
+               <length>523</length>
+            </river>
+            <river>
+               <name>Tennessee River</name>
+               <length>1049</length>
+               <lake>
+                  <name>Kentucky Lake</name>
+               </lake>
+               <lake>
+                  <name>Chickamauga Lake</name>
+               </lake>
+            </river>
+         </river>
+      </river>
+      <river>
+         <name>Brazos River</name>
+         <length>1352</length>
+      </river>
+      <river>
+         <name>Rio Grande del Norte</name>
+         <length>3034</length>
+      </river>
+      <river>
+         <name>Rio Usumacinta</name>
+         <length>1000</length>
+         <river>
+            <name>Rio Grijalva</name>
+            <length>480</length>
+            <lake>
+               <name>Presa Malpaso Presa Nezahualcóyotl</name>
+            </lake>
+            <lake>
+               <name>Presa Angostura</name>
+            </lake>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>Caribbean Sea</name>
+      <river>
+         <name>Mopan</name>
+         <length>290</length>
+      </river>
+      <river>
+         <name>Rio Dulce</name>
+         <length>43</length>
+         <lake>
+            <name>Lago de Izabal</name>
+         </lake>
+      </river>
+      <river>
+         <name>Rio Motagua</name>
+         <length>486</length>
+      </river>
+      <river>
+         <name>Rio Patuca</name>
+         <length>500</length>
+      </river>
+      <river>
+         <name>Rio Segovia</name>
+         <length>750</length>
+      </river>
+      <river>
+         <name>Rio San Juan</name>
+         <length>199</length>
+         <lake>
+            <name>Lake Nicaragua</name>
+         </lake>
+      </river>
+      <river>
+         <name>Rio Cauto</name>
+         <length>343</length>
+      </river>
+      <river>
+         <name>Artibonito</name>
+         <length>343</length>
+      </river>
+      <river>
+         <name>Rio Magdalena</name>
+         <length>1538</length>
+         <river>
+            <name>Rio Cauca</name>
+            <length>1180</length>
+         </river>
+         <river>
+            <name>Rio Bogota</name>
+            <length>375</length>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>Lago de Maracaibo</name>
+      <river>
+         <name>Catatumbo</name>
+         <length>500</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Pacific Ocean</name>
+      <river>
+         <name>Kamchatka</name>
+         <length>758</length>
+      </river>
+      <river>
+         <name>Ishikari</name>
+         <length>268</length>
+      </river>
+      <river>
+         <name>Tone</name>
+         <length>322</length>
+      </river>
+      <river>
+         <name>Kitakami</name>
+         <length>249</length>
+      </river>
+      <river>
+         <name>Kushiro</name>
+         <length>154</length>
+         <lake>
+            <name>Lake Kussharo</name>
+         </lake>
+      </river>
+      <river>
+         <name>Taritatu</name>
+         <length>1112</length>
+      </river>
+      <river>
+         <name>Sepik</name>
+         <length>1126</length>
+      </river>
+      <river>
+         <name>Fraser River</name>
+         <length>1375</length>
+      </river>
+      <river>
+         <name>Columbia River</name>
+         <length>1953</length>
+         <river>
+            <name>Pend Oreille River</name>
+            <length>708</length>
+            <lake>
+               <name>Lake Pend Oreille</name>
+            </lake>
+         </river>
+         <river>
+            <name>Chelan River</name>
+            <length>6.5</length>
+            <lake>
+               <name>Lake Chelan</name>
+            </lake>
+         </river>
+         <river>
+            <name>Snake River</name>
+            <length>1735</length>
+            <river>
+               <name>Salmon River</name>
+               <length>684</length>
+            </river>
+         </river>
+         <lake>
+            <name>Franklin. D. Roosevelt Lake</name>
+         </lake>
+      </river>
+      <river>
+         <name>Klamath River</name>
+         <length>423</length>
+      </river>
+      <river>
+         <name>Rio Grande de Santiago</name>
+         <length>1281</length>
+         <lake>
+            <name>Lago de Chapala</name>
+         </lake>
+      </river>
+      <river>
+         <name>Rio Lempa</name>
+         <length>422</length>
+      </river>
+      <river>
+         <name>Rio Chepo</name>
+         <length>206</length>
+         <lake>
+            <name>Lake Bayano</name>
+         </lake>
+      </river>
+      <river>
+         <name>Rio Guayas</name>
+         <length>389</length>
+      </river>
+      <river>
+         <name>Rio Rimac</name>
+         <length>138</length>
+      </river>
+      <river>
+         <name>Rio Loa</name>
+         <length>443</length>
+      </river>
+      <river>
+         <name>Río Bío Bío</name>
+         <length>380</length>
+      </river>
+      <river>
+         <name>Río Baker</name>
+         <length>170</length>
+         <lake>
+            <name>Lago General Carrera Lago Buenos Aires</name>
+         </lake>
+      </river>
+      <river>
+         <name>Río Azopardo</name>
+         <length>11</length>
+         <lake>
+            <name>Fagnano Lake</name>
+         </lake>
+      </river>
+      <river>
+         <name>Clutha River</name>
+         <length>338</length>
+         <lake>
+            <name>Lake Wanaka</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>San Francisco Bay</name>
+      <river>
+         <name>Sacramento River</name>
+         <length>607</length>
+         <river>
+            <name>Feather River</name>
+            <length>350</length>
+            <lake>
+               <name>Lake Oroville</name>
+            </lake>
+         </river>
+      </river>
+      <river>
+         <name>San Joaquin River</name>
+         <length>530</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Gulf of California</name>
+      <river>
+         <name>Colorado</name>
+         <length>2330</length>
+         <river>
+            <name>Gila River</name>
+            <length>1044</length>
+         </river>
+         <river>
+            <name>Green River</name>
+            <length>1175</length>
+         </river>
+         <lake>
+            <name>Lake Powell</name>
+         </lake>
+         <lake>
+            <name>Lake Mead</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Sea of Okhotsk</name>
+      <river>
+         <name>Amur</name>
+         <length>2824</length>
+         <river>
+            <name>Schilka</name>
+            <length>560</length>
+            <river>
+               <name>Ingoda</name>
+               <length>708</length>
+            </river>
+            <river>
+               <name>Onon</name>
+               <length>1032</length>
+            </river>
+         </river>
+         <river>
+            <name>Argun</name>
+            <length>1620</length>
+         </river>
+         <river>
+            <name>Songhua</name>
+            <length>1927</length>
+         </river>
+         <river>
+            <name>Ussuri</name>
+            <length>897</length>
+            <river>
+               <name>Sungacha</name>
+               <length>180</length>
+               <lake>
+                  <name>Ozero Chanka</name>
+               </lake>
+            </river>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>Sea of Japan</name>
+      <river>
+         <name>Tumen</name>
+         <length>521</length>
+      </river>
+      <river>
+         <name>Nakdonggang</name>
+         <length>526</length>
+      </river>
+      <river>
+         <name>Shinano</name>
+         <length>367</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Seto Inland Sea</name>
+      <river>
+         <name>Yodo</name>
+         <length>75</length>
+         <lake>
+            <name>Lake Biwa</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Yellow Sea</name>
+      <river>
+         <name>Yalu</name>
+         <length>813</length>
+         <lake>
+            <name>Supung Dam</name>
+         </lake>
+      </river>
+      <river>
+         <name>Taedong</name>
+         <length>439</length>
+      </river>
+      <river>
+         <name>Namhangang</name>
+         <length>494</length>
+         <river>
+            <name>Bukhangang</name>
+            <length>325</length>
+         </river>
+      </river>
+      <river>
+         <name>Liao He</name>
+         <length>1390</length>
+      </river>
+      <river>
+         <name>Huang He</name>
+         <length>4845</length>
+         <river>
+            <name>Wei He</name>
+            <length>818</length>
+         </river>
+      </river>
+      <river>
+         <name>Huai</name>
+         <length>1110</length>
+         <lake>
+            <name>Hongze Hu</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>East China Sea</name>
+      <river>
+         <name>Tamsui</name>
+         <length>159</length>
+      </river>
+      <river>
+         <name>Yangtze</name>
+         <length>6380</length>
+         <river>
+            <name>Han</name>
+            <length>1532</length>
+         </river>
+         <river>
+            <name>Gan Jiang</name>
+            <length>758</length>
+         </river>
+         <lake>
+            <name>Xiluodu</name>
+         </lake>
+         <lake>
+            <name>Three Gorges Reservoir</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>South China Sea</name>
+      <river>
+         <name>Gaoping</name>
+         <length>171</length>
+      </river>
+      <river>
+         <name>Pearl River</name>
+         <length>170</length>
+         <river>
+            <name>Dong Jiang</name>
+            <length>523</length>
+         </river>
+      </river>
+      <river>
+         <name>Xi Jiang</name>
+         <length>2197</length>
+         <river>
+            <name>Bei Jiang</name>
+            <length>468</length>
+         </river>
+      </river>
+      <river>
+         <name>Hong He</name>
+         <length>1149</length>
+      </river>
+      <river>
+         <name>Mekong</name>
+         <length>4350</length>
+         <river>
+            <name>Tonle Sap River</name>
+            <length>120</length>
+            <lake>
+               <name>Tonle Sap</name>
+            </lake>
+         </river>
+      </river>
+      <river>
+         <name>Batang Hari</name>
+         <length>800</length>
+      </river>
+      <river>
+         <name>Rajang</name>
+         <length>563</length>
+      </river>
+      <river>
+         <name>Kapuas</name>
+         <length>1143</length>
+      </river>
+      <river>
+         <name>Pansipit River</name>
+         <length>9</length>
+         <lake>
+            <name>Lake Taal</name>
+         </lake>
+      </river>
+      <river>
+         <name>Pasig River</name>
+         <length>27</length>
+         <lake>
+            <name>Laguna de Bay</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Gulf of Thailand</name>
+      <river>
+         <name>Mae Nam Chao Phraya</name>
+         <length>372</length>
+         <river>
+            <name>Mae Nam Ping</name>
+            <length>658</length>
+            <lake>
+               <name>Lake Bhumibol</name>
+            </lake>
+         </river>
+         <river>
+            <name>Mae Nam Nan</name>
+            <length>740</length>
+            <lake>
+               <name>Lake Sirikit</name>
+            </lake>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>Indian Ocean</name>
+      <river>
+         <name>Sagana</name>
+         <length>1000</length>
+      </river>
+      <river>
+         <name>Jubba</name>
+         <length>1658</length>
+         <river>
+            <name>Shabelle</name>
+            <length>1820</length>
+         </river>
+      </river>
+      <river>
+         <name>Rufiji</name>
+         <length>600</length>
+      </river>
+      <river>
+         <name>Zambezi</name>
+         <length>2574</length>
+         <river>
+            <name>Cuando</name>
+            <length>1500</length>
+         </river>
+         <river>
+            <name>Kafue</name>
+            <length>402</length>
+         </river>
+         <river>
+            <name>Luangwa</name>
+            <length>806</length>
+         </river>
+         <river>
+            <name>Shire</name>
+            <length>402</length>
+            <lake>
+               <name>Lake Malawi</name>
+            </lake>
+         </river>
+         <lake>
+            <name>Lake Cahora-Bassa</name>
+         </lake>
+         <lake>
+            <name>Lake Kariba</name>
+         </lake>
+      </river>
+      <river>
+         <name>Limpopo</name>
+         <length>1750</length>
+      </river>
+      <river>
+         <name>Mangoky</name>
+         <length>714</length>
+      </river>
+      <river>
+         <name>Murchison River</name>
+         <length>1131</length>
+      </river>
+      <river>
+         <name>Murray River</name>
+         <length>2508</length>
+         <river>
+            <name>Darling River</name>
+            <length>1472</length>
+            <river>
+               <name>Barwon River</name>
+               <length>700</length>
+               <river>
+                  <name>Macintyre River</name>
+                  <length>470</length>
+               </river>
+               <river>
+                  <name>Weir River</name>
+                  <length>700</length>
+               </river>
+            </river>
+            <river>
+               <name>Condamine River</name>
+               <length>1625</length>
+            </river>
+         </river>
+         <river>
+            <name>Murrumbidgee River</name>
+            <length>1579</length>
+            <river>
+               <name>Lachlan River</name>
+               <length>1440</length>
+            </river>
+            <river>
+               <name>Molonglo River</name>
+               <length>115</length>
+            </river>
+            <lake>
+               <name>Lake Burley Griffin</name>
+            </lake>
+         </river>
+         <lake>
+            <name>Lake Hume</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Arabian Sea</name>
+      <river>
+         <name>Narmada</name>
+         <length>1312</length>
+      </river>
+      <river>
+         <name>Indus</name>
+         <length>3180</length>
+         <river>
+            <name>Kabul</name>
+            <length>71</length>
+         </river>
+         <river>
+            <name>Panjnad</name>
+            <length>71</length>
+            <river>
+               <name>Satluj</name>
+               <length>1500</length>
+               <lake>
+                  <name>Manasarovar</name>
+               </lake>
+               <lake>
+                  <name>Rakshastal</name>
+               </lake>
+            </river>
+            <river>
+               <name>Chanab</name>
+               <length>1242</length>
+               <river>
+                  <name>Jhelum</name>
+                  <length>720</length>
+               </river>
+               <river>
+                  <name>Ravi</name>
+                  <length>725</length>
+               </river>
+            </river>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>Gulf of Oman</name>
+   </sea>
+   <sea>
+      <name>Persian Gulf</name>
+      <river>
+         <name>Schatt al Arab</name>
+         <length>193</length>
+         <river>
+            <name>Tigris</name>
+            <length>1900</length>
+         </river>
+         <river>
+            <name>Al Furat</name>
+            <length>2736</length>
+            <lake>
+               <name>Lake Assad</name>
+            </lake>
+            <lake>
+               <name>Lake Keban</name>
+               <river>
+                  <name>Murat</name>
+                  <length>720</length>
+               </river>
+               <river>
+                  <name>Karasu</name>
+                  <length>470</length>
+               </river>
+            </lake>
+            <lake>
+               <name>Atatürk Baraj Gölü</name>
+            </lake>
+         </river>
+         <river>
+            <name>Karun</name>
+            <length>950</length>
+         </river>
+      </river>
+   </sea>
+   <sea>
+      <name>Red Sea</name>
+   </sea>
+   <sea>
+      <name>Gulf of Aden</name>
+   </sea>
+   <sea>
+      <name>Gulf of Bengal</name>
+      <river>
+         <name>Ganges</name>
+         <length>2620</length>
+         <river>
+            <name>Ghaghara</name>
+            <length>1080</length>
+         </river>
+         <river>
+            <name>Gandaki</name>
+            <length>400</length>
+            <river>
+               <name>Kali Gandaki</name>
+               <length>350</length>
+            </river>
+            <river>
+               <name>Trishuli</name>
+               <length>300</length>
+            </river>
+         </river>
+         <river>
+            <name>Koshi</name>
+            <length>300</length>
+            <river>
+               <name>Sunkoshi</name>
+               <length>430</length>
+            </river>
+            <river>
+               <name>Arun</name>
+               <length>500</length>
+            </river>
+         </river>
+         <river>
+            <name>Yamuna</name>
+            <length>1376</length>
+            <river>
+               <name>Chambal</name>
+               <length>960</length>
+            </river>
+         </river>
+         <river>
+            <name>Brahmaputra</name>
+            <length>2896</length>
+            <river>
+               <name>Wang Chhu</name>
+               <length>370</length>
+            </river>
+            <river>
+               <name>Jaldhaka</name>
+               <length>250</length>
+            </river>
+            <river>
+               <name>Tista</name>
+               <length>430</length>
+            </river>
+         </river>
+         <river>
+            <name>Meghna</name>
+            <length>910</length>
+         </river>
+      </river>
+      <river>
+         <name>Godavari</name>
+         <length>1465</length>
+      </river>
+      <river>
+         <name>Mahanadi</name>
+         <length>851</length>
+      </river>
+      <river>
+         <name>Krishna</name>
+         <length>1291</length>
+      </river>
+      <river>
+         <name>Mahaweli</name>
+         <length>335</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Andaman Sea</name>
+      <river>
+         <name>Saluen</name>
+         <length>2980</length>
+      </river>
+      <river>
+         <name>Irawaddy</name>
+         <length>2170</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Malakka Strait</name>
+      <river>
+         <name>Asahan</name>
+         <length>147</length>
+         <lake>
+            <name>Lake Toba</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Java Sea</name>
+      <river>
+         <name>Solo</name>
+         <length>600</length>
+      </river>
+      <river>
+         <name>Mahakam</name>
+         <length>980</length>
+      </river>
+      <river>
+         <name>Barito</name>
+         <length>1090</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Banda Sea</name>
+   </sea>
+   <sea>
+      <name>Sulawesi Sea</name>
+   </sea>
+   <sea>
+      <name>Sulu Sea</name>
+      <river>
+         <name>Agus River</name>
+         <length>37</length>
+         <lake>
+            <name>Lake Lanao</name>
+         </lake>
+      </river>
+   </sea>
+   <sea>
+      <name>Savu Sea</name>
+   </sea>
+   <sea>
+      <name>Timor Sea</name>
+   </sea>
+   <sea>
+      <name>Arafura Sea</name>
+      <river>
+         <name>Digul</name>
+         <length>853</length>
+      </river>
+      <river>
+         <name>Roper River</name>
+         <length>600</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Coral Sea</name>
+      <river>
+         <name>Fly River</name>
+         <length>1120</length>
+      </river>
+   </sea>
+   <sea>
+      <name>Solomon Sea</name>
+   </sea>
+   <sea>
+      <name>Tasman Sea</name>
+      <river>
+         <name>Snowy River</name>
+         <length>403</length>
+         <lake>
+            <name>Lake Jindabyne</name>
+            <river>
+               <name>Eucumbene River</name>
+               <length>83</length>
+               <lake>
+                  <name>Lake Eucumbene</name>
+               </lake>
+            </river>
+         </lake>
+      </river>
+      <river>
+         <name>Waikato River</name>
+         <length>425</length>
+         <lake>
+            <name>Lake Taupo</name>
+         </lake>
+      </river>
+      <river>
+         <name>Whangaehu River</name>
+         <length>190</length>
+         <lake>
+            <name>Te Wai ā-moe</name>
+         </lake>
+      </river>
+   </sea>
+</waters>

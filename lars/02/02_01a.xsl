@@ -16,7 +16,7 @@
     <name>
       <xsl:value-of select="name[last()]" />
     </name>
-      <xsl:for-each select="/*/river[to/@water = $sea_id]" >
+      <xsl:for-each select="/*/river[./to/@water = $sea_id]" >
         <xsl:sort select="/estuary/elevation" />
         <xsl:call-template name="river"/>
       </xsl:for-each>
@@ -32,11 +32,11 @@
     <length>
       <xsl:value-of select="length" />
     </length>
-    <xsl:for-each select="/*/river[to/@water = $river_id]">
+    <xsl:for-each select="/*/river[./to/@water = $river_id]">
       <xsl:sort select="/estuary/elevation" />
       <xsl:call-template name="river" />
     </xsl:for-each>
-    <xsl:for-each select="/*/lake[to/@water = $river_id]">
+    <xsl:for-each select="/*/lake[./to/@water = $river_id]">
       <xsl:sort select="/elevation" />
       <xsl:call-template name="lake" />
     </xsl:for-each>
@@ -49,11 +49,11 @@
     <name>
       <xsl:value-of select="name" />
     </name>
-    <xsl:for-each select="/*/river[to/@water = $lake_id]">
+    <xsl:for-each select="/*/river[./to/@water = $lake_id]">
       <xsl:sort select="/estuary/elevation" />
       <xsl:call-template name="river" />
     </xsl:for-each>
-    <xsl:for-each select="/*/lake[to/@water = $lake_id]">
+    <xsl:for-each select="/*/lake[./to/@water = $lake_id]">
       <xsl:sort select="/elevation" />
       <xsl:call-template name="lake" />
     </xsl:for-each>
