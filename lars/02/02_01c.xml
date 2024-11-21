@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+   <body>
+      <tr>
+         <th>River</th>
+         <th>System Length</th>
+      </tr>
+      <tr>
+         <td>Atlantic Ocean</td>
+         <td>NaN</td>
+      </tr>
+      <tr>
+         <td>Mediterranean Sea</td>
+         <td>29087.5</td>
+      </tr>
+      <tr>
+         <td>Black Sea</td>
+         <td>34071.3</td>
+      </tr>
+      <tr>
+         <td>Marmara Sea</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Sea of Azov</td>
+         <td>4685</td>
+      </tr>
+      <tr>
+         <td>The Channel</td>
+         <td>1599</td>
+      </tr>
+      <tr>
+         <td>Irish Sea</td>
+         <td>186</td>
+      </tr>
+      <tr>
+         <td>North Sea</td>
+         <td>14725.5</td>
+      </tr>
+      <tr>
+         <td>Skagerrak</td>
+         <td>825</td>
+      </tr>
+      <tr>
+         <td>Kattegat</td>
+         <td>711</td>
+      </tr>
+      <tr>
+         <td>Baltic Sea</td>
+         <td>11653</td>
+      </tr>
+      <tr>
+         <td>Norwegian Sea</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Greenland Sea</td>
+         <td>206</td>
+      </tr>
+      <tr>
+         <td>Arctic Ocean</td>
+         <td>6821</td>
+      </tr>
+      <tr>
+         <td>Barents Sea</td>
+         <td>1954</td>
+      </tr>
+      <tr>
+         <td>White Sea</td>
+         <td>3110</td>
+      </tr>
+      <tr>
+         <td>Kara Sea</td>
+         <td>34143</td>
+      </tr>
+      <tr>
+         <td>Laptev Sea</td>
+         <td>15088</td>
+      </tr>
+      <tr>
+         <td>East Sibirian Sea</td>
+         <td>4239</td>
+      </tr>
+      <tr>
+         <td>Chukchi Sea</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Bering Sea</td>
+         <td>4472</td>
+      </tr>
+      <tr>
+         <td>Hudson Bay</td>
+         <td>4767</td>
+      </tr>
+      <tr>
+         <td>Labrador Sea</td>
+         <td>856</td>
+      </tr>
+      <tr>
+         <td>Baffin Bay</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Gulf of Mexico</td>
+         <td>21671</td>
+      </tr>
+      <tr>
+         <td>Caribbean Sea</td>
+         <td>6047</td>
+      </tr>
+      <tr>
+         <td>Lago de Maracaibo</td>
+         <td>500</td>
+      </tr>
+      <tr>
+         <td>Pacific Ocean</td>
+         <td>14651.5</td>
+      </tr>
+      <tr>
+         <td>San Francisco Bay</td>
+         <td>1487</td>
+      </tr>
+      <tr>
+         <td>Gulf of California</td>
+         <td>4549</td>
+      </tr>
+      <tr>
+         <td>Sea of Okhotsk</td>
+         <td>9748</td>
+      </tr>
+      <tr>
+         <td>Sea of Japan</td>
+         <td>1414</td>
+      </tr>
+      <tr>
+         <td>Seto Inland Sea</td>
+         <td>75</td>
+      </tr>
+      <tr>
+         <td>Yellow Sea</td>
+         <td>10234</td>
+      </tr>
+      <tr>
+         <td>East China Sea</td>
+         <td>8829</td>
+      </tr>
+      <tr>
+         <td>South China Sea</td>
+         <td>11690</td>
+      </tr>
+      <tr>
+         <td>Gulf of Thailand</td>
+         <td>1770</td>
+      </tr>
+      <tr>
+         <td>Indian Ocean</td>
+         <td>24966</td>
+      </tr>
+      <tr>
+         <td>Arabian Sea</td>
+         <td>8821</td>
+      </tr>
+      <tr>
+         <td>Gulf of Oman</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Persian Gulf</td>
+         <td>6969</td>
+      </tr>
+      <tr>
+         <td>Red Sea</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Gulf of Aden</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Gulf of Bengal</td>
+         <td>17114</td>
+      </tr>
+      <tr>
+         <td>Andaman Sea</td>
+         <td>5150</td>
+      </tr>
+      <tr>
+         <td>Malakka Strait</td>
+         <td>147</td>
+      </tr>
+      <tr>
+         <td>Java Sea</td>
+         <td>2670</td>
+      </tr>
+      <tr>
+         <td>Banda Sea</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Sulawesi Sea</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Sulu Sea</td>
+         <td>37</td>
+      </tr>
+      <tr>
+         <td>Savu Sea</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Timor Sea</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Arafura Sea</td>
+         <td>1453</td>
+      </tr>
+      <tr>
+         <td>Coral Sea</td>
+         <td>1120</td>
+      </tr>
+      <tr>
+         <td>Solomon Sea</td>
+         <td>0</td>
+      </tr>
+      <tr>
+         <td>Tasman Sea</td>
+         <td>1101</td>
+      </tr>
+   </body>
+</html>
