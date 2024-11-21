@@ -15,6 +15,7 @@ Thus, it has to have a longitude smaller.
 - Wolfsburg was perfect with 07:01 according to
 https://www.timeanddate.com/sun/germany/wolfsburg?month=9&year=2024
 which has a longitude of 10.780420
+or we take the longitude of berlin minues 10 minutes of rotation (360/24/6)
 
 (as a debug, we sort them so that wolfsburg should be last :D)
 
@@ -22,6 +23,6 @@ Also, after a lot of debugging, I found out to number cast everything...
 :)
 for $c in /*/country//city
 where (number($c/longitude)) < number(//city[name="Berlin"]/longitude)
-    and (number($c/longitude)) >= 10.780420
+    and (number($c/longitude)) >= (number(//city[name="Berlin"]/longitude) - (360.0 div 24.0 div 6.0))
 order by $c/longitude descending
 return <result c="{$c/name[last()]}" l="{$c/longitude}" />
