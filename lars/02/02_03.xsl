@@ -20,6 +20,8 @@ Notes:
       local-name() != "SPEECH"
     ]
 
+- TODO: Wie kann ich in XSL ne 2. Datei einbinden?
+
 -->
 
 
