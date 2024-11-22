@@ -2223,7 +2223,7 @@ Attendants</STAGEDIR>
             <LINE>That's an ill phrase, a vile phrase; 'beautified' is</LINE>
             <LINE>a vile phrase: but you shall hear. Thus:</LINE>
             <STAGEDIR>Reads</STAGEDIR>
-            <LINE>'In her excellent white bosom, these, &c.'</LINE>
+            <LINE>'In her excellent white bosom, these, c.'</LINE>
          </SPEECH>
          <SPEECH>
             <SPEAKER>QUEEN GERTRUDE</SPEAKER>
@@ -6276,7 +6276,7 @@ and GUILDENSTERN</STAGEDIR>
       <TITLE>ACT V</TITLE>
       <SCENE>
          <TITLE>SCENE I.  A churchyard.</TITLE>
-         <STAGEDIR>Enter two Clowns, with spades, &c</STAGEDIR>
+         <STAGEDIR>Enter two Clowns, with spades, c</STAGEDIR>
          <SPEECH>
             <SPEAKER>First Clown</SPEAKER>
             <LINE>Is she to be buried in Christian burial that</LINE>
@@ -6752,9 +6752,9 @@ and GUILDENSTERN</STAGEDIR>
             <LINE>O, that that earth, which kept the world in awe,</LINE>
             <LINE>Should patch a wall to expel the winter flaw!</LINE>
             <LINE>But soft! but soft! aside: here comes the king.</LINE>
-            <STAGEDIR>Enter Priest, &c. in procession; the Corpse of
+            <STAGEDIR>Enter Priest, c. in procession; the Corpse of
 OPHELIA, LAERTES and Mourners following; KING
-CLAUDIUS, QUEEN GERTRUDE, their trains, &c</STAGEDIR>
+CLAUDIUS, QUEEN GERTRUDE, their trains, c</STAGEDIR>
             <LINE>The queen, the courtiers: who is this they follow?</LINE>
             <LINE>And with such maimed rites? This doth betoken</LINE>
             <LINE>The corse they follow did with desperate hand</LINE>
@@ -7397,7 +7397,7 @@ CLAUDIUS, QUEEN GERTRUDE, their trains, &c</STAGEDIR>
             <LINE>leaves, what is't to leave betimes?</LINE>
          </SPEECH>
          <STAGEDIR>Enter KING CLAUDIUS, QUEEN GERTRUDE, LAERTES,
-Lords, OSRIC, and Attendants with foils, &c</STAGEDIR>
+Lords, OSRIC, and Attendants with foils, c</STAGEDIR>
          <SPEECH>
             <SPEAKER>KING CLAUDIUS</SPEAKER>
             <LINE>Come, Hamlet, come, and take this hand from me.</LINE>
