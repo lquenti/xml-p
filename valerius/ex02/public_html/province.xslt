@@ -33,11 +33,13 @@
                 <ul>
                     <xsl:for-each select="city">
                         <li>
-                            <xsl:value-of select="name[1]"/>
-                            <xsl:if test="population">
-                                - Population: <xsl:value-of select="population[last()]"/>
-                                (<xsl:value-of select="population[last()]/@year"/>)
-                            </xsl:if>
+                            <a href="{@id}/index.html">
+                                <xsl:value-of select="name[1]"/>
+                                <xsl:if test="population">
+                                    - Population: <xsl:value-of select="population[last()]"/>
+                                    (<xsl:value-of select="population[last()]/@year"/>)
+                                </xsl:if>
+                            </a>
                         </li>
                     </xsl:for-each>
                 </ul>

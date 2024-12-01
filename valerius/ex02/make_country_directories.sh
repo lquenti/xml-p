@@ -47,5 +47,25 @@ for code in $car_codes; do
             -o "$province_dir/index.html" \
             public_html/province.xslt \
             "$mondial_file"
+
+        # Get city IDs for this province
+        xpath_cities="//country[@car_code='$code']/province[@id='$prov_id']/city/@id"
+        city_ids=$(xq -x "$xpath_cities" "$mondial_file")
+
+        # Process each city
+        for city_id in $city_ids; do
+            echo "    Processing city: $city_id"
+            
+            # Create city directory
+            city_dir="$province_dir/$city_id"
+            mkdir -p "$city_dir"
+            
+            # Generate city-specific HTML file
+            xsltproc --stringparam country_code "$code" \
+                --stringparam city_id "$city_id" \
+                -o "$city_dir/index.html" \
+                public_html/city.xslt \
+                "$mondial_file"
+        done
     done
 done
