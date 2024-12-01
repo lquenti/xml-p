@@ -15,6 +15,7 @@ car_codes=$(xq -x "$xpath" "$mondial_file")
 
 # Process each country
 for code in $car_codes; do
+    echo "Processing country: $code"
     # Create country directory
     country_dir="$target_dir/$code"
     mkdir -p "$country_dir"

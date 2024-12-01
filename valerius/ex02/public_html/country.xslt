@@ -40,6 +40,18 @@
                         (<xsl:value-of select="population[last()]/@year"/>)</li>
                 </ul>
 
+                <!-- Provinces -->
+                <h2>Provinces</h2>
+                <ul>
+                    <xsl:for-each select="province">
+                        <li>
+                            <a href="{concat(name, '/index.html')}">
+                                <xsl:value-of select="name"/>
+                            </a>
+                        </li>
+                    </xsl:for-each>
+                </ul>
+
                 <!-- Demographics -->
                 <h2>Demographics</h2>
                 <h3>Ethnic Groups</h3>

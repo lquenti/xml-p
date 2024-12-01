@@ -27,7 +27,7 @@
             </p>
             <h2>Provinces</h2>
             <ul>
-                <xsl:for-each select="provinces/province">
+                <xsl:for-each select="province">
                     <li>
                         <xsl:value-of select="name"/>
                     </li>
