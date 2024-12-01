@@ -45,7 +45,7 @@
                 <ul>
                     <xsl:for-each select="province">
                         <li>
-                            <a href="{concat(name, '/index.html')}">
+                            <a href="{translate(name, ' ', '_')}/index.html">
                                 <xsl:value-of select="name"/>
                             </a>
                         </li>
