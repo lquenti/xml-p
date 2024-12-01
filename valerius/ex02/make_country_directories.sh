@@ -7,6 +7,9 @@ xpath="//country/@car_code"
 # Create main countries directory
 mkdir -p "$target_dir"
 
+# Make index.html
+xsltproc public_html/index.xslt "$mondial_file" > "$target_dir/../index.html"
+
 # Get all car codes
 car_codes=$(xq -x "$xpath" "$mondial_file")
 

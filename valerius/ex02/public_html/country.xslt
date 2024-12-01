@@ -7,6 +7,8 @@
             </head>
             <body>
                 <h1><xsl:value-of select="name"/> (<xsl:value-of select="@car_code"/>)</h1>
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/{name}.svg" alt="Flag of {name}" />
                 
                 <!-- Basic Information -->
                 <h2>Basic Information</h2>
