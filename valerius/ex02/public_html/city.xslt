@@ -19,6 +19,12 @@
                 <a href="../index.html">Back to Province</a>
                 <h1><xsl:value-of select="name[1]"/></h1>
 
+                <p>
+                    <xsl:value-of select="name[1]"/> is located in the 
+                    <a href="../index.html"><xsl:value-of select="../name"/></a> province of 
+                    <a href="../../index.html"><xsl:value-of select="//country[@car_code=$country_code]/name"/></a>.
+                </p>
+
                 <!-- Basic Information -->
                 <h2>Basic Information</h2>
                 <ul>

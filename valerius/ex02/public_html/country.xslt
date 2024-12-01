@@ -35,7 +35,9 @@
                 <ul>
                     <li>Local Name: <xsl:value-of select="localname"/></li>
                     <li>Area: <xsl:value-of select="@area"/> km²</li>
-                    <li>Capital: <xsl:value-of select="//city[@id=current()/@capital]/name[1]"/></li>
+                    <li>Capital: <a href="{translate(//province[@id=//city[@id=current()/@capital]/@province]/name, ' ', '_')}/{@capital}/index.html">
+                        <xsl:value-of select="//city[@id=current()/@capital]/name[1]"/>
+                    </a></li>
                     <li>Population: <xsl:value-of select="population[last()]"/> 
                         (<xsl:value-of select="population[last()]/@year"/>)</li>
                 </ul>
@@ -48,6 +50,24 @@
                             <a href="{translate(name, ' ', '_')}/index.html">
                                 <xsl:value-of select="name"/>
                             </a>
+                        </li>
+                    </xsl:for-each>
+                </ul>
+
+                <!-- Cities -->
+                <h2>All Cities</h2>
+                <ul>
+                    <xsl:for-each select="province/city">
+                        <li>
+                            <a href="{translate(../name, ' ', '_')}/{@id}/index.html">
+                                <xsl:value-of select="name[1]"/>
+                            </a>
+                            is located in the <a href="{translate(../name, ' ', '_')}/index.html">
+                                <xsl:value-of select="../name"/>
+                            </a> province of 
+                            <a href="index.html">
+                                <xsl:value-of select="//country[@car_code=$country_code]/name"/>
+                            </a>.
                         </li>
                     </xsl:for-each>
                 </ul>
