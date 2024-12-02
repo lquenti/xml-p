@@ -18,8 +18,8 @@ let $shared_island_parts :=
     let $shared_percentage := xs:decimal($island/owned_by[id(@country) = $country]/@percentage/string()) div 100
     return $island/area/text() * $shared_percentage
 
-let $shared_island_area := sum(($shared_island_parts))
-let $country_island_area := sum(($general_island_area)) + sum(($shared_island_area))
+let $shared_island_area := sum($shared_island_parts)
+let $country_island_area := sum($general_island_area) + sum($shared_island_area)
 
 let $is_sea_located := $country/id(@capital)/located_at/@watertype/string() = "sea"
 where $country_island_area >= 0.9 * xs:decimal($country/@area/string()) and not($is_sea_located)
