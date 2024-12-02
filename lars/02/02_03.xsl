@@ -20,14 +20,16 @@ Notes:
       local-name() != "SPEECH"
     ]
 
-- TODO: Wie kann ich in XSL ne 2. Datei einbinden?
+- TODO: Wie kann ich in XML ne 2. Datei einbinden als source?
 
+xQuery: doc()
 -->
 
 
 <xsl:output method="text" indent="no" />
 
 <xsl:template match="PLAY">
+  <!-- <xsl:variable name="" select="doc(mondial)//city|country" /> -->
 \documentclass{article}
 \begin{document}
   <xsl:for-each select="./ACT">

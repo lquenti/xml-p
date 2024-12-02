@@ -16,6 +16,10 @@
     <name>
       <xsl:value-of select="name[last()]" />
     </name>
+      <!-- TODO ersetzen durch: + Singulärer match -->
+      <!-- <xsl:apply-templates select="/*/river[./to/@water = $sea_id]"> -->
+      <!--   <xsl:sort select="/estuary/elevation" /> -->
+      <!-- </xsl:apply-templates> -->
       <xsl:for-each select="/*/river[./to/@water = $sea_id]" >
         <xsl:sort select="/estuary/elevation" />
         <xsl:call-template name="river"/>

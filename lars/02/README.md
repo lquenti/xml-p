@@ -9,5 +9,5 @@ saxonXSL -s":./mondial.xml" -xsl":./lars/02/02_01e.xsl" -o":./lars/02/02_01e.xml
 saxonXQ -s":./lars/02/02_01e.xml" lars/02/02_01e_i.xq
 saxonXQ -s":./lars/02/02_01e.xml" lars/02/02_01e_ii.xq
 saxonXQ -s":./lars/02/02_01e.xml" lars/02/02_01e_iii.xq
-saxonXSL -s":./hamlet.xml" -xsl":./lars/02/02_03.xsl" -o":./lars/02/02_03.tex
+saxonXSL -s":./hamlet.xml" -xsl":./lars/02/02_03.xsl" -o":./lars/02/02_03.tex"
 ```

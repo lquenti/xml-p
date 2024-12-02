@@ -17,6 +17,7 @@
           <tr>
             <td><xsl:value-of select="name"/></td>
             <td>
+              <!-- TODO Apply templates s. 02_01a -->
               <xsl:variable name="lens">
                 <xsl:call-template name="river"/>
               </xsl:variable>
