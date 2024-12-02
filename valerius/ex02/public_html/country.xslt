@@ -4,7 +4,7 @@
     <xsl:param name="country_code"/>
     
     <!-- Match root element -->
-    <xsl:template match="/">
+    <xsl:template match="/mondial">
         <!-- Only process the country with matching car_code -->
         <xsl:apply-templates select="//country[@car_code=$country_code]"/>
     </xsl:template>

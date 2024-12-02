@@ -5,7 +5,7 @@
     <xsl:param name="city_id"/>
     
     <!-- Match root element -->
-    <xsl:template match="/">
+    <xsl:template match="/mondial">
         <!-- Only process the city with matching ID -->
         <xsl:apply-templates select="//city[@id=$city_id]"/>
     </xsl:template>
