@@ -19,17 +19,17 @@ import java.util.Objects;
  * Output an HTML file that lists the names of all countries in mondial.xml.
  */
 
-class ResultSingleton {
-    private static ResultSingleton instance;
+class ResultSingleton_a {
+    private static ResultSingleton_a instance;
     private final List<String> strings;
 
-    private ResultSingleton() {
+    private ResultSingleton_a() {
         strings = new ArrayList<>();
     }
 
-    public static ResultSingleton getInstance() {
+    public static ResultSingleton_a getInstance() {
         if (Objects.isNull(instance)) {
-            instance = new ResultSingleton();
+            instance = new ResultSingleton_a();
         }
         return instance;
     }
@@ -44,7 +44,7 @@ class ResultSingleton {
 
 }
 
-class MyContentHandler extends DefaultHandler {
+class MyContentHandler_a extends DefaultHandler {
     private boolean inCountry = false;
     private boolean inProvince = false;
     private boolean inCity = false;
@@ -78,19 +78,19 @@ class MyContentHandler extends DefaultHandler {
             inCity = false;
         }
         if (Objects.equals(elementName, "name") && inCountry && !inProvince && !inCity) {
-            ResultSingleton.getInstance().addString(currentElement);
+            ResultSingleton_a.getInstance().addString(currentElement);
         }
     }
 }
 
 public class Ex03_02a {
     public static void main(String[] args) throws SAXException, ParserConfigurationException, IOException {
-        var handler = new MyContentHandler();
+        var handler = new MyContentHandler_a();
         var factory = SAXParserFactory.newInstance();
         var parser = factory.newSAXParser();
         parser.parse("file:../../mondial.xml", handler);
 
-        List<String> countryNames = ResultSingleton.getInstance().getStrings();
+        List<String> countryNames = ResultSingleton_a.getInstance().getStrings();
 
         Document doc = new Document();
         Element html = new Element("html");
