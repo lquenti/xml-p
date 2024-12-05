@@ -44,9 +44,7 @@ public class Ex03_01 {
                     ).map(country_code -> countries.get(country_code).getAttribute("capital").getValue())
                     .collect(Collectors.toSet());
             if (member_capitals.contains(headq.getValue())) {
-                System.out.print(org.getChild("name").getText());
-                System.out.print(" - ");
-                System.out.println(headq.getValue());
+                System.out.println(org.getChild("name").getText() + " - " + headq.getValue());
             }
         }
     }
