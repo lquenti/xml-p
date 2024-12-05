@@ -3071,6 +3071,13 @@
    </lake>
    <lake>
       <name>Dead Sea</name>
+      <river>
+         <name>Jordan</name>
+         <length>251</length>
+         <lake>
+            <name>Lake Genezareth</name>
+         </lake>
+      </river>
    </lake>
    <lake>
       <name>Lake Van</name>
@@ -3089,18 +3096,131 @@
    </lake>
    <lake>
       <name>Lake Hamun</name>
+      <river>
+         <name>Hilmend</name>
+         <length>1125</length>
+      </river>
    </lake>
    <lake>
       <name>Caspian Sea</name>
+      <river>
+         <name>Terek</name>
+         <length>623</length>
+      </river>
+      <river>
+         <name>Samur</name>
+         <length>213</length>
+      </river>
+      <river>
+         <name>Kura</name>
+         <length>1364</length>
+         <river>
+            <name>Aras</name>
+            <length>1072</length>
+            <river>
+               <name>Hrazdan</name>
+               <length>141</length>
+               <lake>
+                  <name>Lake Sevan</name>
+               </lake>
+            </river>
+         </river>
+      </river>
+      <river>
+         <name>Mardus</name>
+         <length>670</length>
+      </river>
+      <river>
+         <name>Atrek</name>
+         <length>669</length>
+      </river>
+      <river>
+         <name>East Manych</name>
+         <length>220</length>
+      </river>
+      <river>
+         <name>Volga</name>
+         <length>3531</length>
+         <river>
+            <name>Oka</name>
+            <length>1480</length>
+            <river>
+               <name>Moskva</name>
+               <length>502</length>
+            </river>
+         </river>
+         <lake>
+            <name>Rybinsk Reservoir</name>
+         </lake>
+         <lake>
+            <name>Kuybyshev Reservoir</name>
+            <river>
+               <name>Kama</name>
+               <length>1805</length>
+               <river>
+                  <name>Vyatka</name>
+                  <length>1314</length>
+               </river>
+               <lake>
+                  <name>Kama Reservoir Nizhnekamsk Reservoir</name>
+                  <river>
+                     <name>Chusovaya</name>
+                     <length>592</length>
+                  </river>
+               </lake>
+               <lake>
+                  <name>Lower Kama Reservoir</name>
+                  <river>
+                     <name>Belaya</name>
+                     <length>1430</length>
+                  </river>
+               </lake>
+            </river>
+         </lake>
+      </river>
+      <river>
+         <name>Ural</name>
+         <length>2428</length>
+      </river>
+      <river>
+         <name>Emba</name>
+         <length>712</length>
+      </river>
+      <lake>
+         <name>Garabogazköl</name>
+      </lake>
    </lake>
    <lake>
       <name>North Aral Sea</name>
+      <river>
+         <name>Syrdarja</name>
+         <length>2212</length>
+         <river>
+            <name>Naryn</name>
+            <length>678</length>
+         </river>
+      </river>
    </lake>
    <lake>
       <name>South Aral Sea</name>
    </lake>
    <lake>
       <name>Ozero Balchash</name>
+      <river>
+         <name>Ili</name>
+         <length>1001</length>
+         <river>
+            <name>Gongnaisi</name>
+            <length>220</length>
+         </river>
+         <river>
+            <name>Tekes</name>
+            <length>438</length>
+         </river>
+         <lake>
+            <name>Kapshagay Dam</name>
+         </lake>
+      </river>
    </lake>
    <lake>
       <name>Issyk-Kul</name>
@@ -3110,6 +3230,10 @@
    </lake>
    <lake>
       <name>Lop Nor</name>
+      <river>
+         <name>Tarim-Yarkend</name>
+         <length>3260</length>
+      </river>
    </lake>
    <lake>
       <name>Aydingkol</name>
@@ -3119,6 +3243,10 @@
    </lake>
    <lake>
       <name>Hulun Nur</name>
+      <river>
+         <name>Kherlen</name>
+         <length>1264</length>
+      </river>
    </lake>
    <lake>
       <name>Qinghai Lake</name>
@@ -3134,6 +3262,14 @@
    </lake>
    <lake>
       <name>Dongting Hu</name>
+      <river>
+         <name>Xiang Jiang</name>
+         <length>856</length>
+      </river>
+      <river>
+         <name>Yuan Jiang</name>
+         <length>1033</length>
+      </river>
    </lake>
    <lake>
       <name>Heaven Lake</name>
@@ -3161,6 +3297,26 @@
    </lake>
    <lake>
       <name>Chad Lake</name>
+      <river>
+         <name>Komadugu Yobe</name>
+         <length>467</length>
+         <river>
+            <name>Hadejia</name>
+            <length>630</length>
+         </river>
+         <river>
+            <name>Jamaare</name>
+            <length>650</length>
+         </river>
+      </river>
+      <river>
+         <name>Schari</name>
+         <length>1400</length>
+         <river>
+            <name>Logone</name>
+            <length>965</length>
+         </river>
+      </river>
    </lake>
    <lake>
       <name>Lake Nyos</name>
@@ -3206,9 +3362,27 @@
    </lake>
    <lake>
       <name>Great Salt Lake</name>
+      <river>
+         <name>Bear River</name>
+         <length>563</length>
+      </river>
+      <river>
+         <name>Jordan River</name>
+         <length>82.7</length>
+         <lake>
+            <name>Utah Lake</name>
+         </lake>
+      </river>
    </lake>
    <lake>
       <name>Pyramid Lake</name>
+      <river>
+         <name>Truckee River</name>
+         <length>225</length>
+         <lake>
+            <name>Lake Tahoe</name>
+         </lake>
+      </river>
    </lake>
    <lake>
       <name>Mono Lake</name>
@@ -3233,6 +3407,13 @@
    </lake>
    <lake>
       <name>Poopo</name>
+      <river>
+         <name>Rio Desaguadero</name>
+         <length>383</length>
+         <lake>
+            <name>Lake Titicaca</name>
+         </lake>
+      </river>
    </lake>
    <lake>
       <name>Salar de Uyuni</name>
@@ -3248,12 +3429,20 @@
    </lake>
    <lake>
       <name>Laguna Mar Chiquita</name>
+      <river>
+         <name>Río Dulce</name>
+         <length>812</length>
+      </river>
    </lake>
    <lake>
       <name>Laguna del Carbón</name>
    </lake>
    <lake>
       <name>Lake Eyre</name>
+      <river>
+         <name>Georgina River</name>
+         <length>2060</length>
+      </river>
    </lake>
    <lake>
       <name>Lake Tengano</name>

@@ -25,27 +25,27 @@
 </xsl:template>
 
 <xsl:template name="river">
-  <xsl:variable name="river_id" select="@id" />
-  <river>
-    <name>
-      <xsl:value-of select="name[last()]" />
-    </name>
-    <length>
-      <xsl:value-of select="length" />
-    </length>
-    <xsl:for-each select="/*/river[./to/@water = $river_id]">
-      <xsl:sort select="/estuary/elevation" />
-      <xsl:call-template name="river" />
-    </xsl:for-each>
-    <xsl:for-each select="/*/lake[./to/@water = $river_id]">
-      <xsl:sort select="/elevation" />
-      <xsl:call-template name="lake" />
-    </xsl:for-each>
-  </river>
+<xsl:variable name="river_id" select="@id" />
+<river>
+  <name>
+    <xsl:value-of select="name[last()]" />
+  </name>
+  <length>
+    <xsl:value-of select="length" />
+  </length>
+  <xsl:for-each select="/*/river[./to/@water = $river_id]">
+    <xsl:sort select="/estuary/elevation" />
+    <xsl:call-template name="river" />
+  </xsl:for-each>
+  <xsl:for-each select="/*/lake[./to/@water = $river_id]">
+    <xsl:sort select="/elevation" />
+    <xsl:call-template name="lake" />
+  </xsl:for-each>
+</river>
 </xsl:template>
 
 <xsl:template name="lake">
-  <xsl:variable name="lake_id" select="@id" />
+<xsl:variable name="lake_id" select="@id" />
   <lake>
     <name>
       <xsl:value-of select="name" />
@@ -63,11 +63,42 @@
 
 <!-- Lakes that do not end in seas -->
 <xsl:template match="/*/lake[not(to)]">
+<xsl:variable name="lake_id" select="@id" />
   <lake>
     <name>
       <xsl:value-of select="name" />
     </name>
+    <!-- They also need those which flow into them -->
+    <xsl:for-each select="/*/river[./to/@water = $lake_id]">
+      <xsl:sort select="/estuary/elevation" />
+      <xsl:call-template name="river" />
+    </xsl:for-each>
+    <xsl:for-each select="/*/lake[./to/@water = $lake_id]">
+      <xsl:sort select="/elevation" />
+      <xsl:call-template name="lake" />
+    </xsl:for-each>
   </lake>
+</xsl:template>
+
+<!-- rivers that just end -->
+<xsl:template match="/*/river[not(to)]">
+<xsl:variable name="river_id" select="@id" />
+<river>
+  <name>
+    <xsl:value-of select="name[last()]" />
+  </name>
+  <length>
+    <xsl:value-of select="length" />
+  </length>
+  <xsl:for-each select="/*/river[./to/@water = $river_id]">
+    <xsl:sort select="/estuary/elevation" />
+    <xsl:call-template name="river" />
+  </xsl:for-each>
+  <xsl:for-each select="/*/lake[./to/@water = $river_id]">
+    <xsl:sort select="/elevation" />
+    <xsl:call-template name="lake" />
+  </xsl:for-each>
+</river>
 </xsl:template>
 
 </xsl:stylesheet>
