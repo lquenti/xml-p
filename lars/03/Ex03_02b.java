@@ -20,10 +20,10 @@ import java.util.Objects;
  */
 
 class Country_b {
-    String name;
-    String capital;
-    String capitalId;
-    String capitalPopulation;
+    String name = "";
+    String capital = "";
+    String capitalId = "";
+    String capitalPopulation = "";
 
     @Override
     public String toString() {
