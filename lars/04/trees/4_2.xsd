@@ -4,28 +4,82 @@
     <xs:element name="Tree">
         <xs:complexType>
             <xs:choice>
-                <xs:element name="Add" type="Op"/>
-                <xs:element name="Sub" type="Op"/>
-                <xs:element name="Mul" type="Op"/>
-                <xs:element name="Div" type="Op"/>
+                <xs:element name="Add" type="Add"/>
+                <xs:element name="Sub" type="Sub"/>
+                <xs:element name="Mul" type="Mul"/>
+                <xs:element name="Div" type="Div"/>
                 <xs:element name="Num" type="xs:long"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
-    <xs:complexType name="Op">
+    <xs:complexType name="Add">
         <xs:sequence minOccurs="2" maxOccurs="2">
             <xs:choice>
-                <xs:element name="Add" type="Op"/>
-                <xs:element name="Sub" type="Op"/>
-                <xs:element name="Mul" type="Op"/>
-                <xs:element name="Div" type="Op"/>
+                <xs:element name="Add" type="Add"/>
+                <xs:element name="Sub" type="Sub"/>
+                <xs:element name="Mul" type="Mul"/>
+                <xs:element name="Div" type="Div"/>
                 <xs:element name="Num" type="xs:long"/>
             </xs:choice>
             <xs:choice>
-                <xs:element name="Add" type="Op"/>
-                <xs:element name="Sub" type="Op"/>
-                <xs:element name="Mul" type="Op"/>
-                <xs:element name="Div" type="Op"/>
+                <xs:element name="Add" type="Add"/>
+                <xs:element name="Sub" type="Sub"/>
+                <xs:element name="Mul" type="Mul"/>
+                <xs:element name="Div" type="Div"/>
+                <xs:element name="Num" type="xs:long"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Sub">
+        <xs:sequence minOccurs="2" maxOccurs="2">
+            <xs:choice>
+                <xs:element name="Add" type="Add"/>
+                <xs:element name="Sub" type="Sub"/>
+                <xs:element name="Mul" type="Mul"/>
+                <xs:element name="Div" type="Div"/>
+                <xs:element name="Num" type="xs:long"/>
+            </xs:choice>
+            <xs:choice>
+                <xs:element name="Add" type="Add"/>
+                <xs:element name="Sub" type="Sub"/>
+                <xs:element name="Mul" type="Mul"/>
+                <xs:element name="Div" type="Div"/>
+                <xs:element name="Num" type="xs:long"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Mul">
+        <xs:sequence minOccurs="2" maxOccurs="2">
+            <xs:choice>
+                <xs:element name="Add" type="Add"/>
+                <xs:element name="Sub" type="Sub"/>
+                <xs:element name="Mul" type="Mul"/>
+                <xs:element name="Div" type="Div"/>
+                <xs:element name="Num" type="xs:long"/>
+            </xs:choice>
+            <xs:choice>
+                <xs:element name="Add" type="Add"/>
+                <xs:element name="Sub" type="Sub"/>
+                <xs:element name="Mul" type="Mul"/>
+                <xs:element name="Div" type="Div"/>
+                <xs:element name="Num" type="xs:long"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Div">
+        <xs:sequence minOccurs="2" maxOccurs="2">
+            <xs:choice>
+                <xs:element name="Add" type="Add"/>
+                <xs:element name="Sub" type="Sub"/>
+                <xs:element name="Mul" type="Mul"/>
+                <xs:element name="Div" type="Div"/>
+                <xs:element name="Num" type="xs:long"/>
+            </xs:choice>
+            <xs:choice>
+                <xs:element name="Add" type="Add"/>
+                <xs:element name="Sub" type="Sub"/>
+                <xs:element name="Mul" type="Mul"/>
+                <xs:element name="Div" type="Div"/>
                 <xs:element name="Num" type="xs:long"/>
             </xs:choice>
         </xs:sequence>

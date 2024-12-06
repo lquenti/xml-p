@@ -16,14 +16,11 @@ public class TreeMain {
     public static void main(String[] args) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(ObjectFactory.class);
         Unmarshaller unmarshaller = jc.createUnmarshaller();
+        unmarshaller.setProperty("com.sun.xml.bind.ObjectFactory", new MyObjectFactory());
 
-        Tree tree = (Tree) unmarshaller.unmarshal(new File("./4_2.xml"));
-        Op sub = tree.getSub();
-        System.out.println(sub.getAddOrSubOrMul().get(0).getDeclaredType().getSimpleName());
-        Op mul = (Op) sub.getAddOrSubOrMul().get(0).getValue();
-        Op add = (Op) mul.getAddOrSubOrMul().get(0).getValue();
-        System.out.println(add.getAddOrSubOrMul().get(0).getDeclaredType().getSimpleName());
-        long val = (long) add.getAddOrSubOrMul().get(0).getValue();
-        System.out.println(val);
+        MyTree tree = (MyTree) unmarshaller.unmarshal(new File("./4_2.xml"));
+
+        System.out.println("Evaluated:");
+        System.out.println(tree.evaluate());
     }
 }

@@ -98,4 +98,19 @@ public class Op {
         return this.addOrSubOrMul;
     }
 
+    public boolean isFirstChildLong() {
+        JAXBElement<?> firstChild = this.getAddOrSubOrMul().get(0);
+        return firstChild.getDeclaredType().getSimpleName().equals("Long");
+    }
+    public boolean isFirstChildOp() {
+        return !isFirstChildLong();
+    }
+    public boolean isSecondChildLong() {
+        JAXBElement<?> secondChild = this.getAddOrSubOrMul().get(1);
+        return secondChild.getDeclaredType().getSimpleName().equals("Long");
+    }
+    public boolean isSecondChildOp() {
+        return !isSecondChildLong();
+    }
+
 }
