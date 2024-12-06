@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+    <xs:element name="Tree">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="Add" type="Op"/>
+                <xs:element name="Sub" type="Op"/>
+                <xs:element name="Mul" type="Op"/>
+                <xs:element name="Div" type="Op"/>
+                <xs:element name="Num" type="xs:long"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="Op">
+        <xs:sequence minOccurs="2" maxOccurs="2">
+            <xs:choice>
+                <xs:element name="Add" type="Op"/>
+                <xs:element name="Sub" type="Op"/>
+                <xs:element name="Mul" type="Op"/>
+                <xs:element name="Div" type="Op"/>
+                <xs:element name="Num" type="xs:long"/>
+            </xs:choice>
+            <xs:choice>
+                <xs:element name="Add" type="Op"/>
+                <xs:element name="Sub" type="Op"/>
+                <xs:element name="Mul" type="Op"/>
+                <xs:element name="Div" type="Op"/>
+                <xs:element name="Num" type="xs:long"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
