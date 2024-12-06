@@ -1,9 +1,6 @@
 import Trees.ObjectFactory;
-import Trees.Tree;
-import Trees.Op;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
@@ -20,7 +17,13 @@ public class TreeMain {
 
         MyTree tree = (MyTree) unmarshaller.unmarshal(new File("./4_2.xml"));
 
+        System.out.println("Expression");
+        System.out.println(tree.expression());
+
         System.out.println("Evaluated:");
         System.out.println(tree.evaluate());
+
+        System.out.println("HTML");
+        System.out.println(tree.tree());
     }
 }
