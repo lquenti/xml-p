@@ -32,7 +32,7 @@ public class E34 {
             name.setText(name.getText() + " (" + i + ")");
         }
         // 4. Output the updated XML to a file with DTD reference
-        FileWriter writer = new FileWriter("output.xml");
+        FileWriter writer = new FileWriter("output_3_4.xml");
         // Write XML declaration and DOCTYPE manually
         writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         writer.write("<!DOCTYPE mondial SYSTEM \"mondial.dtd\">\n");

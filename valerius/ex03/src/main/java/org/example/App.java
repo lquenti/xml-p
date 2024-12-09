@@ -14,12 +14,15 @@ public class App
     public static void main( String[] args )
     {
         try {
+            System.out.println("=========3.1=========");
             E31.run();
-            System.out.println("======================");
+            System.out.println("=========3.4=========");
             E34.run();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (JDOMException e) {
+            System.out.println("Done");
+            System.out.println("=========3.5=========");
+            E35.run();
+            System.out.println("Done");
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
