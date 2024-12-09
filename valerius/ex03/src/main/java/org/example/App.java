@@ -22,6 +22,9 @@ public class App
             System.out.println("=========3.5=========");
             E35.run();
             System.out.println("Done");
+            System.out.println("=========3.6=========");
+            E36.run();
+            System.out.println("Done");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
