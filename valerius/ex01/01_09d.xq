@@ -14,9 +14,13 @@ let $general_island_area :=
 let $islands := //island[./id(@country) = $country]
 
 let $shared_island_parts :=
+    (:
     for $island in $islands
-    let $shared_percentage := xs:decimal($island/owned_by[id(@country) = $country]/@area/string())
+    let $shared_percentage := xs:decimal($island/owned_by[id(@country) = $country]/@area/string()) div 100
     return $island/area/text() * $shared_percentage
+    :)
+    for $island in $islands
+    return xs:decimal($island/owned_by[id(@country) = $country]/@area/string()) div $island/area
 
 let $shared_island_area := sum($shared_island_parts)
 let $country_island_area := sum($general_island_area) + sum($shared_island_area)
