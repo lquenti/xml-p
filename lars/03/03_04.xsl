@@ -11,6 +11,12 @@
   - [x] Move //province[@id="prov-Spain-11"]/city to //country[@car_code="CAT"]/city
   - [x] Replace all //located[@country="E" and @province="prov-Spain-11"] with
     <located country="CAT" />
+  - [ ] Bsp Garonne: source/located
+  - [ ] mehrere provinzen: (todo IDREF) Mediter. Sea
+  - [ ] Organizations
+  - [ ] Population/Area/Religion/Border... (s. catdata.xml) wird vermindert
+    - [ ] Border <=0 fällt weg
+    - [ ] Border ist symmetrisch
 -->
 
 <!-- Identity template: copy all text nodes, elements and attributes -->   
@@ -53,7 +59,7 @@
       <!-- Add the cities, but replace the country and province -->
       <xsl:for-each select="//city[@province='prov-Spain-11']">
         <city 
-          id="cty-{$data/*/name}-{replace(./name[last()], ' ', '-')}"
+          id="{@id}"
           country="{$data/*/@car_code}"
         >
           <xsl:copy-of select="./*"/>
@@ -66,6 +72,10 @@
     <xsl:copy-of select="$catdata"/>
   </xsl:copy>
 </xsl:template>
+
+<!-- //*[id(@country) = /mondial/country[@car_code="E"] and ./located/@province = "prov-Spain-11" ] -->
+<!-- Hierfür alle nicht-country-attribute übernehmen und bei country vielleicht  -->
+<!-- übernehmen (bsp Mittelmeer) -->
 
 <!-- replace the original Catalonia with nothing -->
 <xsl:template match="country[@car_code='E']/province[@id='prov-Spain-11']"/>
