@@ -17,6 +17,7 @@
   - [ ] Population/Area/Religion/Border... (s. catdata.xml) wird vermindert
     - [ ] Border <=0 fällt weg
     - [ ] Border ist symmetrisch
+  - [ ] NICHT die ID ändern wo Spain einfach encoded ist
 -->
 
 <!-- Identity template: copy all text nodes, elements and attributes -->   
