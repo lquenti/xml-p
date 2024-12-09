@@ -6,31 +6,29 @@ import java.io.*;
 
 public class E37 {
     public static void run() throws Exception {
-        // Create input factory
         XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-        // Create output factory
         XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
         
         // Create reader and writer
         XMLStreamReader reader = inputFactory.createXMLStreamReader(new FileInputStream("mondial.xml"));
         
-        // First write XML declaration and DTD manually
+        // write xml declaration
         FileWriter writer = new FileWriter("output_3_7.xml");
         writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         writer.write("<!DOCTYPE mondial SYSTEM \"mondial.dtd\">\n");
         writer.close();
         
-        // Now append the transformed content
+        // append the transformed content
         writer = new FileWriter("output_3_7.xml", true);
         XMLStreamWriter xmlWriter = outputFactory.createXMLStreamWriter(writer);
         
-        // Track state
+        // Track state (index and name)
         boolean insideCountry = false;
         boolean insideName = false;
         int countryIndex = 0;
         StringBuilder currentName = new StringBuilder();
         
-        // Process events
+        // process events
         while (reader.hasNext()) {
             int event = reader.next();
             
@@ -46,10 +44,10 @@ public class E37 {
                         currentName.setLength(0);
                     }
                     
-                    // Write start element
+                    // write start element
                     xmlWriter.writeStartElement(elementName);
                     
-                    // Copy attributes
+                    // copy attributes
                     for (int i = 0; i < reader.getAttributeCount(); i++) {
                         xmlWriter.writeAttribute(
                             reader.getAttributeLocalName(i),
@@ -77,7 +75,7 @@ public class E37 {
                     if ("country".equals(elementName)) {
                         insideCountry = false;
                     } else if ("name".equals(elementName) && insideCountry) {
-                        // Write modified country name
+                        // write modified country name
                         String modifiedName = currentName.toString().trim() + 
                                            " (" + (countryIndex - 1) + ")";
                         xmlWriter.writeCharacters(modifiedName);
@@ -89,7 +87,7 @@ public class E37 {
             }
         }
         
-        // Clean up
+        // clean up
         xmlWriter.flush();
         xmlWriter.close();
         reader.close();

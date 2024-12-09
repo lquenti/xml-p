@@ -11,7 +11,7 @@
     <!-- Special handling for country names -->
     <xsl:template match="/mondial/country/name">
         <name>
-            <xsl:value-of select="concat(., ' (', count(preceding-sibling::country), ')')"/>
+            <xsl:value-of select="concat(text(), ' (', count(preceding-sibling::country), ')')"/>
         </name>
     </xsl:template>
     

@@ -8,25 +8,22 @@ import java.io.*;
 
 public class E36 {
     public static void run() throws Exception {
-        // Create SAX parser with namespace awareness
         SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setNamespaceAware(true);
         SAXParser saxParser = factory.newSAXParser();
 
-        // Set up the output
         FileWriter writer = new FileWriter("output_3_6.xml");
         
-        // Create custom handler that writes directly to the file
+        // create custom handler that writes directly to the file
         XMLReader reader = saxParser.getXMLReader();
         reader.setContentHandler(new CountryIndexHandler(writer));
 
-        // Parse and transform
-        reader.parse(new InputSource("mondial.xml")); 
+        // parse and transform
+        reader.parse(new InputSource("mondial.xml"));
         writer.close();
     }
 }
 
-// Custom handler that adds indices to country names
 class CountryIndexHandler extends DefaultHandler {
     private final Writer writer;
     private int countryIndex = 0;
