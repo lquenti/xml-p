@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo "3.4"
 xmllint --noout --valid output_3_4.xml && echo "Verification success" || echo "Failed"
 
