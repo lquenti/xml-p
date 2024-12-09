@@ -4,98 +4,126 @@ import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 
 import javax.xml.parsers.*;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.sax.SAXTransformerFactory;
-import javax.xml.transform.sax.TransformerHandler;
-import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 
 public class E36 {
     public static void run() throws Exception {
         // Create SAX parser with namespace awareness
         SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setNamespaceAware(true);  // Enable namespace awareness
+        factory.setNamespaceAware(true);
         SAXParser saxParser = factory.newSAXParser();
 
-        // Set up the output handler
-        SAXTransformerFactory tf = (SAXTransformerFactory) TransformerFactory.newInstance();
-        TransformerHandler handler = tf.newTransformerHandler();
-        
-        // Configure output formatting
-        Transformer transformer = handler.getTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        
-        // First, write the XML declaration and DTD manually
+        // Set up the output
         FileWriter writer = new FileWriter("output_3_6.xml");
-        writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-        writer.write("<!DOCTYPE mondial SYSTEM \"mondial.dtd\">\n");
-        writer.close();
         
-        // Append the transformed content
-        FileWriter contentWriter = new FileWriter("output_3_6.xml", true);
-        handler.setResult(new StreamResult(contentWriter));
-
-        // Create custom ContentHandler that modifies country names
+        // Create custom handler that writes directly to the file
         XMLReader reader = saxParser.getXMLReader();
-        reader.setContentHandler(new CountryIndexHandler(handler));
+        reader.setContentHandler(new CountryIndexHandler(writer));
 
         // Parse and transform
-        reader.parse(new InputSource("mondial.xml"));
-        contentWriter.close();
+        reader.parse(new InputSource("mondial.xml")); 
+        writer.close();
     }
 }
 
 // Custom handler that adds indices to country names
 class CountryIndexHandler extends DefaultHandler {
-    private final TransformerHandler handler;
+    private final Writer writer;
     private int countryIndex = 0;
     private boolean insideCountry = false;
     private boolean insideName = false;
     private StringBuilder currentName = new StringBuilder();
+    private int depth = 0;
+    private boolean firstElement = true;
 
-    public CountryIndexHandler(TransformerHandler handler) {
-        this.handler = handler;
+    public CountryIndexHandler(Writer writer) {
+        this.writer = writer;
+    }
+
+    @Override
+    public void startDocument() throws SAXException {
+        try {
+            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+            writer.write("<!DOCTYPE mondial SYSTEM \"mondial.dtd\">\n");
+        } catch (IOException e) {
+            throw new SAXException(e);
+        }
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) 
             throws SAXException {
-        if ("country".equals(qName)) {
-            insideCountry = true;
-            countryIndex++;
-        } else if ("name".equals(qName) && insideCountry) {
-            insideName = true;
-            currentName.setLength(0);
+        try {
+            depth++;
+            // Indent
+            if (!firstElement) {
+                writer.write("\n");
+                writeIndent();
+            }
+            firstElement = false;
+
+            writer.write("<" + qName);
+            
+            // Write attributes
+            for (int i = 0; i < attributes.getLength(); i++) {
+                writer.write(" " + attributes.getQName(i) + "=\"" + 
+                           escapeXml(attributes.getValue(i)) + "\"");
+            }
+            writer.write(">");
+
+            if ("country".equals(qName)) {
+                insideCountry = true;
+                countryIndex++;
+            } else if ("name".equals(qName) && insideCountry) {
+                insideName = true;
+                currentName.setLength(0);
+            }
+        } catch (IOException e) {
+            throw new SAXException(e);
         }
-        
-        // Pass through all attributes
-        handler.startElement(uri, localName, qName, attributes);
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if ("country".equals(qName)) {
-            insideCountry = false;
-        } else if ("name".equals(qName) && insideCountry) {
-            // Modify the name by adding the index
-            String modifiedName = currentName.toString().trim() + " (" + (countryIndex - 1) + ")";
-            char[] chars = modifiedName.toCharArray();
-            handler.characters(chars, 0, chars.length);
-            insideName = false;
+        try {
+            depth--;
+            if ("country".equals(qName)) {
+                insideCountry = false;
+            } else if ("name".equals(qName) && insideCountry) {
+                insideName = false;
+            }
+            writer.write("</" + qName + ">");
+        } catch (IOException e) {
+            throw new SAXException(e);
         }
-        
-        handler.endElement(uri, localName, qName);
     }
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-        if (insideName && insideCountry) {
-            currentName.append(ch, start, length);
-        } else {
-            handler.characters(ch, start, length);
+        try {
+            if (insideName && insideCountry) {
+                currentName.append(ch, start, length);
+                String name = currentName.toString().trim();
+                writer.write(escapeXml(name + " (" + (countryIndex - 1) + ")"));
+            } else {
+                writer.write(escapeXml(new String(ch, start, length)));
+            }
+        } catch (IOException e) {
+            throw new SAXException(e);
         }
+    }
+
+    private void writeIndent() throws IOException {
+        for (int i = 0; i < depth; i++) {
+            writer.write("  ");
+        }
+    }
+
+    private String escapeXml(String input) {
+        return input.replace("&", "&amp;")
+                   .replace("<", "&lt;")
+                   .replace(">", "&gt;")
+                   .replace("\"", "&quot;")
+                   .replace("'", "&apos;");
     }
 }
