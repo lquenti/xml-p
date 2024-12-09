@@ -65,7 +65,7 @@
 <!ELEMENT city (name+,localname?,latitude?,longitude?,elevation?,population*,
                 located_at*,located_on*)>
 <!ATTLIST city id ID #REQUIRED
-               country IDREF #REQUIRED
+               country IDREFS #REQUIRED
                province IDREF #IMPLIED>
 <!ELEMENT longitude (#PCDATA)>
 <!ELEMENT latitude (#PCDATA)>
@@ -151,13 +151,14 @@
 
 <!ELEMENT island (name+,localname?,islands?,located*,area?,latitude?,longitude?,elevation?,owned_by*)>
 <!ATTLIST island id ID #REQUIRED
+                 country IDREFS #IMPLIED
                  sea IDREFS #IMPLIED
                  lake IDREF #IMPLIED
                  river IDREFS #IMPLIED
                  type (volcanic|coral|atoll|raisedatoll|lime|sand) #IMPLIED>
 <!ELEMENT owned_by EMPTY>
-<!ATTLIST owned_by country IDREF #REQUIRED
-                 area CDATA #REQUIRED>
+<!ATTLIST owned_by country IDREF #IMPLIED
+                 area CDATA #IMPLIED>
 <!ELEMENT islands (#PCDATA)>
 
 <!ELEMENT mountain (name+,mountains?,located*,latitude?,longitude?,elevation?)>

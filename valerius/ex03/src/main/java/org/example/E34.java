@@ -17,9 +17,7 @@ public class E34 {
         // Read mondial.xml into a JDOM object,
         E34.ROOT = E31.readMondial();
 
-        // Update it using the JDOM operations (you can use XPath in the JDOM for searching for values
-        //or nodes),
-
+        // Update it using the JDOM operations
         // 1. find all countries
         List<Element> countries = E34.ROOT.getChildren("country");
         for (int i = 0; i < countries.size(); i++) {
