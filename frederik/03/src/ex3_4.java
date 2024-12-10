@@ -33,19 +33,44 @@ public class ex3_4 {
             XPathExpression<Element> spainExpr = xFactory.compile("//country[@car_code='E']", Filters.element());
             Element spain = spainExpr.evaluateFirst(mondialRoot);
 
-            if (spain != null) {
-                // Find the province with ID prov-Spain-11
-                XPathExpression<Element> provinceExpr = xFactory.compile(".//province[@id='prov-Spain-11']", Filters.element());
-                Element province = provinceExpr.evaluateFirst(spain);
+            // Find the province with ID prov-Spain-11
+            XPathExpression<Element> provinceExpr = xFactory.compile(".//province[@id='prov-Spain-11']", Filters.element());
+            Element province = provinceExpr.evaluateFirst(spain);
 
-                if (province != null) {
-                    // Transfer the province to Catalonia
-                    spain.removeContent(province); // Remove from Spain
-                    Element p = province.clone();
-                    p.setAttribute("country", "CAT");
-                    cataloniaClone.addContent(p); // Add to Catalonia
+            // Transfer the province to Catalonia
+            spain.removeContent(province); // Remove from Spain
+            Element p = province.clone();
+            p.setAttribute("country", "CAT");
+            cataloniaClone.addContent(p); // Add to Catalonia
+
+            // set area
+            cataloniaClone.setAttribute("area", cataloniaClone.getChild("province").getChildText("area"));
+
+            // set population
+            // Get Catalonia's attributes from the cloned elemenz
+            double catPopulation = 0;
+            int year = 0;
+            for(Element pops: cataloniaClone.getChild("province").getChildren("population")){
+                if(Integer.parseInt(pops.getAttribute("year").getValue()) > year){
+                    year = Integer.parseInt(pops.getAttribute("year").getValue());
+                    catPopulation = Double.parseDouble(pops.getText());
                 }
             }
+
+            Element pop = new Element("population");
+            pop.setAttribute("measured", "census");
+            pop.setAttribute("year", "2021");
+            pop.setText("7749896");
+            int nameIndex = cataloniaClone.indexOf(cataloniaClone.getChild("name")) + 1;
+            cataloniaClone.addContent(nameIndex, pop);
+
+            // <encompassed continent="europe" percentage="100" /> indep_date
+            pop = new Element("encompassed");
+            pop.setAttribute("continent", "europe");
+            pop.setAttribute("percentage", "100");
+            int indep_dateIndex = cataloniaClone.indexOf(cataloniaClone.getChild("indep_date")) + 1;
+            cataloniaClone.addContent(indep_dateIndex, pop);
+
 
             // 3. Update references for `prov-Spain-11` to be associated with `CAT`
             XPathExpression<Attribute> attrExpr = xFactory.compile("//@*[contains(., 'prov-Spain-11')]", Filters.attribute());
@@ -81,7 +106,8 @@ public class ex3_4 {
                 Element newLocated = new Element("located");
                 newLocated.setAttribute("country", "CAT");
                 newLocated.setAttribute("province", "prov-Spain-11");
-                parent.addContent(newLocated); // Add new <located> in the correct position
+                int locatedIndex = parent.indexOf(parent.getChild("located"));
+                parent.addContent(locatedIndex, newLocated); // Add new <located> in the correct position
 
                 // Add "CAT" to the country attribute of the parent
                 String parentCountries = parent.getAttributeValue("country");
@@ -144,7 +170,7 @@ public class ex3_4 {
 
             // 7. Adjust Spain's attributes by subtracting Catalonia's data
             double spainPopulation = 0;
-            int year = 0;
+            year = 0;
             for(Element pops: spain.getChildren("population")){
                 if(Integer.parseInt(pops.getAttribute("year").getValue()) > year){
                     year = Integer.parseInt(pops.getAttribute("year").getValue());
@@ -163,14 +189,6 @@ public class ex3_4 {
             double spainUnemployment = Double.parseDouble(spain.getChildText("unemployment"));
 
             // Get Catalonia's attributes from the cloned elemenz
-            double catPopulation = 0;
-            year = 0;
-            for(Element pops: cataloniaClone.getChild("province").getChildren("population")){
-                if(Integer.parseInt(pops.getAttribute("year").getValue()) > year){
-                    year = Integer.parseInt(pops.getAttribute("year").getValue());
-                    catPopulation = Double.parseDouble(pops.getText());
-                }
-            }
             double catPopulationGrowth = Double.parseDouble(cataloniaClone.getChildText("population_growth"));
             double catInfantMortality = Double.parseDouble(cataloniaClone.getChildText("infant_mortality"));
             double catGdpTotal = Double.parseDouble(cataloniaClone.getChildText("gdp_total"));
@@ -261,10 +279,11 @@ public class ex3_4 {
                 String catNeighbor = catBorder.getAttributeValue("country");
                 double catBorderLength = Double.parseDouble(catBorder.getAttributeValue("length"));
                 if(catNeighbor.equals("E")) {
+                    int index = spain.indexOf(spain.getChild("border"));
                     Element e = new Element("border");
                     e.setAttribute("country", "CAT");
                     e.setAttribute("length", String.valueOf(catBorderLength));
-                    spain.addContent(e);
+                    spain.addContent(index, e);
                 }
 
                 XPathExpression<Element> countryExpr = xFactory.compile(String.format("//country[@car_code='%s']", catNeighbor), Filters.element());
@@ -290,7 +309,8 @@ public class ex3_4 {
                         Element addBorder = new Element("border");
                         addBorder.setAttribute("country", "CAT");
                         addBorder.setAttribute("length", String.valueOf(catBorderLength));
-                        country.addContent(addBorder);
+                        int index = country.indexOf(country.getChild("border"));
+                        country.addContent(index, addBorder);
 
                         if (borderLength <= 0) {
                             country.removeContent(countryBorder);
