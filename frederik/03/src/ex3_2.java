@@ -18,13 +18,13 @@ public class ex3_2 {
 
     public static void main(String[] args) {
         try {
-            saxCountriesHTML();
-            saxGermanyCapital();
-            saxCountryTable();
+            //saxCountriesHTML();
+            //saxGermanyCapital();
+            //saxCountryTable();
 
-            staxCountriesHTML();
-            staxGermanyCapital();
-            staxCountryTable();
+            //staxCountriesHTML();
+            //staxGermanyCapital();
+            //staxCountryTable();
 
             staxOrganizationQuery();
 
@@ -549,6 +549,7 @@ public class ex3_2 {
             String currentCityId = null;
             String currentCityName = null;
             boolean isInCity = false;
+            String organizationHeadquarter = null;
 
             boolean isInOrganization = false;
             String organizationName = null;
@@ -575,6 +576,9 @@ public class ex3_2 {
                         isInOrganization = true;
                         organizationName = null;
                         organizationMembers = null;
+                        try {
+                            organizationHeadquarter = startElement.getAttributeByName(new QName("headq")).getValue();
+                        }catch (Exception ignored){};
                     }
 
                     if ("members".equals(tagName) && isInOrganization) {
@@ -618,8 +622,10 @@ public class ex3_2 {
                                 if (countryMap.containsKey(memberCode)) {
                                     String[] capitalInfo = countryMap.get(memberCode);
                                     String capitalName = capitalInfo[1];
-                                    System.out.println("Organization: " + organizationName + ", Headquarter City: " + capitalName);
-                                    break;
+                                    if(capitalInfo[0].equals(organizationHeadquarter)) {
+                                        System.out.println("Organization: " + organizationName + ", Headquarter City: " + capitalName);
+                                        break;
+                                    }
                                 }
                             }
                         }
