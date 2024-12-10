@@ -77,12 +77,11 @@ public class ex3_4 {
                 // Add a new located entry for Catalonia with prov-Spain-11
                 // This happens first to ensure it exists before modifying/removing Spain's entry
                 List<Element> siblings = parent.getChildren("located");
-                int insertIndex = siblings.indexOf(located) + 1; // Default to placing after current <located>
 
                 Element newLocated = new Element("located");
                 newLocated.setAttribute("country", "CAT");
                 newLocated.setAttribute("province", "prov-Spain-11");
-                parent.addContent(insertIndex, newLocated); // Add new <located> in the correct position
+                parent.addContent(newLocated); // Add new <located> in the correct position
 
                 // Add "CAT" to the country attribute of the parent
                 String parentCountries = parent.getAttributeValue("country");
