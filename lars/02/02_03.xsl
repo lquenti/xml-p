@@ -87,7 +87,7 @@ xQuery: doc()
   <xsl:param name="text" />
   <xsl:for-each select="tokenize($text, ' ')">
     <xsl:choose>
-      <xsl:when test=". = $mondial_names">\textcolor{red}{<xsl:value-of select="."/>} &#160;</xsl:when>
+      <xsl:when test="replace(., '(\.|\?|!|,)', '') = $mondial_names">\textcolor{red}{<xsl:value-of select="."/>} &#160;</xsl:when>
       <xsl:otherwise><xsl:value-of select="."/> &#160;</xsl:otherwise>
     </xsl:choose>
   </xsl:for-each>
