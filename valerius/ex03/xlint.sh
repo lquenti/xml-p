@@ -7,5 +7,8 @@ xmllint --noout --valid output_3_5.xml && echo "Verification success" || echo "F
 echo "3.6"
 xmllint --noout --valid output_3_6.xml && echo "Verification success" || echo "Failed"
 
+#echo "3.6a"
+#xmllint --noout --valid output_3_6a.xml && echo "Verification success" || echo "Failed"
+
 echo "3.7"
 xmllint --noout --valid output_3_7.xml && echo "Verification success" || echo "Failed"

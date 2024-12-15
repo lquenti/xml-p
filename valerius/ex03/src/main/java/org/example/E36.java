@@ -16,7 +16,7 @@ public class E36 {
         
         // create custom handler that writes directly to the file
         XMLReader reader = saxParser.getXMLReader();
-        reader.setContentHandler(new CountryIndexHandler(writer));
+        reader.setContentHandler(new AltHandler(writer));
 
         // parse and transform
         reader.parse(new InputSource("mondial.xml"));
