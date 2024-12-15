@@ -10,11 +10,18 @@ import org.jdom2.Attribute;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class E34a {
     Element spain = null;
     private  final static String provinceId = "prov-Spain-11";
+    private final static HashMap<String, String> replaceMap = new HashMap<>();
+    static {
+        replaceMap.put("prov-Spain-11", "prov-Catalonia-1");
+        replaceMap.put("cty-Spain-Barcelona", "cty-Catalonia-Barcelona");
+    }
 
     private static Element ROOT;
     private final static String CATALONIA_XML = "<country car_code=\"CAT\">\n" +
@@ -91,15 +98,45 @@ public class E34a {
     }
 
     private Element mutateRiver(Element river) {
-        throw new UnsupportedOperationException("Not implemented");
+        river.setAttribute("country", "CAT");
+        List<Element> located = river.getChildren("located");
+        for (Element l : located) {
+            l.setAttribute("country", l.getAttributeValue("country").replace("E", "CAT"));
+            l.setAttribute("province", l.getAttributeValue("province").replace("prov-Spain-11", "prov-Catalonia-1"));
+        }
+        Element source = river.getChild("source");
+        if (source != null && source.getAttributeValue("country").equals("E")   ) {
+            source.setAttribute("country", "CAT");
+            source.getChild("located").setAttribute("province", "prov-Catalonia-1").setAttribute("country", "CAT");
+        }
+        return river;
     }
 
     private Element mutateMountain(Element mountain) {
-        throw new UnsupportedOperationException("Not implemented");
+        mountain.setAttribute("country", "CAT");
+        List<Element> located = mountain.getChildren("located");
+        for (Element l : located) {
+            l.setAttribute("country", l.getAttributeValue("country").replace("E", "CAT"));
+            l.setAttribute("province", l.getAttributeValue("province").replace("prov-Spain-11", "prov-Catalonia-1"));
+        }
+        return mountain;
     }
 
     private Element mutateSea(Element sea) {
-        throw new UnsupportedOperationException("Not implemented");
+        // <located country="CAT" province="prov-Catalonia-1" >
+        Element located = new Element("located")
+            .setAttribute("country", "CAT")
+            .setAttribute("province", "prov-Catalonia-1");
+        sea.addContent(located);
+
+        // change <located country="E" province="prov-Spain-2 prov-Spain-5 prov-Spain-11 prov-Spain-15 prov-Spain-18" />
+        // to <located country="E" province="prov-Spain-2 prov-Spain-5 prov-Spain-15 prov-Spain-18" />
+        sea.getChildren("located").forEach(l -> {
+            if (l.getAttributeValue("province").contains(provinceId)) {
+                l.setAttribute("province", l.getAttributeValue("province").replace(provinceId, "").replace("  ", " "));
+            }
+        });
+        return sea;
     }
 
     private void fixAreaToCataloniaFromProvince(Element spain, Element catalonia,Element province) {
@@ -110,11 +147,16 @@ public class E34a {
     }
 
     private String replaceSpainInIdWithCatalonia(String id) {
-        if (id.contains("prov-Spain-11")) {
-            return id.replace("prov-Spain-11", "prov-Catalonia-1");
+
+        if (id.contains(provinceId)) {
+            replaceMap.put(provinceId, "prov-Catalonia-1");
+            return id.replace(provinceId, "prov-Catalonia-1");
         }
         if (id.contains("Spain")) {
-            return id.replace("Spain", "Catalonia");
+            replaceMap.put(id, id);
+            String newId = id.replace("Spain", "Catalonia");
+            replaceMap.put(id, newId);
+            return newId;
         }
         return id;
     }
@@ -124,7 +166,7 @@ public class E34a {
     }
 
     private void fixRootForProvinceIds(Element root, Element province) {
-        throw new UnsupportedOperationException("Not implemented");
+        
     }
 
     private void fixRootForCityIds(Element root, Element province) {
@@ -243,27 +285,35 @@ public class E34a {
 
             Element riverGaronne = getRiver(E34a.ROOT, "river-Garonne");
             System.out.println(riverGaronne.getChild("name").getValue());
+            mutateRiver(riverGaronne);
 
             Element riverEbro = getRiver(E34a.ROOT, "river-Ebro");
             System.out.println(riverEbro.getChild("name").getValue());
-            
+            mutateRiver(riverEbro);
+
             Element riverSegre = getRiver(E34a.ROOT, "river-Segre");
             System.out.println(riverSegre.getChild("name").getValue());
+            mutateRiver(riverSegre);
 
             Element riverValira = getRiver(E34a.ROOT, "river-Valira");
             System.out.println(riverValira.getChild("name").getValue());
+            mutateRiver(riverValira);
 
             Element mountainEstats = getMountain(E34a.ROOT, "mount-Estats");
             System.out.println(mountainEstats.getChild("name").getValue()); 
+            mutateMountain(mountainEstats);
 
             Element mountainComapedrosa = getMountain(E34a.ROOT, "mount-Comapedrosa");
             System.out.println(mountainComapedrosa.getChild("name").getValue());    
+            mutateMountain(mountainComapedrosa);
 
             Element mountainCroscat = getMountain(E34a.ROOT, "mount-Croscat");
             System.out.println(mountainCroscat.getChild("name").getValue());    
+            mutateMountain(mountainCroscat);
 
             Element seaMediterranean = getSea(E34a.ROOT, "sea-Mittelmeer");
             System.out.println(seaMediterranean.getChild("name").getValue());
+            mutateSea(seaMediterranean);
 
 
         } else {
@@ -280,7 +330,11 @@ public class E34a {
         Format format = Format.getPrettyFormat();
         format.setOmitDeclaration(true);  // Skip XML declaration since we wrote it manually
         xmlOutput.setFormat(format);
-        xmlOutput.output(E34a.ROOT, writer);
+        String xmlString = xmlOutput.outputString(E34a.ROOT);
+        for (Map.Entry<String, String> entry : replaceMap.entrySet()) {
+            xmlString = xmlString;//.replace(entry.getKey(), entry.getValue());
+        }
+        writer.write(xmlString);
         writer.close();
     }
 
