@@ -134,48 +134,70 @@ public class E34a {
 
 
     private void fixBorderLengths(List<Element> countries, Element catalonia) {
-        List<Element> cataloniaBorders = catalonia.getChildren("border");
-        for (Element cataloniaBorder : cataloniaBorders) {
+        // First handle Catalonia's borders
+        for (Element cataloniaBorder : catalonia.getChildren("border")) {
             String carCode = cataloniaBorder.getAttributeValue("country");
             Element country = countries.stream()
                 .filter(c -> c.getAttributeValue("car_code").equals(carCode))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Country not found"));
-            country
-            .addContent(
-                new Element("border")
-                .setAttribute("country", catalonia.getAttributeValue("car_code"))
-                .setAttribute("length", cataloniaBorder.getAttributeValue("length")));
-            // check if the country has a border with spain
-            if (country.getChildren("border").stream()
-                .anyMatch(b -> b.getAttributeValue("country").equals("E"))) {
-                // subtract the length of the border with catalonia from the length of the border with spain
-                Element spainBorder = country.getChildren("border").stream()
-                    .filter(b -> b.getAttributeValue("country").equals("E"))
-                    .findFirst()
-                    .orElseThrow(() -> new RuntimeException("Spain border not found"));
-                double length = Double.parseDouble(spainBorder.getAttributeValue("length"));
-                double lengthCatalonia = Double.parseDouble(cataloniaBorder.getAttributeValue("length"));
-                spainBorder.setAttribute("length", String.valueOf(length - lengthCatalonia));
 
-                // if the length of the border with spain is <= 0, remove the border
-                if (Double.parseDouble(spainBorder.getAttributeValue("length")) <= 0) {
-                    spainBorder.detach();
-                }
-            }
+            // Add new border to the country
+            Element newBorder = new Element("border")
+                .setAttribute("country", catalonia.getAttributeValue("car_code"))
+                .setAttribute("length", cataloniaBorder.getAttributeValue("length"));
+            country.addContent(newBorder);
         }
+
+        // Then handle Spain's borders separately
         Element spain = countries.stream()
             .filter(c -> c.getAttributeValue("car_code").equals("E"))
             .findFirst()
             .orElseThrow(() -> new RuntimeException("Spain not found"));
+
+        // Handle Spain's borders with France and Andorra
+        Element franceBorder = spain.getChildren("border").stream()
+            .filter(b -> b.getAttributeValue("country").equals("F"))
+            .findFirst()
+            .orElse(null);
+        if (franceBorder != null) {
+            franceBorder.setAttribute("length", String.valueOf(623 - 300));
+        }
+
+        Element andorraBorder = spain.getChildren("border").stream()
+            .filter(b -> b.getAttributeValue("country").equals("AND"))
+            .findFirst()
+            .orElse(null);
+        if (andorraBorder != null) {
+            andorraBorder.detach();
+        }
+
+        // Update other countries' borders with Spain
+        for (Element country : countries) {
+            if (country == spain || country == catalonia) continue;
             
-        List<Element> borders = spain.getChildren("border");
-        for (Element b : borders) {
-            if (b.getAttributeValue("country").equals("F")) {
-                b.setAttribute("length", String.valueOf(623 - 300));
-            }
-            if (b.getAttributeValue("country").equals("AND")) {
-                b.detach();
+            Element spainBorder = country.getChildren("border").stream()
+                .filter(b -> b.getAttributeValue("country").equals("E"))
+                .findFirst()
+                .orElse(null);
+                
+            if (spainBorder != null) {
+                Element cataloniaBorder = catalonia.getChildren("border").stream()
+                    .filter(b -> b.getAttributeValue("country").equals(country.getAttributeValue("car_code")))
+                    .findFirst()
+                    .orElse(null);
+                    
+                if (cataloniaBorder != null) {
+                    double length = Double.parseDouble(spainBorder.getAttributeValue("length"));
+                    double lengthCatalonia = Double.parseDouble(cataloniaBorder.getAttributeValue("length"));
+                    double newLength = length - lengthCatalonia;
+                    
+                    if (newLength <= 0) {
+                        spainBorder.detach();
+                    } else {
+                        spainBorder.setAttribute("length", String.valueOf(newLength));
+                    }
+                }
             }
         }
     }
