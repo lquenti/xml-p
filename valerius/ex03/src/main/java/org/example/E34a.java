@@ -43,7 +43,7 @@ public class E34a {
             "</country>";
 
 
-    public static Element readCatalonia() {
+    public static Element readCataloniaIntoElement() {
         try {
             org.jdom2.input.SAXBuilder builder = new org.jdom2.input.SAXBuilder();
             java.io.StringReader reader = new java.io.StringReader(CATALONIA_XML);
@@ -52,34 +52,6 @@ public class E34a {
         } catch (Exception e) {
             throw new RuntimeException("Error parsing Catalonia XML", e);
         }
-    }
-
-    public static Country makeCatalonia() {
-        Element cataloniaElement = readCatalonia();
-        Country catalonia = new Country();
-
-        catalonia.setName(cataloniaElement.getChild("name").getValue());
-        catalonia.setCarCode(cataloniaElement.getAttributeValue("car_code"));
-        catalonia.setPopulationGrowth(Double.parseDouble(cataloniaElement.getChild("population_growth").getValue()));
-        catalonia.setInfantMortality(Double.parseDouble(cataloniaElement.getChild("infant_mortality").getValue()));
-        catalonia.setGdpTotal(Double.parseDouble(cataloniaElement.getChild("gdp_total").getValue()));
-        catalonia.setGdpAgri(Double.parseDouble(cataloniaElement.getChild("gdp_agri").getValue()));
-        catalonia.setGdpInd(Double.parseDouble(cataloniaElement.getChild("gdp_ind").getValue()));
-        catalonia.setGdpServ(Double.parseDouble(cataloniaElement.getChild("gdp_serv").getValue()));
-        catalonia.setInflation(Double.parseDouble(cataloniaElement.getChild("inflation").getValue()));
-        catalonia.setUnemployment(Double.parseDouble(cataloniaElement.getChild("unemployment").getValue()));
-        catalonia.setIndepDate(cataloniaElement.getChild("indep_date").getValue());
-        catalonia.setIndepDateFrom(cataloniaElement.getChild("indep_date").getAttributeValue("from"));
-
-
-        // catalonia.setEthnicGroups(cataloniaElement.getChild("ethnicgroup").getValue());
-        // catalonia.setReligions(cataloniaElement.getChild("religion").getValue());
-        // catalonia.setLanguages(cataloniaElement.getChild("language").getValue());
-        // catalonia.setBorders(cataloniaElement.getChild("border").getValue());
-        // catalonia.setProvinces(cataloniaElement.getChild("province").getValue());
-        // catalonia.setCities(cataloniaElement.getChild("city").getValue());
-        
-        return catalonia;
     }
 
     private Element getProvince(Element root) {
@@ -110,6 +82,105 @@ public class E34a {
             .orElseThrow(() -> new RuntimeException("Sea not found"));
     }
 
+    private Element mutateProvince(Element province) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    private Element mutateCountry(Element country) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    private Element mutateRiver(Element river) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    private Element mutateMountain(Element mountain) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    private Element mutateSea(Element sea) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    private void fixAreaToCataloniaFromProvince(Element spain, Element catalonia,Element province) {
+        double catArea = Double.parseDouble(province.getChild("area").getValue());
+        double spainArea = Double.parseDouble(spain.getAttributeValue("area"));
+        catalonia.setAttribute("area", String.valueOf(catArea));
+        spain.setAttribute("area", String.valueOf(spainArea - catArea));
+    }
+
+    private String replaceSpainInIdWithCatalonia(String id) {
+        if (id.contains("prov-Spain-11")) {
+            return id.replace("prov-Spain-11", "prov-Catalonia-1");
+        }
+        if (id.contains("Spain")) {
+            return id.replace("Spain", "Catalonia");
+        }
+        return id;
+    }
+
+    private void fixCountryPopulation(Element country, Element catalonia) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    private void fixRootForProvinceIds(Element root, Element province) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+    private void fixRootForCityIds(Element root, Element province) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
+
+
+
+    private void fixBorderLengths(List<Element> countries, Element catalonia) {
+        List<Element> cataloniaBorders = catalonia.getChildren("border");
+        for (Element cataloniaBorder : cataloniaBorders) {
+            String carCode = cataloniaBorder.getAttributeValue("country");
+            Element country = countries.stream()
+                .filter(c -> c.getAttributeValue("car_code").equals(carCode))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Country not found"));
+            country
+            .addContent(
+                new Element("border")
+                .setAttribute("country", catalonia.getAttributeValue("car_code"))
+                .setAttribute("length", cataloniaBorder.getAttributeValue("length")));
+            // check if the country has a border with spain
+            if (country.getChildren("border").stream()
+                .anyMatch(b -> b.getAttributeValue("country").equals("E"))) {
+                // subtract the length of the border with catalonia from the length of the border with spain
+                Element spainBorder = country.getChildren("border").stream()
+                    .filter(b -> b.getAttributeValue("country").equals("E"))
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException("Spain border not found"));
+                double length = Double.parseDouble(spainBorder.getAttributeValue("length"));
+                double lengthCatalonia = Double.parseDouble(cataloniaBorder.getAttributeValue("length"));
+                spainBorder.setAttribute("length", String.valueOf(length - lengthCatalonia));
+
+                // if the length of the border with spain is <= 0, remove the border
+                if (Double.parseDouble(spainBorder.getAttributeValue("length")) <= 0) {
+                    spainBorder.detach();
+                }
+            }
+        }
+        Element spain = countries.stream()
+            .filter(c -> c.getAttributeValue("car_code").equals("E"))
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("Spain not found"));
+            
+        List<Element> borders = spain.getChildren("border");
+        for (Element b : borders) {
+            if (b.getAttributeValue("country").equals("F")) {
+                b.setAttribute("length", String.valueOf(623 - 300));
+            }
+            if (b.getAttributeValue("country").equals("AND")) {
+                b.detach();
+            }
+        }
+    }
+
+
     public void run() throws IOException, JDOMException {
         // Read mondial.xml into a JDOM object,
         E34a.ROOT = E31.readMondial();
@@ -122,55 +193,31 @@ public class E34a {
                 });
 
         if (spain != null) {
-            /* 1. Pull the province
-             <province id="prov-Spain-11" country="E" capital="cty-Spain-Barcelona">
-                <name>Catalunya</name>
-                <name>Cataluña</name>
-                <name>Catalonia</name>
-                <area>32163</area>
-                <population measured="census" year="1981">5956414</population>
-                <population measured="census" year="1991">6059443</population>
-                <population measured="census" year="2001">6343110</population>
-                <population measured="census" year="2011">7519843</population>
-                <population measured="census" year="2021">7749896</population>
-                <city id="cty-Spain-Barcelona" country="E" province="prov-Spain-11">
-                    <name>Barcelona</name>
-                    <latitude>41.38</latitude>
-                    <longitude>2.18</longitude>
-                    <elevation>12</elevation>
-                    <population year="1981" measured="census">1752627</population>
-                    <population year="1991" measured="census">1643542</population>
-                    <population year="2001" measured="census">1503884</population>
-                    <population year="2011" measured="census">1611013</population>
-                    <population year="2021" measured="census">1627559</population>
-                    <located_at watertype="sea" sea="sea-Mittelmeer"/>
-                </city>
-                <city id="cty-Spain-51" country="E" province="prov-Spain-11">
-                    <name>Lleida</name>
-                    <latitude>41.62</latitude>
-                    <longitude>0.63</longitude> 
-                .....
-            */
-
-
+            Element cataloniaCountry = readCataloniaIntoElement();
+            Element cataloniaClone = cataloniaCountry.clone();
+            fixBorderLengths(E34a.ROOT.getChildren("country"), cataloniaClone);
+            spain.detach();
             Element catProvince = getProvince(spain);
-            // spain.getChildren("province").stream()
-            //     .filter(province -> provinceId.equals(province.getAttributeValue("id")))
-            //     .peek(spain::removeContent)
-            //     .findFirst()
-            //     .orElse(null);
-            /* 2. Pull the river            
-               <river id="river-Garonne" country="F E">
-                    <name>Garonne</name>
-                    <located country="F" province="prov-France-5 prov-France-77"/>
-                    <located country="E" province="prov-Spain-11"/>
-                ....
-            */
-            if (catProvince != null) {
-                System.out.println(catProvince.getChild("name").getValue());
-            } else {
-                System.out.println("Province not found");
-            }
+            System.out.println(catProvince.getChild("name").getValue());
+            spain.removeContent(catProvince);
+            
+            Element spainClone = spain.clone();
+
+            catProvince.setAttribute("id", replaceSpainInIdWithCatalonia(catProvince.getAttributeValue("id")));
+            catProvince.setAttribute("country", "CAT");
+            catProvince.setAttribute("capital", "cty-Catalonia-Barcelona");
+            fixAreaToCataloniaFromProvince(spainClone, cataloniaClone, catProvince);
+            // fix the id of the cities
+            catProvince.getChildren("city").forEach(city -> {
+                city.setAttribute("id", replaceSpainInIdWithCatalonia(city.getAttributeValue("id")));
+                city.setAttribute("country", "CAT");
+                city.setAttribute("province", "prov-Catalonia-1");
+            });
+
+
+            cataloniaClone.addContent(catProvince);
+            E34a.ROOT.addContent(cataloniaClone);
+            E34a.ROOT.addContent(spainClone);
 
             Element riverGaronne = getRiver(E34a.ROOT, "river-Garonne");
             System.out.println(riverGaronne.getChild("name").getValue());
@@ -219,6 +266,5 @@ public class E34a {
     public static void main(String[] args) {
         E34a ex = new E34a();
         ex.run();
-        System.out.println(makeCatalonia());
     }
 }
