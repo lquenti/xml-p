@@ -20,6 +20,8 @@ public class Country {
     private double area;
     private String capital;
     private String memberships;
+    private String indepDate = "";
+    private String indepDateFrom = "";
     private List<Population> populations = new ArrayList<>();
     private List<EthnicGroup> ethnicGroups = new ArrayList<>();
     private List<Religion> religions = new ArrayList<>();

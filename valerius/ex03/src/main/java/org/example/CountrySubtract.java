@@ -25,6 +25,9 @@ public class CountrySubtract {
     // Currency
     // Car Code
     // Capital
+    // cities
+    // rivers
+    // seas
 
     public List<Country> parse(String filename) throws Exception {
         SAXParserFactory factory = SAXParserFactory.newInstance();
