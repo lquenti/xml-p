@@ -4,10 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
+@Setter
 @ToString
-public class Border {
-    private String country;
-    private double length;
+public class Percentage {
+    private String value;
+    private double percentage;
 }
+

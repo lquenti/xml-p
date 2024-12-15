@@ -7,6 +7,7 @@ import org.example.supportClasses.Country;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CountrySubtract {
@@ -33,13 +34,23 @@ public class CountrySubtract {
         return handler.getCountries();
     }
 
+    public static List<Country> subtract(Country a, Country b) {
+        return new ArrayList<>();
+    }
+
+    private static void debug(Country a, Country b) {
+        System.out.println(a);
+        System.out.println(b);
+    }
+
     @SneakyThrows
     public static void main(String[] args) {
         CountrySubtract subtract = new CountrySubtract();
         List<Country> countries = subtract.parse("mondial.xml");
-        for (Country country : countries) {
-            System.out.println(country.getName());
-        }
+//        for (Country country : countries) {
+////            System.out.println(country.getName());
+//        }
+        debug(countries.get(0), countries.get(1));
     }
 }
 
