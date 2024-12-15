@@ -109,6 +109,11 @@ public class E34a {
             source.setAttribute("country", "CAT");
             source.getChild("located").setAttribute("province", "prov-Catalonia-1").setAttribute("country", "CAT");
         }
+        Element estuary = river.getChild("estuary");
+        if (estuary != null && estuary.getAttributeValue("country").equals("E")) {
+            estuary.setAttribute("country", "CAT");
+            estuary.getChild("located").setAttribute("province", "prov-Catalonia-1").setAttribute("country", "CAT");
+        }
         return river;
     }
 
@@ -160,20 +165,6 @@ public class E34a {
         }
         return id;
     }
-
-    private void fixCountryPopulation(Element country, Element catalonia) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    private void fixRootForProvinceIds(Element root, Element province) {
-        
-    }
-
-    private void fixRootForCityIds(Element root, Element province) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-
 
     private void fixBorderLengths(List<Element> countries, Element catalonia) {
         // First handle Catalonia's borders
@@ -242,6 +233,22 @@ public class E34a {
                 }
             }
         }
+    }
+
+    private void fixPopulation(Element spain, Element catalonia) {
+        // 1. the province of catalonia has multiple censuses, we need to use the last one
+        Element census = catalonia.getChild("province").getChildren("population").stream()
+            .filter(population -> Integer.parseInt(population.getAttributeValue("year")) > 2020)
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("No census found for Catalonia"));
+
+        Element newCensus  =census.clone();
+        catalonia.addContent(newCensus);
+        Element spainPopulation = spain.getChildren("population").stream()
+            .filter(population -> Integer.parseInt(population.getAttributeValue("year")) >= 2018)
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("No census found for Spain"));
+        spainPopulation.setText(String.valueOf(Integer.parseInt(spainPopulation.getValue()) - Integer.parseInt(census.getValue())));
     }
 
 
@@ -315,6 +322,8 @@ public class E34a {
             System.out.println(seaMediterranean.getChild("name").getValue());
             mutateSea(seaMediterranean);
 
+            fixPopulation(spainClone, cataloniaClone);
+
 
         } else {
             throw new RuntimeException("Spain not found");
@@ -332,7 +341,8 @@ public class E34a {
         xmlOutput.setFormat(format);
         String xmlString = xmlOutput.outputString(E34a.ROOT);
         for (Map.Entry<String, String> entry : replaceMap.entrySet()) {
-            xmlString = xmlString;//.replace(entry.getKey(), entry.getValue());
+            // catch the rest
+            xmlString = xmlString.replace(entry.getKey(), entry.getValue());
         }
         writer.write(xmlString);
         writer.close();
