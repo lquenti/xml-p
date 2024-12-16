@@ -11,11 +11,9 @@ import org.jdom2.Attribute;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class E34a {
     Element spain = null;
@@ -52,29 +50,6 @@ public class E34a {
             "  <border country=\"E\" length=\"320\"/>\n" +
             "</country>";
 
-    private static final List<String> DTD_ORDER = Arrays.asList(
-        "name",              // name+ (one or more required)
-        "localname",         // localname? (optional)
-        "population",        // population+ (one or more required)
-        "population_growth", // optional
-        "infant_mortality",  // optional
-        "gdp_total",        // optional
-        "gdp_agri",         // optional
-        "gdp_ind",          // optional
-        "gdp_serv",         // optional
-        "inflation",        // optional
-        "unemployment",     // optional
-        "indep_date",      // optional
-        "dependent",       // optional (alternative to indep_date)
-        "government",      // optional
-        "encompassed",     // encompassed+ (one or more required)
-        "ethnicgroup",     // ethnicgroup* (zero or more)
-        "religion",        // religion* (zero or more)
-        "language",        // language* (zero or more)
-        "border",          // border* (zero or more)
-        "province",        // province+ or city+ (one or more of either)
-        "city"            // province+ or city+ (one or more of either)
-    );
 
     public static Element readCataloniaIntoElement() {
         try {
@@ -154,19 +129,44 @@ public class E34a {
     }
 
     private Element mutateSea(Element sea) {
-        // <located country="CAT" province="prov-Catalonia-1" >
+        // Create new located element for Catalonia
         Element located = new Element("located")
             .setAttribute("country", "CAT")
             .setAttribute("province", "prov-Catalonia-1");
-        sea.addContent(located);
 
-        // change <located country="E" province="prov-Spain-2 prov-Spain-5 prov-Spain-11 prov-Spain-15 prov-Spain-18" />
-        // to <located country="E" province="prov-Spain-2 prov-Spain-5 prov-Spain-15 prov-Spain-18" />
-        sea.getChildren("located").forEach(l -> {
-            if (l.getAttributeValue("province").contains(provinceId)) {
-                l.setAttribute("province", l.getAttributeValue("province").replace(provinceId, "").replace("  ", " "));
-            }
-        });
+        // Get all existing located elements and remove them temporarily
+        List<Element> locatedElements = new ArrayList<>(sea.getChildren("located"));
+        locatedElements.forEach(Element::detach);
+        
+        // Add the new located element for Catalonia
+        locatedElements.add(located);
+
+        // Get area and depth elements if they exist
+        Element area = sea.getChild("area");
+        Element depth = sea.getChild("depth");
+        if (area != null) area.detach();
+        if (depth != null) depth.detach();
+
+        // Add all located elements back after name
+        locatedElements.forEach(sea::addContent);
+        
+        // Add area and depth back at the end if they exist
+        if (area != null) sea.addContent(area);
+        if (depth != null) sea.addContent(depth);
+
+        // Update Spain's located element to remove Catalonia's province
+        locatedElements.stream()
+            .filter(l -> "E".equals(l.getAttributeValue("country")))
+            .forEach(l -> {
+                if (l.getAttributeValue("province").contains(provinceId)) {
+                    l.setAttribute("province", 
+                        l.getAttributeValue("province")
+                            .replace(provinceId, "")
+                            .replace("  ", " ")
+                            .trim());
+                }
+            });
+
         return sea;
     }
 
@@ -201,11 +201,44 @@ public class E34a {
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Country not found"));
 
-            // Add new border to the country
+            // Create new border element
             Element newBorder = new Element("border")
                 .setAttribute("country", catalonia.getAttributeValue("car_code"))
                 .setAttribute("length", cataloniaBorder.getAttributeValue("length"));
-            country.addContent(newBorder);
+
+            // Find all existing borders and remove them temporarily
+            List<Element> existingBorders = new ArrayList<>(country.getChildren("border"));
+            existingBorders.forEach(Element::detach);
+            
+            // Add the new border to the list
+            existingBorders.add(newBorder);
+
+            // Find insertion point (after last language element)
+            List<Element> languages = country.getChildren("language");
+            if (!languages.isEmpty()) {
+                Element lastLanguage = languages.get(languages.size() - 1);
+                int insertIndex = country.indexOf(lastLanguage) + 1;
+                
+                // Add all borders after the last language element
+                for (Element border : existingBorders) {
+                    country.addContent(insertIndex++, border);
+                }
+            } else {
+                // If no languages exist, add before first province/city
+                Element firstProvinceOrCity = country.getChildren().stream()
+                    .filter(e -> e.getName().equals("province") || e.getName().equals("city"))
+                    .findFirst()
+                    .orElse(null);
+                    
+                if (firstProvinceOrCity != null) {
+                    int insertIndex = country.indexOf(firstProvinceOrCity);
+                    for (Element border : existingBorders) {
+                        country.addContent(insertIndex++, border);
+                    }
+                } else {
+                    existingBorders.forEach(country::addContent);
+                }
+            }
         }
 
         // Then handle Spain's borders separately
@@ -280,49 +313,40 @@ public class E34a {
     }
 
     private void fixMissing(Element catalonia) {
-        // First, let's remove all existing elements to reorder them
-        List<Element> existingElements = new ArrayList<>(catalonia.getChildren());
-        for (Element e : existingElements) {
-            e.detach();
-        }
+        // Remove existing government and encompassed if they exist
+        Element existingGovernment = catalonia.getChild("government");
+        Element existingEncompassed = catalonia.getChild("encompassed");
+        if (existingGovernment != null) existingGovernment.detach();
+        if (existingEncompassed != null) existingEncompassed.detach();
 
-        // Ensure required elements exist
-        boolean hasName = existingElements.stream().anyMatch(e -> e.getName().equals("name"));
-        if (!hasName) {
-            catalonia.addContent(new Element("name").setText("Catalonia"));
-        }
-
-        boolean hasPopulation = existingElements.stream().anyMatch(e -> e.getName().equals("population"));
-        if (!hasPopulation) {
-            throw new RuntimeException("Population element is required but missing");
-        }
-
-        boolean hasEncompassed = existingElements.stream().anyMatch(e -> e.getName().equals("encompassed"));
-        if (!hasEncompassed) {
-            catalonia.addContent(new Element("encompassed")
-                .setAttribute("continent", "europe")
-                .setAttribute("percentage", "100"));
-        }
-
-        // Add elements back in DTD order
-        for (String elementName : DTD_ORDER) {
-            List<Element> elements = existingElements.stream()
-                .filter(e -> e.getName().equals(elementName))
-                .collect(Collectors.toList());
-            
-            if (!elements.isEmpty()) {
-                catalonia.addContent(elements);
-            } else if (elementName.equals("government")) {
-                // Add missing required elements
-                catalonia.addContent(new Element("government").setText("Republic"));
+        // Get the population element and move it to the correct position
+        Element population = catalonia.getChild("population");
+        if (population != null) {
+            population.detach();
+            // Insert after name
+            List<Element> names = catalonia.getChildren("name");
+            if (!names.isEmpty()) {
+                int insertIndex = catalonia.indexOf(names.get(names.size() - 1)) + 1;
+                catalonia.addContent(insertIndex, population);
             }
         }
 
-        // Verify that we have at least one province or city
-        boolean hasProvinceOrCity = catalonia.getChildren().stream()
-            .anyMatch(e -> e.getName().equals("province") || e.getName().equals("city"));
-        if (!hasProvinceOrCity) {
-            throw new RuntimeException("At least one province or city is required");
+        // Create and add government and encompassed elements in correct position
+        Element government = new Element("government")
+            .setText("Dictatorship");
+        Element encompassed = new Element("encompassed")
+            .setAttribute("continent", "europe")
+            .setAttribute("percentage", "100");
+
+        // Find the first element that should come after government and encompassed
+        Element firstProvince = catalonia.getChild("province");
+        if (firstProvince != null) {
+            int insertIndex = catalonia.indexOf(firstProvince);
+            catalonia.addContent(insertIndex, government);
+            catalonia.addContent(insertIndex + 1, encompassed);
+        } else {
+            catalonia.addContent(government);
+            catalonia.addContent(encompassed);
         }
     }
 
