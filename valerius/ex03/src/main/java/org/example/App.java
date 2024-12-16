@@ -26,7 +26,7 @@ public class App
             E36.run();
             System.out.println("Done");
             System.out.println("=========3.6a=========");
-            E36a.run();
+//            E36a.run();
             System.out.println("Done");
             System.out.println("=========3.7=========");
             E37.run();
