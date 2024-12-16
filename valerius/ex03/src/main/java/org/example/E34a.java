@@ -1,12 +1,10 @@
 package org.example;
 
 import lombok.SneakyThrows;
-import org.example.supportClasses.Country;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-import org.jdom2.Attribute;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -88,14 +86,6 @@ public class E34a {
             .filter(sea -> seaId.equals(sea.getAttributeValue("id")))
             .findFirst()
             .orElseThrow(() -> new RuntimeException("Sea not found"));
-    }
-
-    private Element mutateProvince(Element province) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    private Element mutateCountry(Element country) {
-        throw new UnsupportedOperationException("Not implemented");
     }
 
     private Element mutateRiver(Element river) {
@@ -312,44 +302,96 @@ public class E34a {
         spainPopulation.setText(String.valueOf(Integer.parseInt(spainPopulation.getValue()) - Integer.parseInt(census.getValue())));
     }
 
-    private void fixMissing(Element catalonia) {
-        // Remove existing government and encompassed if they exist
-        Element existingGovernment = catalonia.getChild("government");
-        Element existingEncompassed = catalonia.getChild("encompassed");
-        if (existingGovernment != null) existingGovernment.detach();
-        if (existingEncompassed != null) existingEncompassed.detach();
+    private void reorderElementsAccordingToDTD(Element catalonia) {
+        // Store all elements in their categories
+        List<Element> names = new ArrayList<>(catalonia.getChildren("name"));
+        List<Element> populations = new ArrayList<>(catalonia.getChildren("population"));
+        Element populationGrowth = catalonia.getChild("population_growth");
+        Element infantMortality = catalonia.getChild("infant_mortality");
+        Element gdpTotal = catalonia.getChild("gdp_total");
+        Element gdpAgri = catalonia.getChild("gdp_agri");
+        Element gdpInd = catalonia.getChild("gdp_ind");
+        Element gdpServ = catalonia.getChild("gdp_serv");
+        Element inflation = catalonia.getChild("inflation");
+        Element unemployment = catalonia.getChild("unemployment");
+        Element indepDate = catalonia.getChild("indep_date");
+        Element government = catalonia.getChild("government");
+        List<Element> encompassed = new ArrayList<>(catalonia.getChildren("encompassed"));
+        List<Element> ethnicGroups = new ArrayList<>(catalonia.getChildren("ethnicgroup"));
+        List<Element> religions = new ArrayList<>(catalonia.getChildren("religion"));
+        List<Element> languages = new ArrayList<>(catalonia.getChildren("language"));
+        List<Element> borders = new ArrayList<>(catalonia.getChildren("border"));
+        List<Element> provinces = new ArrayList<>(catalonia.getChildren("province"));
 
-        // Get the population element and move it to the correct position
-        Element population = catalonia.getChild("population");
-        if (population != null) {
-            population.detach();
-            // Insert after name
-            List<Element> names = catalonia.getChildren("name");
-            if (!names.isEmpty()) {
-                int insertIndex = catalonia.indexOf(names.get(names.size() - 1)) + 1;
-                catalonia.addContent(insertIndex, population);
-            }
-        }
+        // Remove all elements
+        catalonia.removeContent();
 
-        // Create and add government and encompassed elements in correct position
-        Element government = new Element("government")
-            .setText("Dictatorship");
-        Element encompassed = new Element("encompassed")
-            .setAttribute("continent", "europe")
-            .setAttribute("percentage", "100");
-
-        // Find the first element that should come after government and encompassed
-        Element firstProvince = catalonia.getChild("province");
-        if (firstProvince != null) {
-            int insertIndex = catalonia.indexOf(firstProvince);
-            catalonia.addContent(insertIndex, government);
-            catalonia.addContent(insertIndex + 1, encompassed);
-        } else {
-            catalonia.addContent(government);
-            catalonia.addContent(encompassed);
-        }
+        // Add them back in the correct order
+        names.forEach(catalonia::addContent);
+        populations.forEach(catalonia::addContent);
+        if (populationGrowth != null) catalonia.addContent(populationGrowth);
+        if (infantMortality != null) catalonia.addContent(infantMortality);
+        if (gdpTotal != null) catalonia.addContent(gdpTotal);
+        if (gdpAgri != null) catalonia.addContent(gdpAgri);
+        if (gdpInd != null) catalonia.addContent(gdpInd);
+        if (gdpServ != null) catalonia.addContent(gdpServ);
+        if (inflation != null) catalonia.addContent(inflation);
+        if (unemployment != null) catalonia.addContent(unemployment);
+        if (indepDate != null) catalonia.addContent(indepDate);
+        if (government != null) catalonia.addContent(government);
+        encompassed.forEach(catalonia::addContent);
+        ethnicGroups.forEach(catalonia::addContent);
+        religions.forEach(catalonia::addContent);
+        languages.forEach(catalonia::addContent);
+        borders.forEach(catalonia::addContent);
+        provinces.forEach(catalonia::addContent);
     }
 
+    private void fixMissing(Element catalonia) {
+        // Create new elements if they don't exist
+        if (catalonia.getChild("government") == null) {
+            catalonia.addContent(new Element("government").setText("Dictatorship"));
+        }
+        if (catalonia.getChild("encompassed") == null) {
+            catalonia.addContent(new Element("encompassed")
+                .setAttribute("continent", "europe")
+                .setAttribute("percentage", "100"));
+        }
+
+        // Reorder all elements according to DTD
+        reorderElementsAccordingToDTD(catalonia);
+    }
+
+    private void reorderMondialElements(Element mondial) {
+        // Store all elements in their categories
+        List<Element> countries = new ArrayList<>(mondial.getChildren("country"));
+        List<Element> continents = new ArrayList<>(mondial.getChildren("continent"));
+        List<Element> organizations = new ArrayList<>(mondial.getChildren("organization"));
+        List<Element> seas = new ArrayList<>(mondial.getChildren("sea"));
+        List<Element> rivers = new ArrayList<>(mondial.getChildren("river"));
+        List<Element> lakes = new ArrayList<>(mondial.getChildren("lake"));
+        List<Element> islands = new ArrayList<>(mondial.getChildren("island"));
+        List<Element> mountains = new ArrayList<>(mondial.getChildren("mountain"));
+        List<Element> deserts = new ArrayList<>(mondial.getChildren("desert"));
+        List<Element> airports = new ArrayList<>(mondial.getChildren("airport"));
+        List<Element> langtrees = new ArrayList<>(mondial.getChildren("langtree"));
+
+        // Remove all elements
+        mondial.removeContent();
+
+        // Add them back in the correct order
+        countries.forEach(mondial::addContent);
+        continents.forEach(mondial::addContent);
+        organizations.forEach(mondial::addContent);
+        seas.forEach(mondial::addContent);
+        rivers.forEach(mondial::addContent);
+        lakes.forEach(mondial::addContent);
+        islands.forEach(mondial::addContent);
+        mountains.forEach(mondial::addContent);
+        deserts.forEach(mondial::addContent);
+        airports.forEach(mondial::addContent);
+        langtrees.forEach(mondial::addContent);
+    }
 
     public void run() throws IOException, JDOMException {
         // Read mondial.xml into a JDOM object,
@@ -427,6 +469,9 @@ public class E34a {
         } else {
             throw new RuntimeException("Spain not found");
         }
+
+        // Reorder all elements in mondial
+        reorderMondialElements(E34a.ROOT);
 
         FileWriter writer = new FileWriter("output_3_4a.xml");
         // Write XML declaration and DOCTYPE manually
