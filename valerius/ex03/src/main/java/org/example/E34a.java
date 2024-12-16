@@ -15,15 +15,15 @@ import java.util.Map;
 
 public class E34a {
     Element spain = null;
-    private  final static String provinceId = "prov-Spain-11";
-    private final static HashMap<String, String> replaceMap = new HashMap<>();
+    final static String provinceId = "prov-Spain-11";
+    final static HashMap<String, String> replaceMap = new HashMap<>();
     static {
         replaceMap.put("prov-Spain-11", "prov-Catalonia-1");
         replaceMap.put("cty-Spain-Barcelona", "cty-Catalonia-Barcelona");
     }
 
     private static Element ROOT;
-    private final static String CATALONIA_XML = "<country car_code=\"CAT\">\n" +
+    final static String CATALONIA_XML = "<country car_code=\"CAT\">\n" +
             "  <name>Catalonia</name>\n" +
             "  <population_growth>0.8</population_growth>\n" +
             "  <infant_mortality>2.5</infant_mortality>\n" +
