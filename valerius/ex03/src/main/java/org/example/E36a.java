@@ -29,16 +29,20 @@ public class E36a {
         FileWriter writer = new FileWriter("output_3_6a.xml");
         XMLReader reader = saxParser.getXMLReader();
 
-        reader.setContentHandler(new E36aHandler(writer));
+        reader.setContentHandler(new InitHandler(writer));
+        reader.parse(new InputSource("mondial.xml"));
+        reader.setContentHandler(new CataloniaHandler(writer));
+        reader.parse(new InputSource("mondial.xml"));
+        reader.setContentHandler(new SwitchProvinceHandler(writer));
         reader.parse(new InputSource("mondial.xml"));
         writer.close();
     }
 }
 
-class E36aHandler extends DefaultHandler {
+class InitHandler extends DefaultHandler {
     private final Writer writer;
 
-    public E36aHandler(Writer writer) {
+    public InitHandler(Writer writer) {
         this.writer = writer;
     }
 
@@ -51,9 +55,64 @@ class E36aHandler extends DefaultHandler {
             throw new SAXException(e);
         }
     }
+}
+/**
+ *  Add Catalonia XML data to the document
+ * */
+class CataloniaHandler extends DefaultHandler {
+    private final Writer writer;
+    private boolean isFirstCountry = true;
+
+    public CataloniaHandler(Writer writer) {
+        this.writer = writer;
+    }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        try {
+            if (qName.equals("mondial") && isFirstCountry) {
+                writer.write("<mondial>\n");
+                writer.write(E34a.CATALONIA_XML + "\n");
+                isFirstCountry = false;
+            } else {
+                writer.write("<" + qName);
+                for (int i = 0; i < attributes.getLength(); i++) {
+                    writer.write(" " + attributes.getQName(i) + "=\"" + 
+                               attributes.getValue(i) + "\"");
+                }
+                writer.write(">\n");
+            }
+        } catch (IOException e) {
+            throw new SAXException(e);
+        }
+    }
 
+    @Override
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+        try {
+            writer.write("</" + qName + ">");
+        } catch (IOException e) {
+            throw new SAXException(e);
+        }
+    }
+
+    @Override
+    public void characters(char[] ch, int start, int length) throws SAXException {
+        try {
+            writer.write(new String(ch, start, length));
+        } catch (IOException e) {
+            throw new SAXException(e);
+        }
+    }
+}
+
+/**
+ * Switch the province from Spain to Catalonia, like in E34a.
+ */
+class SwitchProvinceHandler extends DefaultHandler {
+    private final Writer writer;
+
+    public SwitchProvinceHandler(Writer writer) {
+        this.writer = writer;
     }
 }
