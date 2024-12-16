@@ -50,17 +50,19 @@ public class ex3_4 {
             // Get Catalonia's attributes from the cloned elemenz
             double catPopulation = 0;
             int year = 0;
+            String measured = "";
             for(Element pops: cataloniaClone.getChild("province").getChildren("population")){
                 if(Integer.parseInt(pops.getAttribute("year").getValue()) > year){
                     year = Integer.parseInt(pops.getAttribute("year").getValue());
                     catPopulation = Double.parseDouble(pops.getText());
+                    measured = String.valueOf(pops.getAttribute("measured"));
                 }
             }
 
             Element pop = new Element("population");
-            pop.setAttribute("measured", "census");
-            pop.setAttribute("year", "2021");
-            pop.setText("7749896");
+            pop.setAttribute("measured", measured);
+            pop.setAttribute("year", String.valueOf(year));
+            pop.setText(String.valueOf(catPopulation));
             int nameIndex = cataloniaClone.indexOf(cataloniaClone.getChild("name")) + 1;
             cataloniaClone.addContent(nameIndex, pop);
 
@@ -210,7 +212,14 @@ public class ex3_4 {
             double newUnemployment = ((spainPopulation * spainUnemployment) - (catPopulation * catUnemployment)) / newPopulation;
 
             // Update Spain's attributes
-            spain.getChild("population").setText(String.format(Locale.ENGLISH,"%.0f", newPopulation));
+            for(Element child: spain.getChildren("population")){
+                if(String.valueOf(year).equals(child.getAttribute("year").getValue())){
+                    System.out.println(newPopulation);
+                    child.setText(String.format("%d", (long) newPopulation));
+                }
+            }
+
+            //spain.getChild("population").setText(String.format(Locale.ENGLISH,"%.0f", newPopulation));
             spain.getChild("population_growth").setText(String.format(Locale.ENGLISH,"%.2f", newPopulationGrowth));
             spain.getChild("infant_mortality").setText(String.format(Locale.ENGLISH,"%.2f", newInfantMortality));
             spain.getChild("gdp_total").setText(String.format(Locale.ENGLISH,"%.0f", newGdpTotal));
