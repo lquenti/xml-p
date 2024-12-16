@@ -244,11 +244,23 @@ public class E34a {
 
         Element newCensus  =census.clone();
         catalonia.addContent(newCensus);
+
+        // 2. the population of spain is the population of spain minus the population of catalonia
         Element spainPopulation = spain.getChildren("population").stream()
             .filter(population -> Integer.parseInt(population.getAttributeValue("year")) >= 2018)
             .findFirst()
             .orElseThrow(() -> new RuntimeException("No census found for Spain"));
         spainPopulation.setText(String.valueOf(Integer.parseInt(spainPopulation.getValue()) - Integer.parseInt(census.getValue())));
+    }
+
+    private void fixMissing(Element catalonia) {
+        Element government = new Element("government")
+            .setText("Dictatorship");
+        catalonia.addContent(government);
+        Element encompassed = new Element("encompassed")
+            .setAttribute("continent", "Europe")
+            .setAttribute("percentage", "100");
+        catalonia.addContent(encompassed);
     }
 
 
@@ -323,7 +335,7 @@ public class E34a {
             mutateSea(seaMediterranean);
 
             fixPopulation(spainClone, cataloniaClone);
-
+            fixMissing(cataloniaClone);
 
         } else {
             throw new RuntimeException("Spain not found");
