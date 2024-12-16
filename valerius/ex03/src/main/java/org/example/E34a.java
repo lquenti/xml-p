@@ -10,9 +10,12 @@ import org.jdom2.Attribute;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class E34a {
     Element spain = null;
@@ -49,6 +52,29 @@ public class E34a {
             "  <border country=\"E\" length=\"320\"/>\n" +
             "</country>";
 
+    private static final List<String> DTD_ORDER = Arrays.asList(
+        "name",              // name+ (one or more required)
+        "localname",         // localname? (optional)
+        "population",        // population+ (one or more required)
+        "population_growth", // optional
+        "infant_mortality",  // optional
+        "gdp_total",        // optional
+        "gdp_agri",         // optional
+        "gdp_ind",          // optional
+        "gdp_serv",         // optional
+        "inflation",        // optional
+        "unemployment",     // optional
+        "indep_date",      // optional
+        "dependent",       // optional (alternative to indep_date)
+        "government",      // optional
+        "encompassed",     // encompassed+ (one or more required)
+        "ethnicgroup",     // ethnicgroup* (zero or more)
+        "religion",        // religion* (zero or more)
+        "language",        // language* (zero or more)
+        "border",          // border* (zero or more)
+        "province",        // province+ or city+ (one or more of either)
+        "city"            // province+ or city+ (one or more of either)
+    );
 
     public static Element readCataloniaIntoElement() {
         try {
@@ -254,13 +280,50 @@ public class E34a {
     }
 
     private void fixMissing(Element catalonia) {
-        Element government = new Element("government")
-            .setText("Dictatorship");
-        catalonia.addContent(government);
-        Element encompassed = new Element("encompassed")
-            .setAttribute("continent", "Europe")
-            .setAttribute("percentage", "100");
-        catalonia.addContent(encompassed);
+        // First, let's remove all existing elements to reorder them
+        List<Element> existingElements = new ArrayList<>(catalonia.getChildren());
+        for (Element e : existingElements) {
+            e.detach();
+        }
+
+        // Ensure required elements exist
+        boolean hasName = existingElements.stream().anyMatch(e -> e.getName().equals("name"));
+        if (!hasName) {
+            catalonia.addContent(new Element("name").setText("Catalonia"));
+        }
+
+        boolean hasPopulation = existingElements.stream().anyMatch(e -> e.getName().equals("population"));
+        if (!hasPopulation) {
+            throw new RuntimeException("Population element is required but missing");
+        }
+
+        boolean hasEncompassed = existingElements.stream().anyMatch(e -> e.getName().equals("encompassed"));
+        if (!hasEncompassed) {
+            catalonia.addContent(new Element("encompassed")
+                .setAttribute("continent", "europe")
+                .setAttribute("percentage", "100"));
+        }
+
+        // Add elements back in DTD order
+        for (String elementName : DTD_ORDER) {
+            List<Element> elements = existingElements.stream()
+                .filter(e -> e.getName().equals(elementName))
+                .collect(Collectors.toList());
+            
+            if (!elements.isEmpty()) {
+                catalonia.addContent(elements);
+            } else if (elementName.equals("government")) {
+                // Add missing required elements
+                catalonia.addContent(new Element("government").setText("Republic"));
+            }
+        }
+
+        // Verify that we have at least one province or city
+        boolean hasProvinceOrCity = catalonia.getChildren().stream()
+            .anyMatch(e -> e.getName().equals("province") || e.getName().equals("city"));
+        if (!hasProvinceOrCity) {
+            throw new RuntimeException("At least one province or city is required");
+        }
     }
 
 
