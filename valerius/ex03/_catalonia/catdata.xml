@@ -1,0 +1,25 @@
+<country car_code="CAT">
+  <name>Catalonia</name>
+  <population_growth>0.8</population_growth>
+  <infant_mortality>2.5</infant_mortality>
+  <gdp_total>204189</gdp_total>
+  <gdp_agri>3</gdp_agri>
+  <gdp_ind>37</gdp_ind>
+  <gdp_serv>60</gdp_serv>
+  <inflation>1.5</inflation>
+  <unemployment>12.6</unemployment>
+  <indep_date from="E">2018-04-01</indep_date>
+  <encompassed continent="europe" percentage="100"></encompassed>
+  <ethnicgroup percentage="100">Mediterranean Nordic</ethnicgroup>
+  <religion percentage="52.4">Roman Catholic</religion>
+  <religion percentage="2.5">Protestant</religion>
+  <religion percentage="7.3">Muslim</religion>
+  <religion percentage="1.3">Buddhist</religion>
+  <religion percentage="1.2">Christian Orthodox</religion>
+  <language percentage="52">Spanish</language>
+  <language percentage="41.5">Catalan</language>
+  <language percentage="0.1">Occitan</language>
+  <border country="AND" length="65"/>
+  <border country="F" length="300"/>
+  <border country="E" length="320"/>
+</country>

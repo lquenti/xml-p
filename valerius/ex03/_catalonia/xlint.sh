@@ -1,0 +1,1 @@
+xmllint --noout --valid output.xml && echo "Verification success" || echo "Failed"
