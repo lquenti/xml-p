@@ -1,26 +1,34 @@
 package xmw;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import xmw.mondial.Country;
+import xmw.mondial.Mondial;
 
-import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.Source;
-import javax.xml.transform.sax.SAXSource;
-
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-import javax.xml.parsers.SAXParserFactory;
-
-import xmw.mondial.Mondial;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class App {
+
+    public static Country getCataloniaFromFile(File catdata) throws JAXBException, FileNotFoundException {
+        JAXBContext context = JAXBContext.newInstance(Country.class);
+
+        if (!catdata.exists()) {
+            throw new FileNotFoundException("not there." + catdata.getAbsolutePath());
+        }
+
+        System.setProperty("javax.xml.accessExternalDTD", "all");
+
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        return (Country) unmarshaller.unmarshal(catdata);
+    }
+
     public static void main(String[] args) {
         try {
+            Country catalonia = getCataloniaFromFile(new File("catdata.xml"));
             // Create JAXB context for the Mondial class
             JAXBContext context = JAXBContext.newInstance(Mondial.class);
 
