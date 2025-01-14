@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class MergeXML {
-    public static String mergeXML(String mondialPath, String catdataPath) throws IOException {
+    public static String mergeXML(String mondialPath, String catdataPath, String afterCarCode) throws IOException {
         String mondialString = "";
         String catdataString = "";
 
@@ -26,7 +26,7 @@ public class MergeXML {
         int lineNumber = 0;
         String[] lines = mondialString.split("\n");
         for (int i = 0; i < lines.length; i++) {
-            if (lines[i].contains("car_code=\"E\"")) {
+            if (lines[i].contains("car_code=\"" + afterCarCode + "\"")) {
                 lineNumber = i;
                 break;
             }

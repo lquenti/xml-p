@@ -1,11 +1,8 @@
 package xmw;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+import xmw.mondial.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,30 +11,42 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
-
-import xmw.mondial.Border;
-import xmw.mondial.Continent;
-import xmw.mondial.Country;
-import xmw.mondial.Encompassed;
-import xmw.mondial.Mondial;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class App {
+    private static final String TMP_PATH = "tmp.xml";
+    private static final String MONDIAL_XML_PATH = "mondial.xml";
+    private static final String INDEPENDENCE_XML_PATH = "catdata.xml";
+    private static final String NEW_COUNTRY_CAR_CODE = "CAT";
+    private static final String OLD_COUNTRY_CAR_CODE = "E"; // countries maybe for basque
+    private static final String[] AFFECTED_PROVINCE_IDS = new String[]{"prov-Spain-11"};
 
 
+    private static Country findCatalonia(Mondial mondial) {
+        return mondial.getCountry().stream()
+                .filter(c -> NEW_COUNTRY_CAR_CODE.equals(c.getCarCode()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Catalonia not found"));
+    }
 
-//    public static void updateMissingOnCatalonia(Mondial mondial, Country catalonia) {
-//        Encompassed encompassed = new Encompassed();
-//        Continent europe = mondial.getContinent().stream()
-//                .filter(c -> "europe".equals(c.getId()))
-//                .findFirst()
-//                .orElseThrow(() -> new RuntimeException("Europe not found"));
-//        encompassed.setContinent(europe);
-//        encompassed.setPercentage(BigDecimal.valueOf(100.));
-//        catalonia.getEncompassed().add(encompassed);
-//    }
+
+    public static void updateMissingOnCatalonia(Mondial mondial) {
+        Country catalonia = findCatalonia(mondial);
+        // TODO: make abstract if border is present
+        Encompassed encompassed = new Encompassed();
+        Continent europe = mondial.getContinent().stream()
+                .filter(c -> "europe".equals(c.getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Europe not found"));
+        encompassed.setContinent(europe);
+        encompassed.setPercentage(BigDecimal.valueOf(100.));
+        catalonia.getEncompassed().add(encompassed);
+    }
 
     public static void validateXML(File xmlFile) throws SAXException, ParserConfigurationException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -48,37 +57,36 @@ public class App {
 
     public static void main(String[] args) {
         try {
+            // TODO: make abstract
             // Create JAXB context for the Mondial class
             JAXBContext context = JAXBContext.newInstance(Mondial.class, Country.class, Border.class);
 
-            File inputFile = new File("mondial.xml");
+            File inputFile = new File(MONDIAL_XML_PATH);
 
             if (!inputFile.exists()) {
                 throw new FileNotFoundException("not there." + inputFile.getAbsolutePath());
             }
 
-            File catdataFile = new File("catdata.xml");
-            if (!catdataFile .exists()) {
-                throw new FileNotFoundException("not there." + catdataFile .getAbsolutePath());
+            File catdataFile = new File(INDEPENDENCE_XML_PATH);
+            if (!catdataFile.exists()) {
+                throw new FileNotFoundException("not there." + catdataFile.getAbsolutePath());
             }
 
             // NOTE: to avoid IDREF errors, we need to merge the two XML files into one
             // and add the catdata string after the closing tag of <country car_code="E" ...>
-            String mergedXMLRaw = MergeXML.mergeXML(inputFile.getAbsolutePath(), catdataFile.getAbsolutePath());
-            // save to "tmp.xml"
-            Files.write(Paths.get("tmp.xml"), mergedXMLRaw.getBytes());
-            File mergedXML = new File("tmp.xml");
+            String mergedXMLRaw = MergeXML.mergeXML(inputFile.getAbsolutePath(), catdataFile.getAbsolutePath(), OLD_COUNTRY_CAR_CODE);
+            // save to TMP_PATh
+            Files.write(Paths.get(TMP_PATH), mergedXMLRaw.getBytes());
+            File mergedXML = new File(TMP_PATH);
 
             System.setProperty("javax.xml.accessExternalDTD", "all");
 
             // Create unmarshaller to read XML
             Unmarshaller unmarshaller = context.createUnmarshaller();
-
             Mondial mondial = (Mondial) unmarshaller.unmarshal(mergedXML);
 
-//
-//            updateMissingOnCatalonia(mondial, catalonia);
-//            mondial.getCountry().add(catalonia);
+            // catalonia operations
+            updateMissingOnCatalonia(mondial);
 
             // Create marshaller to write XML
             Marshaller marshaller = context.createMarshaller();
@@ -110,8 +118,8 @@ public class App {
             e.printStackTrace();
         } finally {
 
-            // delete tmp.xml
-            File tmpFile = new File("tmp.xml");
+            // delete TMP_PATH
+            File tmpFile = new File(TMP_PATH);
             if (tmpFile.exists()) {
                 tmpFile.delete();
             }
