@@ -9,7 +9,6 @@
   <inflation>1.5</inflation>
   <unemployment>12.6</unemployment>
   <indep_date from="E">2018-04-01</indep_date>
-  <encompassed continent="europe" percentage="100"></encompassed>
   <ethnicgroup percentage="100">Mediterranean Nordic</ethnicgroup>
   <religion percentage="52.4">Roman Catholic</religion>
   <religion percentage="2.5">Protestant</religion>
