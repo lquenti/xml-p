@@ -110,6 +110,7 @@ public class App {
 
                 Province province = findProvince(mondial, OLD_COUNTRY_CAR_CODE, id);
                 spain.getProvince().remove(province);
+
                 // update province to catalonia
                 province.setCountry(catalonia);
                 for (City city : province.getCity()) {
@@ -156,7 +157,7 @@ public class App {
                 for (Border border : catalonia.getBorder()) {
                     Country neighbour = (Country) border.getCountry();
                     List<Border> bordersToRemove = new ArrayList<>();
-                    for(Border b : neighbour.getBorder()) {
+                    for (Border b : neighbour.getBorder()) {
                         Country currentCountry = (Country) b.getCountry();
                         if (currentCountry.equals(spain)) {
                             b.setLength(b.getLength().subtract(border.getLength()));
@@ -169,7 +170,7 @@ public class App {
                     bordersToRemove.clear();
 
                     // shorten the border of the neighbour with spain
-                    for (Border b: spain.getBorder()) {
+                    for (Border b : spain.getBorder()) {
                         if (b.getCountry().equals(neighbour)) {
                             b.setLength(b.getLength().subtract(border.getLength()));
                         }
@@ -187,7 +188,25 @@ public class App {
                 }
 
                 // update sea
-//                mondial.getSea()
+                for (Sea sea : seas) {
+                    if (!catalonia.getProvince().isEmpty()) {
+                        Located located = new Located();
+                        located.setCountry(catalonia);
+                        located.getProvince().addAll(catalonia.getProvince());
+                        sea.getLocated().add(located);
+                    }
+                    List<Located> locatedToRemove = new ArrayList<>();
+                    for (Located l : sea.getLocated()) {
+                        l.getProvince().remove(province);
+                        if (l.getProvince().isEmpty()) {
+                            locatedToRemove.add(l);
+                        }
+                    }
+                    sea.getLocated().removeAll(locatedToRemove);
+                    if (!sea.getCountry().contains(catalonia)) {
+                        sea.getCountry().add(catalonia);
+                    }
+                }
 
                 // update rivers
             }
