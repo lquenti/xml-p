@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class MergeXML {
+    private MergeXML() {}
     public static String mergeXML(String mondialPath, String catdataPath, String afterCarCode) throws IOException {
         String mondialString = "";
         String catdataString = "";

@@ -27,16 +27,25 @@ public class App {
     private static final String[] AFFECTED_PROVINCE_IDS = new String[]{"prov-Spain-11"};
 
 
-    private static Country findCatalonia(Mondial mondial) {
+    private static Country findCountry(Mondial mondial, String carCode) {
         return mondial.getCountry().stream()
-                .filter(c -> NEW_COUNTRY_CAR_CODE.equals(c.getCarCode()))
+                .filter(c -> carCode.equals(c.getCarCode()))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Catalonia not found"));
     }
 
 
+    private static Province findProvince(Mondial mondial, String carCode, String id) {
+        Country country = findCountry(mondial, carCode);
+        return country.getProvince().stream()
+                .filter(p -> id.equals(p.getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Province not found"));
+    }
+
+
     public static void updateMissingOnCatalonia(Mondial mondial) {
-        Country catalonia = findCatalonia(mondial);
+        Country catalonia = findCountry(mondial, NEW_COUNTRY_CAR_CODE);
         // TODO: make abstract if border is present
         Encompassed encompassed = new Encompassed();
         Continent europe = mondial.getContinent().stream()
@@ -88,6 +97,26 @@ public class App {
             // catalonia operations
             updateMissingOnCatalonia(mondial);
 
+            Country spain = findCountry(mondial, OLD_COUNTRY_CAR_CODE);
+            Country catalonia = findCountry(mondial, NEW_COUNTRY_CAR_CODE);
+            for (String id : AFFECTED_PROVINCE_IDS) {
+                Province province = findProvince(mondial, OLD_COUNTRY_CAR_CODE, id);
+                spain.getProvince().remove(province);
+                // update province
+                province.setCountry(catalonia);
+                for (City city: province.getCity()) {
+                    city.setCountry(catalonia);
+                }
+                catalonia.getProvince().add(province);
+                BigDecimal provinceArea = province.getArea();
+                BigDecimal countryArea = catalonia.getArea();
+                if (countryArea == null) {
+                    countryArea = BigDecimal.ZERO;
+                }
+                catalonia.setArea(countryArea.add(provinceArea));
+            }
+
+
             // Create marshaller to write XML
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -117,11 +146,11 @@ public class App {
             System.err.println("Unexpected error: " + e.getMessage());
             e.printStackTrace();
         } finally {
-
             // delete TMP_PATH
             File tmpFile = new File(TMP_PATH);
-            if (tmpFile.exists()) {
-                tmpFile.delete();
+            if (tmpFile.exists() && !tmpFile.delete()) {
+                System.err.println("Failed to delete temporary file: " + TMP_PATH);
+                System.exit(1);
             }
         }
     }
