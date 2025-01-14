@@ -280,7 +280,25 @@ public class App {
                         if (!river.getCountry().contains(c)) {
                             river.getCountry().add(c);
                         }
+                    }
+                }
 
+                // update mountains
+                for(Mountain mountain : mondial.getMountain()) {
+                    if(mountain.getCountry().contains(spain) && !mountain.getLocated().isEmpty()) {
+                        Located l = mountain.getLocated().stream().filter(e -> e.getProvince().contains(province)).findFirst().orElse(null);
+                        if (l != null) {
+                            l.getProvince().remove(province);
+                            boolean locatedRemoved = false;
+                            if (l.getProvince().isEmpty()) {
+                                mountain.getLocated().remove(l);
+                                locatedRemoved = true;
+                            }
+                            mountain.getCountry().add(catalonia);
+                            if (locatedRemoved) {
+                                mountain.getCountry().remove(spain);
+                            }
+                        }
                     }
                 }
             }
