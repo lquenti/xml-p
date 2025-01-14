@@ -131,6 +131,7 @@ public class App {
                         }
                     });
                 }
+
                 // area
                 BigDecimal provinceArea = province.getArea();
                 BigDecimal countryArea = catalonia.getArea();
@@ -208,7 +209,80 @@ public class App {
                     }
                 }
 
+                // find rivers which are affected by the province
+                List<River> affectedRivers = new ArrayList<>();
+                for (River river : mondial.getRiver()) {
+                    if (river.getCountry().contains(spain)) {
+                        boolean bLocated = river.getLocated().stream().anyMatch(l -> l.getProvince().contains(province));
+                        boolean bSource = river.getSource().getLocated().stream().anyMatch(l -> l.getProvince().contains(province));
+                        boolean bEstuary = river.getEstuary().getLocated().stream().anyMatch(l -> l.getProvince().contains(province));
+                        if (bLocated || bSource || bEstuary) {
+                            affectedRivers.add(river);
+                        }
+                    }
+                }
+
+                for (River river : affectedRivers)
+                    if (!rivers.contains(river)) rivers.add(river);
+
                 // update rivers
+                for (River river : rivers) {
+                    // update country
+                    river.getCountry().add(catalonia);
+                    // update located
+                    List<Located> locatedToRemove = new ArrayList<>();
+                    for (Located l : river.getLocated()) {
+                        if (l.getProvince().contains(province)) {
+                            l.getProvince().remove(province);
+                            if (l.getProvince().isEmpty()) {
+                                locatedToRemove.add(l);
+                            }
+                        }
+                    }
+                    river.getLocated().removeAll(locatedToRemove);
+                    locatedToRemove.clear();
+                    // update estuary
+
+                    // update estuary located
+                    for (Located estLocated : river.getEstuary().getLocated()) {
+                        estLocated.getProvince().remove(province);
+                        if (estLocated.getProvince().isEmpty()) {
+                            locatedToRemove.add(estLocated);
+                        }
+                    }
+
+                    // update estuary country
+                    river.getEstuary().getLocated().removeAll(locatedToRemove);
+                    if(river.getEstuary().getLocated().isEmpty()) {
+                        river.getEstuary().getCountry().remove(spain);
+                        river.getEstuary().getCountry().add(catalonia);
+                    }
+                    locatedToRemove.clear();
+
+                    // update source
+                    for (Located srcLocated : river.getSource().getLocated()) {
+                        srcLocated.getProvince().remove(province);
+                        if (srcLocated.getProvince().isEmpty()) {
+                            locatedToRemove.add(srcLocated);
+                        }
+                    }
+
+                    // update source country
+                    river.getSource().getLocated().removeAll(locatedToRemove);
+                    if(river.getSource().getLocated().isEmpty()) {
+                        river.getSource().getCountry().remove(spain);
+                        river.getSource().getCountry().add(catalonia);
+                    }
+
+                    river.getCountry().clear();
+                    river.getCountry().addAll(river.getSource().getCountry());
+                    for (Country c : river.getEstuary().getCountry().stream().map(e -> (Country) e).collect(Collectors.toList())) {
+                        if (!river.getCountry().contains(c)) {
+                            river.getCountry().add(c);
+                        }
+
+                    }
+                }
             }
 
 
