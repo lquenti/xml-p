@@ -102,18 +102,39 @@ public class App {
             for (String id : AFFECTED_PROVINCE_IDS) {
                 Province province = findProvince(mondial, OLD_COUNTRY_CAR_CODE, id);
                 spain.getProvince().remove(province);
-                // update province
+                // update province to catalonia
                 province.setCountry(catalonia);
-                for (City city: province.getCity()) {
+                for (City city : province.getCity()) {
                     city.setCountry(catalonia);
+                    city.setProvince(null);
                 }
-                catalonia.getProvince().add(province);
+                // area
                 BigDecimal provinceArea = province.getArea();
                 BigDecimal countryArea = catalonia.getArea();
                 if (countryArea == null) {
                     countryArea = BigDecimal.ZERO;
                 }
                 catalonia.setArea(countryArea.add(provinceArea));
+
+                // population
+                catalonia.getPopulation().addAll(province.getPopulation());
+                // subtract population from spain
+                for (Population oldPop : spain.getPopulation()) {
+                    for (Population newPop : catalonia.getPopulation()) {
+                        if (oldPop.getYear() == (newPop.getYear())) {
+                            oldPop.setValue(oldPop.getValue().subtract(newPop.getValue()));
+                        }
+                    }
+                }
+
+                // set cities
+                catalonia.getCity().addAll(province.getCity());
+
+                // update borders
+
+                // update sea
+
+                // update rivers
             }
 
 
