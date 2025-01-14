@@ -47,8 +47,8 @@ public class App {
     }
 
 
-    public static void updateMissingOnCatalonia(Mondial mondial) {
-        Country catalonia = findCountry(mondial, NEW_COUNTRY_CAR_CODE);
+    public static void updateMissingOnNewCountry(Mondial mondial) {
+        Country newCountry = findCountry(mondial, NEW_COUNTRY_CAR_CODE);
         // TODO: make abstract if border is present
         Encompassed encompassed = new Encompassed();
         Continent europe = mondial.getContinent().stream()
@@ -57,7 +57,7 @@ public class App {
                 .orElseThrow(() -> new RuntimeException("Europe not found"));
         encompassed.setContinent(europe);
         encompassed.setPercentage(BigDecimal.valueOf(100.));
-        catalonia.getEncompassed().add(encompassed);
+        newCountry.getEncompassed().add(encompassed);
     }
 
     public static void validateXML(File xmlFile) throws SAXException, ParserConfigurationException, IOException {
@@ -97,11 +97,11 @@ public class App {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             Mondial mondial = (Mondial) unmarshaller.unmarshal(mergedXML);
 
-            // catalonia operations
-            updateMissingOnCatalonia(mondial);
+            // newCountry operations
+            updateMissingOnNewCountry(mondial);
 
-            Country spain = findCountry(mondial, OLD_COUNTRY_CAR_CODE);
-            Country catalonia = findCountry(mondial, NEW_COUNTRY_CAR_CODE);
+            Country oldCountry = findCountry(mondial, OLD_COUNTRY_CAR_CODE);
+            Country newCountry = findCountry(mondial, NEW_COUNTRY_CAR_CODE);
             for (String id : AFFECTED_PROVINCE_IDS) {
                 // watertypes to update
                 List<Sea> seas = new ArrayList<>();
@@ -109,12 +109,12 @@ public class App {
                 List<Lake> lakes = new ArrayList<>();
 
                 Province province = findProvince(mondial, OLD_COUNTRY_CAR_CODE, id);
-                spain.getProvince().remove(province);
+                oldCountry.getProvince().remove(province);
 
-                // update province to catalonia
-                province.setCountry(catalonia);
+                // update province to newCountry
+                province.setCountry(newCountry);
                 for (City city : province.getCity()) {
-                    city.setCountry(catalonia);
+                    city.setCountry(newCountry);
                     city.setProvince(null);
                     city.getLocatedAt().forEach(l -> {
                         switch (l.getWatertype()) {
@@ -134,17 +134,17 @@ public class App {
 
                 // area
                 BigDecimal provinceArea = province.getArea();
-                BigDecimal countryArea = catalonia.getArea();
+                BigDecimal countryArea = newCountry.getArea();
                 if (countryArea == null) {
                     countryArea = BigDecimal.ZERO;
                 }
-                catalonia.setArea(countryArea.add(provinceArea));
+                newCountry.setArea(countryArea.add(provinceArea));
 
                 // population
-                catalonia.getPopulation().addAll(province.getPopulation());
-                // subtract population from spain
-                for (Population oldPop : spain.getPopulation()) {
-                    for (Population newPop : catalonia.getPopulation()) {
+                newCountry.getPopulation().addAll(province.getPopulation());
+                // subtract population from oldCountry
+                for (Population oldPop : oldCountry.getPopulation()) {
+                    for (Population newPop : newCountry.getPopulation()) {
                         if (oldPop.getYear() == (newPop.getYear())) {
                             oldPop.setValue(oldPop.getValue().subtract(newPop.getValue()));
                         }
@@ -152,15 +152,15 @@ public class App {
                 }
 
                 // set cities
-                catalonia.getCity().addAll(province.getCity());
+                newCountry.getCity().addAll(province.getCity());
 
                 // update borders
-                for (Border border : catalonia.getBorder()) {
+                for (Border border : newCountry.getBorder()) {
                     Country neighbour = (Country) border.getCountry();
                     List<Border> bordersToRemove = new ArrayList<>();
                     for (Border b : neighbour.getBorder()) {
                         Country currentCountry = (Country) b.getCountry();
-                        if (currentCountry.equals(spain)) {
+                        if (currentCountry.equals(oldCountry)) {
                             b.setLength(b.getLength().subtract(border.getLength()));
                         }
                         if (b.getLength() == null || b.getLength().compareTo(BigDecimal.ZERO) <= 0) {
@@ -170,8 +170,8 @@ public class App {
                     neighbour.getBorder().removeAll(bordersToRemove);
                     bordersToRemove.clear();
 
-                    // shorten the border of the neighbour with spain
-                    for (Border b : spain.getBorder()) {
+                    // shorten the border of the neighbour with oldCountry
+                    for (Border b : oldCountry.getBorder()) {
                         if (b.getCountry().equals(neighbour)) {
                             b.setLength(b.getLength().subtract(border.getLength()));
                         }
@@ -179,21 +179,21 @@ public class App {
                             bordersToRemove.add(b);
                         }
                     }
-                    spain.getBorder().removeAll(bordersToRemove);
+                    oldCountry.getBorder().removeAll(bordersToRemove);
 
                     Border updatedBorder = new Border();
                     updatedBorder.setLength(border.getLength());
-                    updatedBorder.setCountry(catalonia);
+                    updatedBorder.setCountry(newCountry);
                     updatedBorder.setJustice(border.getJustice());
                     neighbour.getBorder().add(updatedBorder);
                 }
 
                 // update sea
                 for (Sea sea : seas) {
-                    if (!catalonia.getProvince().isEmpty()) {
+                    if (!newCountry.getProvince().isEmpty()) {
                         Located located = new Located();
-                        located.setCountry(catalonia);
-                        located.getProvince().addAll(catalonia.getProvince());
+                        located.setCountry(newCountry);
+                        located.getProvince().addAll(newCountry.getProvince());
                         sea.getLocated().add(located);
                     }
                     List<Located> locatedToRemove = new ArrayList<>();
@@ -204,15 +204,15 @@ public class App {
                         }
                     }
                     sea.getLocated().removeAll(locatedToRemove);
-                    if (!sea.getCountry().contains(catalonia)) {
-                        sea.getCountry().add(catalonia);
+                    if (!sea.getCountry().contains(newCountry)) {
+                        sea.getCountry().add(newCountry);
                     }
                 }
 
                 // find rivers which are affected by the province
                 List<River> affectedRivers = new ArrayList<>();
                 for (River river : mondial.getRiver()) {
-                    if (river.getCountry().contains(spain)) {
+                    if (river.getCountry().contains(oldCountry)) {
                         boolean bLocated = river.getLocated().stream().anyMatch(l -> l.getProvince().contains(province));
                         boolean bSource = river.getSource().getLocated().stream().anyMatch(l -> l.getProvince().contains(province));
                         boolean bEstuary = river.getEstuary().getLocated().stream().anyMatch(l -> l.getProvince().contains(province));
@@ -228,7 +228,7 @@ public class App {
                 // update rivers
                 for (River river : rivers) {
                     // update country
-                    river.getCountry().add(catalonia);
+                    river.getCountry().add(newCountry);
                     // update located
                     List<Located> locatedToRemove = new ArrayList<>();
                     for (Located l : river.getLocated()) {
@@ -254,8 +254,8 @@ public class App {
                     // update estuary country
                     river.getEstuary().getLocated().removeAll(locatedToRemove);
                     if(river.getEstuary().getLocated().isEmpty()) {
-                        river.getEstuary().getCountry().remove(spain);
-                        river.getEstuary().getCountry().add(catalonia);
+                        river.getEstuary().getCountry().remove(oldCountry);
+                        river.getEstuary().getCountry().add(newCountry);
                     }
                     locatedToRemove.clear();
 
@@ -270,8 +270,8 @@ public class App {
                     // update source country
                     river.getSource().getLocated().removeAll(locatedToRemove);
                     if(river.getSource().getLocated().isEmpty()) {
-                        river.getSource().getCountry().remove(spain);
-                        river.getSource().getCountry().add(catalonia);
+                        river.getSource().getCountry().remove(oldCountry);
+                        river.getSource().getCountry().add(newCountry);
                     }
 
                     river.getCountry().clear();
@@ -285,7 +285,7 @@ public class App {
 
                 // update mountains
                 for(Mountain mountain : mondial.getMountain()) {
-                    if(mountain.getCountry().contains(spain) && !mountain.getLocated().isEmpty()) {
+                    if(mountain.getCountry().contains(oldCountry) && !mountain.getLocated().isEmpty()) {
                         Located l = mountain.getLocated().stream().filter(e -> e.getProvince().contains(province)).findFirst().orElse(null);
                         if (l != null) {
                             l.getProvince().remove(province);
@@ -294,9 +294,9 @@ public class App {
                                 mountain.getLocated().remove(l);
                                 locatedRemoved = true;
                             }
-                            mountain.getCountry().add(catalonia);
+                            mountain.getCountry().add(newCountry);
                             if (locatedRemoved) {
-                                mountain.getCountry().remove(spain);
+                                mountain.getCountry().remove(oldCountry);
                             }
                         }
                     }
