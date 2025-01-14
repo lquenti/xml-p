@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class App {
     private static final String TMP_PATH = "tmp.xml";
@@ -100,6 +103,11 @@ public class App {
             Country spain = findCountry(mondial, OLD_COUNTRY_CAR_CODE);
             Country catalonia = findCountry(mondial, NEW_COUNTRY_CAR_CODE);
             for (String id : AFFECTED_PROVINCE_IDS) {
+                // watertypes to update
+                List<Sea> seas = new ArrayList<>();
+                List<River> rivers = new ArrayList<>();
+                List<Lake> lakes = new ArrayList<>();
+
                 Province province = findProvince(mondial, OLD_COUNTRY_CAR_CODE, id);
                 spain.getProvince().remove(province);
                 // update province to catalonia
@@ -107,6 +115,20 @@ public class App {
                 for (City city : province.getCity()) {
                     city.setCountry(catalonia);
                     city.setProvince(null);
+                    city.getLocatedAt().forEach(l -> {
+                        switch (l.getWatertype()) {
+                            case "sea":
+                                seas.addAll(l.getSea() != null ? l.getSea().stream().map(e -> (Sea) e).collect(Collectors.toList()) : new ArrayList<>());
+                                break;
+                            case "river":
+                                rivers.addAll(l.getRiver() != null ? l.getRiver().stream().map(e -> (River) e).collect(Collectors.toList()) : new ArrayList<>());
+                                break;
+                            case "lake":
+                                lakes.addAll(l.getLake() != null ? l.getLake().stream().map(e -> (Lake) e).collect(Collectors.toList()) : new ArrayList<>());
+                                break;
+                            default:
+                        }
+                    });
                 }
                 // area
                 BigDecimal provinceArea = province.getArea();
@@ -131,8 +153,41 @@ public class App {
                 catalonia.getCity().addAll(province.getCity());
 
                 // update borders
+                for (Border border : catalonia.getBorder()) {
+                    Country neighbour = (Country) border.getCountry();
+                    List<Border> bordersToRemove = new ArrayList<>();
+                    for(Border b : neighbour.getBorder()) {
+                        Country currentCountry = (Country) b.getCountry();
+                        if (currentCountry.equals(spain)) {
+                            b.setLength(b.getLength().subtract(border.getLength()));
+                        }
+                        if (b.getLength() == null || b.getLength().compareTo(BigDecimal.ZERO) <= 0) {
+                            bordersToRemove.add(b);
+                        }
+                    }
+                    neighbour.getBorder().removeAll(bordersToRemove);
+                    bordersToRemove.clear();
+
+                    // shorten the border of the neighbour with spain
+                    for (Border b: spain.getBorder()) {
+                        if (b.getCountry().equals(neighbour)) {
+                            b.setLength(b.getLength().subtract(border.getLength()));
+                        }
+                        if (b.getLength() == null || b.getLength().compareTo(BigDecimal.ZERO) <= 0) {
+                            bordersToRemove.add(b);
+                        }
+                    }
+                    spain.getBorder().removeAll(bordersToRemove);
+
+                    Border updatedBorder = new Border();
+                    updatedBorder.setLength(border.getLength());
+                    updatedBorder.setCountry(catalonia);
+                    updatedBorder.setJustice(border.getJustice());
+                    neighbour.getBorder().add(updatedBorder);
+                }
 
                 // update sea
+//                mondial.getSea()
 
                 // update rivers
             }
