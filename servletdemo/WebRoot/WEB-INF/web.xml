@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app
+  PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+  "http://java.sun.com/dtd/web-app_2.3.dtd">
+
+<web-app>
+
+  <!-- =========================================================== -->
+  <!-- Define a servlet name and associate a classfile             -->
+  <!-- =========================================================== -->
+
+  <servlet>
+    <servlet-name>sum-servlet</servlet-name>
+    <servlet-class>org.semwebtech.servletdemo.SumServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>format-servlet</servlet-name>
+    <servlet-class>org.semwebtech.servletdemo.FormatServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>makecalls-servlet</servlet-name>
+    <servlet-class>org.semwebtech.servletdemo.MakeCallsServlet</servlet-class>
+    <init-param>
+      <param-name>myURL</param-name>
+      <param-value>http://localhost:8080/servletdemo/</param-value>
+    </init-param>
+  </servlet>
+
+  <!-- =========================================================== -->
+  <!-- define URL patterns that map an http address to a servlet   -->
+  <!-- =========================================================== -->
+
+  <servlet-mapping>
+    <servlet-name>sum-servlet</servlet-name>
+    <url-pattern>/sum</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>format-servlet</servlet-name>
+    <url-pattern>/format</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>format-servlet</servlet-name>
+    <url-pattern>/all</url-pattern>
+  </servlet-mapping>
+
+    <servlet-mapping>
+    <servlet-name>format-servlet</servlet-name>
+    <url-pattern>/reset</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>makecalls-servlet</servlet-name>
+    <url-pattern>/makecalls</url-pattern>
+  </servlet-mapping>
+
+  <!-- =========================================================== -->
+  <!-- optionally: define default html page                        -->
+  <!-- =========================================================== -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>

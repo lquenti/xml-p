@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "www.w3.org/TR/html4/sgml/dtd.html">
+<html>
+  <head>
+    <title>Servlet Example</title>
+  </head>
+
+  <body>
+
+    <h1>Servlet Example</h1>
+
+    <!--
+        action attribute defines the address where the
+        contents of the form will be submitted to
+    -->
+    <form action="./sum" method="get">
+      The following form will be submitted via HTTP-GET to ./sum (and shows just the resulting number):
+      <table>
+        <tr>
+          <td>a:</td>
+          <td><input type="text" name="a" /></td>
+        </tr>
+        <tr>
+          <td>b:</td>
+          <td><input type="text" name="b" /></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align:center">
+            <input type="submit" />
+          </td>
+        </tr>
+      </table>
+    </form>
+    <br/>
+    <form action="./format" method="get">
+      The following form will be submitted via HTTP-GET to ./format (and shows the result in a simple HTML result page with a table)
+      <table>
+        <tr>
+          <td>a:</td>
+          <td><input type="text" name="a" /></td>
+        </tr>
+        <tr>
+          <td>b:</td>
+          <td><input type="text" name="b" /></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align:center">
+            <input type="submit" />
+          </td>
+        </tr>
+      </table>
+    </form>
+    <br/>
+    <form action="./makecalls" method="post">
+      The following form will be submitted via HTTP-POST to ./makecalls (and trigger internal
+      service communication to (i) compute the result and (ii) show the result in a simple HTML
+      result page with a table)
+      <table>
+        <tr>
+          <td>a:</td>
+          <td><input type="text" name="a" /></td>
+        </tr>
+        <tr>
+          <td>b:</td>
+          <td><input type="text" name="b" /></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align:center">
+            <input type="submit" />
+          </td>
+        </tr>
+      </table>
+    </form>
+    <br/>
+    See a list of all generated result tables at <a href="./all">./all</a> (HTTP GET).
+    <br/>
+    Delete the list of all generated result tables at <a href="./reset">./reset</a> (HTTP GET).
+  </body>
+</html>
