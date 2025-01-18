@@ -2,7 +2,8 @@
 <project name="ServletExample" default="compile" basedir=".">
 
 	<property environment="env" />
-	<property name="catalina.home" value="${env.CATALINA_HOME}" />
+  <!-- hard coded lol -->
+  <property name="catalina.home" value="/home/lquenti/pkg/tomcat/tomcat" />
 	<property name="java.home" value="${env.JAVA_HOME}" />
 	<property name="webapps.path" location="${catalina.home}/webapps" />
 	<property name="name" value="servletdemo" />
