@@ -16,6 +16,7 @@ import javax.xml.parsers.SAXParserFactory;
 public class ReverseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("get called...");
         res.setContentType("text/plain");
         res.getWriter().write("use post");
     }
@@ -33,7 +34,6 @@ public class ReverseServlet extends HttpServlet {
             SAXParser saxParser = factory.newSAXParser();
 
             ReverseXMLHandler handler = new ReverseXMLHandler(out);
-
             saxParser.parse(req.getInputStream(), handler);
         } catch (SAXException | ParserConfigurationException e) {
             System.err.println("doPost: " + e.getMessage());
