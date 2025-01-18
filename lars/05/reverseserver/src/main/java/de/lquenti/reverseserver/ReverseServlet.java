@@ -25,11 +25,15 @@ public class ReverseServlet extends HttpServlet {
         try {
             res.setContentType("application/xml");
             res.setCharacterEncoding("UTF-8");
+
             // I read that bufferedreader should be used for non-binary input
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(res.getOutputStream()));
+
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
+
             ReverseXMLHandler handler = new ReverseXMLHandler(out);
+
             saxParser.parse(req.getInputStream(), handler);
         } catch (SAXException | ParserConfigurationException e) {
             System.err.println("doPost: " + e.getMessage());
