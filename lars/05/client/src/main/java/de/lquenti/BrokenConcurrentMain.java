@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ConcurrentMain {
+public class BrokenConcurrentMain {
     public static void main(String[] args) throws Exception{
         File file = new File("../../../mondial-europe-no-dtd.xml");
         String targetUrl = "http://localhost:8080/reverseserver_war_exploded/reverse";
