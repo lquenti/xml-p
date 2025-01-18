@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class BlockingMain {
     public static void main(String[] args) throws Exception {
-        File file = new File("/home/lquenti/code/xml-p/mondial-europe-no-dtd.xml");
+        File file = new File("../../../mondial-europe-no-dtd.xml");
         String targetUrl = "http://localhost:8080/reverseserver_war_exploded/reverse";
 
         URL url = new URL(targetUrl);
@@ -30,6 +30,7 @@ public class BlockingMain {
         while ((bytesRead = fileInput.read(buffer)) != -1) {
             System.out.println(StandardCharsets.UTF_8.decode(ByteBuffer.wrap(buffer)));
             toServer.write(buffer, 0, bytesRead);
+            Thread.sleep(100);
         }
 
         // then close

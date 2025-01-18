@@ -6,7 +6,7 @@ import java.net.URL;
 
 public class ConcurrentMain {
     public static void main(String[] args) throws Exception{
-        File file = new File("/home/lquenti/code/xml-p/mondial-europe-no-dtd.xml");
+        File file = new File("../../../mondial-europe-no-dtd.xml");
         String targetUrl = "http://localhost:8080/reverseserver_war_exploded/reverse";
 
         URL url = new URL(targetUrl);
@@ -20,8 +20,10 @@ public class ConcurrentMain {
         InputStream fileInput = new BufferedInputStream(new FileInputStream(file));
         OutputStream toServer = connection.getOutputStream();
 
+        System.out.println("before");
         // TODO at this point the server already thinks I am done with my POST, while I havent even sent sth
         InputStream fromServer = connection.getInputStream();
+        System.out.println("after");
 
         byte[] buffer = new byte[4096];
         int bytesRead;
